@@ -3,98 +3,126 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:00:14 by galambey          #+#    #+#             */
-/*   Updated: 2024/01/26 18:30:30 by galambey         ###   ########.fr       */
+/*   Updated: 2024/01/27 11:31:09 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "Contact.hpp"
-# include "PhoneBook.hpp"
-#include <sstream>
+#include "phone.hpp"
 
-int	ft_ctoi(std::string s)
-{
-	std::istringstream index;
+int	ft_stoi(std::string s) {
+
 	int result;
 	
-	if (s.length() != 1 || !isdigit(s[0]))
-		return(-1);
-	index.str(s);
-	index >> result;
+	for(int i = 0; s[i]; i++) {
+		if (!isdigit(s[i]))
+			return (-1);
+	}
+	std::istringstream(s) >> result;
 	return(result);		
 }
 
-int	main(void){
+void print_ten_char(std::string s) {
+	
+	int test = 1;
+	
+	if (s.length() > 10)
+		test = 2;
+	switch (test) {
+		case 1 :
+			std::cout.width(10);
+			std::cout << s;
+			break;
+		case 2 :
+			s.resize(10);
+			s[9] = '.';
+			std::cout << s;
+			break;
+	}
+}
+
+int	main(void) {
 	
 	PhoneBook phonebook;
-	// Contact	  new_friend;
+	Contact	  new_friend;
 	std::string	rule, index, f_name, l_name, n_name, phone, secret;
 	int	i = 0;
-
-	// new_friend = new_friend.add_contact("a", "b", "c", "d", "e");
-	// new_friend.print_contact();
-	// phonebook.add_contact(0, new_friend);
 
 	while (1)
 	{
 		std::cin >> rule;
+		if (std::cin.eof())
+			return (0); // ou continue ; ? voir avec remi ce qu il en pense
 		if (rule == "ADD")
 		{
-			Contact	  new_friend;
 			std::cout << "First name : ";
 			std::cin >> f_name;
+			if (std::cin.eof())
+				return (0);
 			std::cout << "Last name : ";
 			std::cin >> l_name;
+			if (std::cin.eof())
+				return (0);
 			std::cout << "Nickname : ";
 			std::cin >> n_name;
+			if (std::cin.eof())
+				return (0);
 			std::cout << "Phone number : ";
 			std::cin >> phone;
+			if (std::cin.eof())
+				return (0);
 			std::cout << "Darkest secret : ";
 			std::cin >> secret;
+			if (std::cin.eof())
+				return (0);
 			new_friend = new_friend.add_contact(f_name, l_name, n_name, phone, secret);
-			// i = (i == 8) * 0 + (i != 8) * (i + 1);
-			// i = (i != 8) * (i + 1);
-			// if (i == 8)
-			// 	i = 0;
-			// else
-				i++;
+			phonebook.add_contact(i, new_friend);
+			i = (i != 7) * (i + 1);
+			std::cout << i << std::endl;
 		}
 		if (rule == "SEARCH")
 		{
 			int j;
 			phonebook.print_all_contact();
 			std::cout << "Enter the contact's index you whish to consult : ";
-			std::cin >> index;
-			j = ft_ctoi(index);
-			phonebook.print_one_contact(j);
+			while (1)
+			{
+				std::cin >> index;
+				if (std::cin.eof())
+					return (0);
+				j = ft_stoi(index);
+				int res = phonebook.print_one_contact(j);
+				if (res == 0)
+					break ;
+			}
 		}
-		if (rule == "QUIT")
+		if (rule == "EXIT")
 			break ;
 	}
 	return (0);
 }
 
+// int main () {
+//   std::cout << std::setfill ('x') << std::setw (10);
+//   std::cout << 77 << std::endl;
+//   return 0;
+// }
 
-// istringstream::str
-// #include <string>       // std::string
-// #include <iostream>     // std::cout
-// #include <sstream>      // std::istringstream
 
 // int main () {
-//   std::istringstream iss;
-//   std::string strvalues = "32 240 2 1450";
+//   std::cout << std::setw(10);
+//   std::cout << 77 << std::endl;
+//   return 0;
+// }
 
-//   iss.str (strvalues);
-
-//   for (int n=0; n<4; n++)
-//   {
-//     int val;
-//     iss >> val; // JE NE COMPREND PAS CETTE LIGNE
-//     std::cout << val << '\n';
-//   }
-//   std::cout << "Finished writing the numbers in: ";
-//   std::cout << iss.str() << '\n';
+// int main () {
+//   std::cout << 100 << '\n';
+//   std::cout.width(10);
+//   std::cout << 10 << '\n';
+//   std::cout.fill('x');
+//   std::cout.width(15);
+//   std::cout << std::left << 100 << '\n';
 //   return 0;
 // }

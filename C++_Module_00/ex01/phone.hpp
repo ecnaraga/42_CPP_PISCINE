@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   phone.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/24 15:50:21 by galambey          #+#    #+#             */
-/*   Updated: 2024/01/27 11:05:08 by garance          ###   ########.fr       */
+/*   Created: 2024/01/27 10:13:16 by garance           #+#    #+#             */
+/*   Updated: 2024/01/27 10:43:58 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#ifndef PHONE_HPP
+# define PHONE_HPP
 
-#include "phone.hpp"
+# include <iostream>
+# include <sstream>
+# include <iomanip>
+# include "Contact.hpp"
+# include "PhoneBook.hpp"
 
-class	PhoneBook
-{
-	private:
-		Contact my_contacts[8];
-	public:
-		PhoneBook(); // Construtor
-		~PhoneBook(); // Destructor
-
-		void	add_contact(int i, Contact contact);
-		void	print_all_contact();
-		int	print_one_contact(int i);
-
-};
+void print_ten_char(std::string s);
 
 #endif

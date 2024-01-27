@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:51:04 by galambey          #+#    #+#             */
-/*   Updated: 2024/01/26 16:59:00 by galambey         ###   ########.fr       */
+/*   Updated: 2024/01/27 11:14:00 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include "phone.hpp"
 
 PhoneBook::PhoneBook(){}
 
@@ -19,7 +19,6 @@ PhoneBook::~PhoneBook(){}
 void PhoneBook::add_contact(int i, Contact contact)
 {
 	this->my_contacts[i] = contact;
-	contact.print_contact();
 }
 
 void PhoneBook::print_all_contact()
@@ -29,15 +28,19 @@ void PhoneBook::print_all_contact()
 	for(int i = 0; i < 8; i++)
 	{
 		contact = this->my_contacts[i];
-		contact.print_contact();
+		contact.print_contact(i);
 	}
 }
 
-void PhoneBook::print_one_contact(int i)
+int PhoneBook::print_one_contact(int i)
 {
 	Contact contact;
 	
-	if (i >= 0 && i < 8)
-	contact = this->my_contacts[i];
-	contact.print_contact();
+	if (i >= 0 && i < 7) {
+		contact = this->my_contacts[i];
+		contact.print_contact_infos(i);
+		return (0);
+	}
+	std::cout << "Index has to be a digit between 0 and 7. Please try again : ";
+	return (1);
 }

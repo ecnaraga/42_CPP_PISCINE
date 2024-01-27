@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:51:00 by galambey          #+#    #+#             */
-/*   Updated: 2024/01/26 13:49:27 by galambey         ###   ########.fr       */
+/*   Updated: 2024/01/27 11:02:37 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <iostream>
-#include "Contact.hpp"
+#include "phone.hpp"
 
 Contact::Contact(){}
 
@@ -29,7 +28,34 @@ Contact Contact::add_contact(std::string f_name, std::string l_name,std::string 
 	return (new_contact);
 }
 
-void	Contact::print_contact()
+void	Contact::print_contact(int index)
 {
-	std::cout << this->first_name << this->name << this->nickname << this->phone_number << this->darkest_secret << std::endl;
+	std::string tmp;
+	
+	if (this->first_name.length())
+	{
+		std::cout.width(10);
+		std::cout << index << "|";
+		print_ten_char(this->first_name);
+		std::cout << "|";
+		print_ten_char(this->name);
+		std::cout << "|";
+		print_ten_char(this->nickname);
+		std::cout << std::endl;
+		return ;
+	}
+}
+
+void	Contact::print_contact_infos(int index)
+{
+	if (this->first_name.length())
+	{
+		std::cout << this->first_name << std::endl;
+		std::cout << this->name << std::endl;
+		std::cout << this->nickname << std::endl;
+		std::cout << this->phone_number << std::endl;
+		std::cout << this->darkest_secret << std::endl;
+		return ;
+	}
+	std::cout << "Contact " << index << " is empty" << std::endl;
 }
