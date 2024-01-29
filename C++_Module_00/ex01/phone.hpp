@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phone.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:13:16 by garance           #+#    #+#             */
-/*   Updated: 2024/01/27 10:43:58 by garance          ###   ########.fr       */
+/*   Updated: 2024/01/29 14:25:50 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 # include <iostream>
 # include <sstream>
 # include <iomanip>
+
+typedef struct s_info {
+	std::string f_name, l_name, n_name, phone, secret;
+}		t_info;
+
 # include "Contact.hpp"
 # include "PhoneBook.hpp"
 

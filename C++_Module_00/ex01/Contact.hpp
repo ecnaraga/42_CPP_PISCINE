@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:50:39 by galambey          #+#    #+#             */
-/*   Updated: 2024/01/27 11:02:23 by garance          ###   ########.fr       */
+/*   Updated: 2024/01/29 14:23:29 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class Contact
 		Contact();
 		~Contact();
 		
-		Contact add_contact(std::string f_name, std::string l_name,std::string n_name,std::string phone, std::string secret); 						// Construtor
+		Contact add_contact(t_info info);
 		void	print_contact(int index);
 		void	print_contact_infos(int index);
 };

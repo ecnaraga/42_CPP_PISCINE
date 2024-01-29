@@ -3,28 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:51:00 by galambey          #+#    #+#             */
-/*   Updated: 2024/01/27 11:02:37 by garance          ###   ########.fr       */
+/*   Updated: 2024/01/29 14:23:08 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phone.hpp"
 
-Contact::Contact(){}
+Contact::Contact(){
+	std::cout << "Contact created" << std::endl;
+}
 
-Contact::~Contact(){}
+Contact::~Contact(){
+	std::cout << "Contact destructed" << std::endl;
+}
 
-Contact Contact::add_contact(std::string f_name, std::string l_name,std::string n_name,std::string phone, std::string secret)
+Contact Contact::add_contact(t_info info)
 {
 	Contact new_contact;
 	
-	new_contact.first_name = f_name;
-	new_contact.name = l_name;
-	new_contact.nickname = n_name;
-	new_contact.phone_number = phone;
-	new_contact.darkest_secret = secret;
+	new_contact.first_name = info.f_name;
+	new_contact.name = info.l_name;
+	new_contact.nickname = info.n_name;
+	new_contact.phone_number = info.phone;
+	new_contact.darkest_secret = info.secret;
 	return (new_contact);
 }
 

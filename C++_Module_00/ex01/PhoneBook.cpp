@@ -3,18 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:51:04 by galambey          #+#    #+#             */
-/*   Updated: 2024/01/27 11:14:00 by garance          ###   ########.fr       */
+/*   Updated: 2024/01/29 14:02:28 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phone.hpp"
 
-PhoneBook::PhoneBook(){}
+PhoneBook::PhoneBook(){
+	std::cout << "Phonebook created" << std::endl;
+}
 
-PhoneBook::~PhoneBook(){}
+PhoneBook::~PhoneBook(){
+	std::cout << "Phonebook destructed" << std::endl;
+}
 
 void PhoneBook::add_contact(int i, Contact contact)
 {

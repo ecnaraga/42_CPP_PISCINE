@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:00:14 by galambey          #+#    #+#             */
-/*   Updated: 2024/01/27 11:31:09 by garance          ###   ########.fr       */
+/*   Updated: 2024/01/29 14:25:20 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phone.hpp"
+#include <fstream>
 
 int	ft_stoi(std::string s) {
 
@@ -43,41 +44,49 @@ void print_ten_char(std::string s) {
 	}
 }
 
+int	ft_add_contact(t_info *info) {
+	std::cout << "First name : ";
+	std::cin >> info->f_name;
+	if (std::cin.eof())
+		return (1);
+	std::cout << "Last name : ";
+	std::cin >> info->l_name;
+	if (std::cin.eof())
+		return (1);
+	std::cout << "Nickname : ";
+	std::cin >> info->n_name;
+	if (std::cin.eof())
+		return (1);
+	std::cout << "Phone number : ";
+	std::cin >> info->phone;
+	if (std::cin.eof())
+		return (1);
+	std::cout << "Darkest secret : ";
+	std::cin >> info->secret;
+	if (std::cin.eof())
+		return (1);
+	return (0);
+}
+
 int	main(void) {
 	
 	PhoneBook phonebook;
 	Contact	  new_friend;
-	std::string	rule, index, f_name, l_name, n_name, phone, secret;
+	t_info info;
+	std::string	rule, index;
 	int	i = 0;
 
 	while (1)
 	{
+		std::cout << "Enter a command : ";
 		std::cin >> rule;
 		if (std::cin.eof())
-			return (0); // ou continue ; ? voir avec remi ce qu il en pense
+			return (0);
 		if (rule == "ADD")
 		{
-			std::cout << "First name : ";
-			std::cin >> f_name;
-			if (std::cin.eof())
+			if (ft_add_contact(&info))
 				return (0);
-			std::cout << "Last name : ";
-			std::cin >> l_name;
-			if (std::cin.eof())
-				return (0);
-			std::cout << "Nickname : ";
-			std::cin >> n_name;
-			if (std::cin.eof())
-				return (0);
-			std::cout << "Phone number : ";
-			std::cin >> phone;
-			if (std::cin.eof())
-				return (0);
-			std::cout << "Darkest secret : ";
-			std::cin >> secret;
-			if (std::cin.eof())
-				return (0);
-			new_friend = new_friend.add_contact(f_name, l_name, n_name, phone, secret);
+			new_friend = new_friend.add_contact(info);
 			phonebook.add_contact(i, new_friend);
 			i = (i != 7) * (i + 1);
 			std::cout << i << std::endl;
@@ -87,8 +96,7 @@ int	main(void) {
 			int j;
 			phonebook.print_all_contact();
 			std::cout << "Enter the contact's index you whish to consult : ";
-			while (1)
-			{
+			while (1) {
 				std::cin >> index;
 				if (std::cin.eof())
 					return (0);
