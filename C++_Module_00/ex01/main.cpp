@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:00:14 by galambey          #+#    #+#             */
-/*   Updated: 2024/01/29 14:25:20 by galambey         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:36:58 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,70 +44,71 @@ void print_ten_char(std::string s) {
 	}
 }
 
-int	ft_add_contact(t_info *info) {
-	std::cout << "First name : ";
-	std::cin >> info->f_name;
-	if (std::cin.eof())
-		return (1);
-	std::cout << "Last name : ";
-	std::cin >> info->l_name;
-	if (std::cin.eof())
-		return (1);
-	std::cout << "Nickname : ";
-	std::cin >> info->n_name;
-	if (std::cin.eof())
-		return (1);
-	std::cout << "Phone number : ";
-	std::cin >> info->phone;
-	if (std::cin.eof())
-		return (1);
-	std::cout << "Darkest secret : ";
-	std::cin >> info->secret;
-	if (std::cin.eof())
-		return (1);
-	return (0);
+int error_input(int message)
+{
+	while (1)
+	{
+		std::string input;
+		if (message == 1)
+			std::cout << "Please enter \"y\" to try again, otherwise \"n\" : ";
+		else
+			std::cout << "Please enter \"h\" to get help, or \"y\" to try again : ";
+		getline(std::cin, input);
+		if (std::cin.eof())
+			return (-1);
+		else if (input.empty() || (message == 1 && input != "y" && input != "n") || (message != 1 && input != "y" && input != "h"))
+			continue;
+		else if (input == "n")
+			return (0);
+		else if (input == "y")
+			return (1);
+		else if (input == "h") {
+			std::cout << "Phone number must be 2 digits at least and 10 digits at most." << std::endl;
+			std::cout << "It can begin with an optional \"+\" at the begining." << std::endl;
+			std::cout << "In that case the \"+\" must be followed by 9 digits at least and 14 at most." << std::endl;
+			return (1);
+		}
+	}
 }
 
 int	main(void) {
 	
 	PhoneBook phonebook;
-	Contact	  new_friend;
-	t_info info;
 	std::string	rule, index;
-	int	i = 0;
+	int	i = 0, err = 0;
 
+	std::cout << "PHONEBOOK" << std::endl << std::endl;
 	while (1)
 	{
-		std::cout << "Enter a command : ";
-		std::cin >> rule;
+		if (err == 0)
+			std::cout << "Enter a command : ";
+		getline(std::cin, rule);
+		err = 0;
 		if (std::cin.eof())
 			return (0);
-		if (rule == "ADD")
-		{
-			if (ft_add_contact(&info))
+		else if (rule.empty()) {
+			err = 1;
+			std::cout << std::endl << "Empty command. Please try again with the followings commands : ADD , SEARCH or EXIT : ";
+		}
+		else if (rule == "ADD") {
+			err = 0;
+			if (phonebook.add_contact(i))
 				return (0);
-			new_friend = new_friend.add_contact(info);
-			phonebook.add_contact(i, new_friend);
 			i = (i != 7) * (i + 1);
-			std::cout << i << std::endl;
+			std::cout << std::endl;
 		}
-		if (rule == "SEARCH")
-		{
-			int j;
-			phonebook.print_all_contact();
-			std::cout << "Enter the contact's index you whish to consult : ";
-			while (1) {
-				std::cin >> index;
-				if (std::cin.eof())
-					return (0);
-				j = ft_stoi(index);
-				int res = phonebook.print_one_contact(j);
-				if (res == 0)
-					break ;
-			}
+		else if (rule == "SEARCH") {
+			err = 0;
+			if (phonebook.print_all_contact())
+				return (0);
+			std::cout << std::endl;
 		}
-		if (rule == "EXIT")
+		else if (rule == "EXIT")
 			break ;
+		else {
+			err = 1;
+			std::cout << std::endl << "Unavailable command. Please try again with the followings commands : ADD , SEARCH or EXIT : ";
+		}
 	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:50:21 by galambey          #+#    #+#             */
-/*   Updated: 2024/01/27 11:05:08 by garance          ###   ########.fr       */
+/*   Updated: 2024/01/30 18:29:16 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,15 @@ class	PhoneBook
 		PhoneBook(); // Construtor
 		~PhoneBook(); // Destructor
 
-		void	add_contact(int i, Contact contact);
-		void	print_all_contact();
-		int	print_one_contact(int i);
+		int			add_contact(int i);
+		int			get_contact_info(t_info *info);
+		std::string	ask_info_loop(std::string output, std::string err_output, int (check)(std::string));
+		int 		check_phone(std::string input);
+		static int 		check_name(std::string input);
+		static int 		check_only_space(std::string input);
+		int			print_all_contact();
+		int			search_contact(void);
+		int			print_one_contact(int i);
 
 };
 

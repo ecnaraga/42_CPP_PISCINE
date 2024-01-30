@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 10:13:16 by garance           #+#    #+#             */
-/*   Updated: 2024/01/29 14:25:50 by galambey         ###   ########.fr       */
+/*   Updated: 2024/01/30 16:50:08 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ typedef struct s_info {
 # include "PhoneBook.hpp"
 
 void print_ten_char(std::string s);
+int error_input(int message);
+int	ft_stoi(std::string s);
 
 #endif
