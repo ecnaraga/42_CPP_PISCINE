@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:51:00 by galambey          #+#    #+#             */
-/*   Updated: 2024/01/30 15:15:53 by galambey         ###   ########.fr       */
+/*   Updated: 2024/01/31 11:55:30 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,28 @@ Contact Contact::add_contact(t_info info)
 	return (new_contact);
 }
 
+int		Contact::test_exist(void)
+{
+	if (this->first_name.empty())
+		return (0);
+	return (1);
+}
+
 void	Contact::print_contact(int index)
 {
 	std::string tmp;
 	
 	if (this->first_name.length())
 	{
+		std::cout << "║";
 		std::cout.width(10);
-		std::cout << index << "|";
+		std::cout << index << "║";
 		print_ten_char(this->first_name);
-		std::cout << "|";
+		std::cout << "║";
 		print_ten_char(this->name);
-		std::cout << "|";
+		std::cout << "║";
 		print_ten_char(this->nickname);
-		std::cout << std::endl;
+		std::cout << "║" << std::endl;
 		return ;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:50:21 by galambey          #+#    #+#             */
-/*   Updated: 2024/01/30 18:29:16 by galambey         ###   ########.fr       */
+/*   Updated: 2024/01/31 12:12:54 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class	PhoneBook
 		PhoneBook(); // Construtor
 		~PhoneBook(); // Destructor
 
+		void		print_title();
 		int			add_contact(int i);
 		int			get_contact_info(t_info *info);
 		std::string	ask_info_loop(std::string output, std::string err_output, int (check)(std::string));

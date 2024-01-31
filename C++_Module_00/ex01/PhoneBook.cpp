@@ -6,21 +6,33 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:51:04 by galambey          #+#    #+#             */
-/*   Updated: 2024/01/30 18:41:47 by galambey         ###   ########.fr       */
+/*   Updated: 2024/01/31 12:35:42 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phone.hpp"
 
 PhoneBook::PhoneBook(){
+
+	print_title();
 	// std::cout << "Phonebook created" << std::endl;
 }
 
 PhoneBook::~PhoneBook(){
+
 	// std::cout << "Phonebook destructed" << std::endl;
 }
 
 /* CHECK INFOS */
+void PhoneBook::print_title() {
+	
+	std::cout << std::endl;
+	std::cout << "	█████ ▌   ▐ █████ █   ▐ █████ █████ █████ █████ ▌   █" << std::endl;
+	std::cout << "	▌   ▐ ▌   ▐ ▌   ▐ ▌█  ▐ ▌     ▌   ▐ ▌   ▐ ▌   ▐ ▌  █" << std::endl;
+	std::cout << "	█████ █████ ▌   ▐ ▌ █ ▐ █████ █████ ▌   ▐ ▌   ▐ ███" << std::endl;
+	std::cout << "	▌     ▌   ▐ ▌   ▐ ▌  █▐ ▌     ▌   ▐ ▌   ▐ ▌   ▐ ▌  █" << std::endl;
+	std::cout << "	▌     ▌   ▐ █████ ▌   █ █████ █████ █████ █████ ▌   █" << std::endl << std::endl;
+}
 
 int PhoneBook::check_phone(std::string input)
 {
@@ -166,14 +178,21 @@ int PhoneBook::print_all_contact() {
 	Contact contact;
 	
 	std::cout << std::endl;
-	std::cout << "_____________________________________________" << std::endl;
-	std::cout << "|     INDEX|FIRST NAME| LAST NAME|  NICKNAME|" << std::endl;
-	std::cout << "_____________________________________________" << std::endl;
+	std::cout << "╔══════════╦══════════╦══════════╦══════════╗" << std::endl;
+	std::cout << "║     INDEX║FIRST NAME║ LAST NAME║  NICKNAME║" << std::endl;
+	contact = this->my_contacts[0];
+	if (contact.test_exist())
+		std::cout << "╠══════════╬══════════╬══════════╬══════════╣" << std::endl;
 	for(int i = 0; i < 8; i++)
 	{
-		contact = this->my_contacts[i];
-		contact.print_contact(i);
-		std::cout << "_____________________________________________" << std::endl;
+			// contact = this->my_contacts[i];
+			contact.print_contact(i);
+			contact = this->my_contacts[i + 1];
+			if (!contact.test_exist()) {
+				std::cout << "╚══════════╩══════════╩══════════╩══════════╝" << std::endl;
+				break ;
+			}
+			std::cout << "╟──────────╫──────────╫──────────╫──────────╢" << std::endl;
 	}
 	std::cout << std::endl;
 	if (search_contact())

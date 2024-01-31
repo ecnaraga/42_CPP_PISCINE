@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:50:39 by galambey          #+#    #+#             */
-/*   Updated: 2024/01/30 12:30:11 by galambey         ###   ########.fr       */
+/*   Updated: 2024/01/31 11:48:14 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class Contact
 		~Contact();
 		
 		Contact add_contact(t_info info);
+		int		test_exist();
 		void	print_contact(int index);
 		int	print_contact_infos(int index);
 };

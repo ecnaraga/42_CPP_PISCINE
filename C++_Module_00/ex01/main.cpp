@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:00:14 by galambey          #+#    #+#             */
-/*   Updated: 2024/01/30 18:36:58 by galambey         ###   ########.fr       */
+/*   Updated: 2024/01/31 12:33:48 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int	main(void) {
 	std::string	rule, index;
 	int	i = 0, err = 0;
 
-	std::cout << "PHONEBOOK" << std::endl << std::endl;
 	while (1)
 	{
 		if (err == 0)
