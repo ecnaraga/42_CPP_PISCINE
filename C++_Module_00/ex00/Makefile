@@ -6,35 +6,44 @@
 #    By: galambey <galambey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/24 11:44:02 by galambey          #+#    #+#              #
-#    Updated: 2024/01/24 14:03:47 by galambey         ###   ########.fr        #
+#    Updated: 2024/02/02 14:22:37 by galambey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=./megaphone
+NAME		=	./megaphone
 
-SRC=megaphone.cpp
+SRC_DIR		= 	src/
 
-OBJ=$(SRC:.cpp=.o)
+SRC			=	megaphone.cpp
 
-CC=c++
+OBJ_DIR		= 	.obj/
 
-FLAGS=-Wall -Wextra -Werror -std=c++98
+OBJ_NAME	=	$(SRC:.cpp=.o)
 
-all : $(NAME)
+OBJ			=	$(addprefix $(OBJ_DIR), $(OBJ_NAME))
 
-%.o:%.cpp
-	$(CC) $(FLAGS) -c $< -o $@
+CC			=	c++
+
+CPP_FLAGS	=	-Wall -Wextra -Werror -std=c++98
+
+#################################### RULES ####################################
+
+all : 				$(NAME)
+
+$(OBJ_DIR)%.o:		$(SRC_DIR)%.cpp
+					mkdir -p $(@D)
+					$(CC) $(CPP_FLAGS) -c $< -o $@
 		
-$(NAME) : $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -o $@
+$(NAME) :		 	$(OBJ)
+					$(CC) $(CPP_FLAGS) $(OBJ) -o $@
 
 clean :
-	rm -f megaphone.o
+					rm -rf $(OBJ_DIR)
 
-fclean : clean
-	rm -f $(NAME)
+fclean :		 	clean
+					rm -f $(NAME)
 
-re : fclean
-	make -j all
+re :		 		fclean
+					make -j all
 
-.PHONY : all clean fclean re
+.PHONY :		 	all clean fclean re

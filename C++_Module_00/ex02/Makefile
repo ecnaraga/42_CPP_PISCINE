@@ -3,39 +3,48 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: garance <garance@student.42.fr>            +#+  +:+       +#+         #
+#    By: galambey <galambey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/27 11:39:35 by garance           #+#    #+#              #
-#    Updated: 2024/01/27 11:48:00 by garance          ###   ########.fr        #
+#    Updated: 2024/02/02 14:33:32 by galambey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = account
+NAME 		= 	account
 
-SRC = Account.cpp \
-	  tests.cpp
+SRCS_DIR	= 	srcs/
 
-OBJ = $(SRC:.cpp=.o)
+SRCS 		= 	Account.cpp \
+	  			tests.cpp
 
-CC = c++
+OBJS_DIR	= 	.objs/
 
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+OBJS_NAMES	= 	$(SRCS:.cpp=.o)
 
-all : $(NAME)
+OBJS		= 	$(addprefix $(OBJS_DIR), $(OBJS_NAMES))
 
-%.o : %.cpp
-	$(CC) $(CPPFLAGS) -c $< -o $@
+CC 			= 	c++
 
-$(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $@
+CPP_FLAGS 	= 	-Wall -Wextra -Werror -std=c++98
 
-clean :
-	rm -f *.o
+#################################### RULES ####################################
 
-fclean : clean
-	rm -f $(NAME)
+all 			: 	$(NAME)
 
-re : fclean
-	make all
+$(OBJS_DIR)%.o 	: 	$(SRCS_DIR)%.cpp
+					mkdir -p $(@D)
+					$(CC) $(CPP_FLAGS) -c $< -o $@
 
-.PHONY: all clean fclean re
+$(NAME) 		:	$(OBJS)
+					$(CC) $(CPP_FLAGS) $(OBJS) -o $@
+
+clean 			:
+					rm -rf $(OBJS_DIR)
+
+fclean 			: 	clean
+					rm -f $(NAME)
+
+re 				: 	fclean
+					make all
+
+.PHONY			: 	all clean fclean re

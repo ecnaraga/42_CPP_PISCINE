@@ -6,11 +6,11 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:00:14 by galambey          #+#    #+#             */
-/*   Updated: 2024/01/31 12:33:48 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/02 16:44:45 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phone.hpp"
+#include "../includes/phone.hpp"
 #include <fstream>
 
 int	ft_stoi(std::string s) {
@@ -111,26 +111,3 @@ int	main(void) {
 	}
 	return (0);
 }
-
-// int main () {
-//   std::cout << std::setfill ('x') << std::setw (10);
-//   std::cout << 77 << std::endl;
-//   return 0;
-// }
-
-
-// int main () {
-//   std::cout << std::setw(10);
-//   std::cout << 77 << std::endl;
-//   return 0;
-// }
-
-// int main () {
-//   std::cout << 100 << '\n';
-//   std::cout.width(10);
-//   std::cout << 10 << '\n';
-//   std::cout.fill('x');
-//   std::cout.width(15);
-//   std::cout << std::left << 100 << '\n';
-//   return 0;
-// }

@@ -6,11 +6,11 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:51:04 by galambey          #+#    #+#             */
-/*   Updated: 2024/01/31 12:35:42 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/02 16:46:07 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phone.hpp"
+#include "../includes/phone.hpp"
 
 PhoneBook::PhoneBook(){
 
@@ -23,7 +23,6 @@ PhoneBook::~PhoneBook(){
 	// std::cout << "Phonebook destructed" << std::endl;
 }
 
-/* CHECK INFOS */
 void PhoneBook::print_title() {
 	
 	std::cout << std::endl;
@@ -185,10 +184,10 @@ int PhoneBook::print_all_contact() {
 		std::cout << "╠══════════╬══════════╬══════════╬══════════╣" << std::endl;
 	for(int i = 0; i < 8; i++)
 	{
-			// contact = this->my_contacts[i];
 			contact.print_contact(i);
-			contact = this->my_contacts[i + 1];
-			if (!contact.test_exist()) {
+			if (i < 7)
+				contact = this->my_contacts[i + 1];
+			if (i == 7 || !contact.test_exist()) {
 				std::cout << "╚══════════╩══════════╩══════════╩══════════╝" << std::endl;
 				break ;
 			}

@@ -6,37 +6,50 @@
 #    By: galambey <galambey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/24 14:55:09 by galambey          #+#    #+#              #
-#    Updated: 2024/01/26 17:42:10 by galambey         ###   ########.fr        #
+#    Updated: 2024/02/02 13:44:23 by galambey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=./phonebook
+NAME		=	./phonebook
 
-SRC=PhoneBook.cpp\
-	Contact.cpp\
-	main.cpp
+SRCS_DIR	=	srcs/
 
-OBJ=$(SRC:.cpp=.o)
+SRCS		=	PhoneBook.cpp\
+				Contact.cpp\
+				main.cpp
 
-CC=c++
+OBJS_DIR	=	.objs/
 
-FLAGS=-Wall -Wextra -Werror -std=c++98
+OBJS_NAMES	=	$(SRCS:.cpp=.o)
 
-all : $(NAME)
+OBJS		=	$(addprefix $(OBJS_DIR), $(OBJS_NAMES))
 
-%.o:%.cpp
-	$(CC) $(FLAGS) -c $< -o $@
+DEPS		=	$(OBJS:.o=.d)
+
+CC			=	c++
+
+CPP_FLAGS	=	-Wall -Wextra -Werror -MMD -std=c++98
+
+#################################### RULES ####################################
+
+all 			: 	$(NAME)
+
+$(OBJS_DIR)%.o	:	$(SRCS_DIR)%.cpp
+					mkdir -p $(@D)
+					$(CC) $(CPP_FLAGS) -c $< -o $@
 		
-$(NAME) : $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -o $@
+$(NAME) 		: 	$(OBJS)
+					$(CC) $(CPP_FLAGS) $(OBJS) -o $@
 
-clean :
-	rm -f *.o
+-include $(DEPS)
 
-fclean : clean
-	rm -f $(NAME)
+clean 			:
+					rm -rf $(OBJS_DIR)
 
-re : fclean
-	make -j all
+fclean 			: 	clean
+					rm -f $(NAME)
 
-.PHONY : all clean fclean re
+re 				: 	fclean
+					make -j all
+
+.PHONY 			: 	all clean fclean re
