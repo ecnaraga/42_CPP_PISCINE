@@ -6,7 +6,7 @@
 #    By: galambey <galambey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/31 13:25:58 by galambey          #+#    #+#              #
-#    Updated: 2024/02/02 15:20:11 by galambey         ###   ########.fr        #
+#    Updated: 2024/02/02 17:19:30 by galambey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,13 @@ NAME 			= 	zombie
 
 SRCS_DIR		=	srcs/
 SRCS 			= 	main.cpp \
-	  				Zombe.cpp \
+	  				Zombie.cpp \
 	  				newZombie.cpp \
 	  				randomChump.cpp
 
 OBJS_DIR		=	.objs/
 
-OBJS_NAME		= 	$(SRCS:.cpp = .o)
+OBJS_NAME		= 	$(SRCS:.cpp=.o)
 
 OBJS			=	$(addprefix $(OBJS_DIR), $(OBJS_NAME))
 
