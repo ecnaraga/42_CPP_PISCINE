@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   newZombie.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/02 17:15:42 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/03 10:53:31 by garance          ###   ########.fr       */
+/*   Created: 2024/01/31 13:39:15 by galambey          #+#    #+#             */
+/*   Updated: 2024/02/03 12:23:21 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Zombie.hpp"
 
-int main()
-{
-	Zombie* A;
+Zombie* Zombie::newZombie(std::string name) {
+	
+	Zombie* A = new Zombie(name);
+	
+	return (A);
+}
 
-	/* Zombie alloue sur la stack */
-	randomChump("Dead");
-	std::cout << std::endl;
+Zombie* Zombie::zombieHorde(int N, std::string name) {
 	
-	/* Zombie alloue sur la heap */
-	A = newZombie("ARG");
-	A->announce();
-	delete A;
-	std::cout << std::endl;
-	
-	/* Autre facon d'allouer sur la heap en utilisant directement un constructeur */
-	// A = new Zombie("Grr");
-	// A->announce();
-	// delete A;
-	// std::cout << std::endl;
-	
-	return (0);
+	Zombie *A;
+	Zombie *tmp;
+
+	A = (Zombie*) :: operator new(sizeof(Zombie) * N);
+	tmp = A;
+	if (!name.empty()) {
+		for (int i = 0; i < N; i++) {
+			A->name = name;
+			A++;
+		}
+	}
+	A = tmp;
+	return (A);
 }
