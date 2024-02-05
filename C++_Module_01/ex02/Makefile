@@ -5,47 +5,49 @@
 #                                                     +:+ +:+         +:+      #
 #    By: garance <garance@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/31 13:25:58 by galambey          #+#    #+#              #
-#    Updated: 2024/02/04 10:49:11 by garance          ###   ########.fr        #
+#    Created: 2024/02/04 10:52:39 by garance           #+#    #+#              #
+#    Updated: 2024/02/04 11:43:00 by garance          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 			= 	zombie
+NAME		=	brain
 
-SRCS_DIR		=	srcs/
-	  				
-SRCS 			= 	main.cpp \
-	  				Zombie.cpp \
-	  				zombieHorde.cpp \
+SRC_DIR		= 	src/
 
-OBJS_DIR		=	.objs/
+SRC			= 	main.cpp
 
-OBJS_NAME		= 	$(SRCS:.cpp=.o)
+OBJ_NAME	= 	$(SRC:.cpp=.o)
 
-OBJS			=	$(addprefix $(OBJS_DIR), $(OBJS_NAME))
+OBJ_DIR		=	.obj/
 
-CC 				= 	c++
+OBJ			=	$(addprefix $(OBJ_DIR), $(OBJ_NAME))
 
-CPP_FLAGS 		= 	-Wall -Wextra -Werror -std=c++98 -g3
+DEPS		=	$(OBJS:.o=.d)
+
+CC			=	c++
+
+CPP_FLAGS	=	-Wall -Wextra -Werror -g3 -MMD -std=c++98
 
 #################################### RULE #####################################
 
-all 			: 	$(NAME)
+all				:	$(NAME)
 
-$(OBJS_DIR)%.o 	: 	$(SRCS_DIR)%.cpp
+$(OBJ_DIR)%.o	:	$(SRC_DIR)%.cpp
 					mkdir -p $(@D)
 					$(CC) $(CPP_FLAGS) -c $< -o $@
 
-$(NAME) 		: 	$(OBJS)
-					$(CC) $(CPP_FLAGS) $(OBJS) -o $@
+$(NAME)			:	$(OBJ)
+					$(CC) $(CPP_FLAGS) $(OBJ) -o $@
 
-clean 			:
-					rm -rf $(OBJS_DIR)
+-include $(DEPS)
 
-fclean 			: 	clean
+clean			:
+					rm -rf $(OBJ_DIR)
+
+fclean			:	clean
 					rm -f $(NAME)
 
-re 				: 	fclean
+re 				:	fclean
 					make all
 
-.PHONY 			: 	all clean fclean re
+.PHONY			:	all clean fclean re 

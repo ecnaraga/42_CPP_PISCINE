@@ -6,7 +6,7 @@
 /*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 17:15:42 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/03 12:16:34 by garance          ###   ########.fr       */
+/*   Updated: 2024/02/04 10:46:14 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,23 @@ int main(int ac, char **av)
 		Zombie* A = NULL;
 		std::string s = av[2];
 		A = A->Zombie::zombieHorde(N, s);
+		
+		/* Incrementation de l'index */
 		for(int i = 0; i < N; i++) {
-			A->announce();
-			A++;
+			A[i].announce();
 			std::cout << std::endl;	
 		}
-		delete A;
+		
+		/* Incrementation du pointeur */
+		// Zombie* tmp = A;
+		// for(int i = 0; i < N; i++) {
+		// 	A->announce();
+		// 	A++;
+		// 	std::cout << std::endl;	
+		// }
+		// A = tmp;
+		
+		delete[] A;
 	}
 	return (0);
 }
