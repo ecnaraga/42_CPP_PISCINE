@@ -6,7 +6,7 @@
 #    By: galambey <galambey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/05 15:55:56 by galambey          #+#    #+#              #
-#    Updated: 2024/02/05 17:02:45 by galambey         ###   ########.fr        #
+#    Updated: 2024/02/07 18:48:16 by galambey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,10 @@ NAME		= 	sed
 
 SRCS_DIR	=	srcs/
 
-SRCS		=	main.cpp
+SRCS		=	main.cpp \
+				FileReplace.cpp \
 
-OBJS_DIR	=	./objs/
+OBJS_DIR	=	.objs/
 
 OBJS_NAMES	=	$(SRCS:.cpp=.o)
 
@@ -26,7 +27,7 @@ DEPS		=	$(OBJS:.o=.d)
 
 CXX			=	c++
 
-CXXFLAGS	=	-Wall -Wextra -Werror -g3 -MMD
+CXXFLAGS	=	-Wall -Wextra -Werror -g3 -MMD -std=c++98
 
 #################################### RULE #####################################
 
@@ -37,12 +38,12 @@ $(OBJS_DIR)%.o	:	$(SRCS_DIR)%.cpp
 					$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(NAME)			:	$(OBJS)
-					$(CXX) $(CXXFLAGS) $< -o $@
+					$(CXX) $(CXXFLAGS) $(OBJS) -o $@
 
 -include $(DEPS)
 
 clean			:
-					rm -rf $(OBJS)
+					rm -rf $(OBJS_DIR)
 
 fclean			:	clean
 					rm -f $(NAME)

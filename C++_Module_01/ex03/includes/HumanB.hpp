@@ -6,12 +6,12 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 12:54:12 by garance           #+#    #+#             */
-/*   Updated: 2024/02/05 14:39:43 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/07 11:24:56 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANb_HPP
-#define HUMANb_HPP
+#ifndef HUMANB_HPP
+#define HUMANB_HPP
 
 #include "Weapon.hpp"
 
