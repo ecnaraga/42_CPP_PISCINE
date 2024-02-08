@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 10:55:33 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/07 18:42:20 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:48:04 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,10 @@ void	FileReplace::write_to_f_dst(const std::string &s1, const std::string &s2) {
 	int i = 0;
 	while (1) {
 		line = "";
-		if (!getline(this->_fs_old, line)) // secu si pas arrive a la fin du fichier
+		if (!getline(this->_fs_old, line)) {// secu si pas arrive a la fin du fichier
+			// std::cout << i << std::endl;
 			break;
+		}
 		if (i > 0)
 			this->_fs_new << std::endl; // Pour ecrire dans le file associe au file stream
 		this->_ft_modif_line(line, s1, s2);

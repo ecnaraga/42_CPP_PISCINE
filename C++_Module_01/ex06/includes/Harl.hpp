@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.hpp                                         :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/04 11:49:54 by garance           #+#    #+#             */
-/*   Updated: 2024/02/08 17:01:51 by galambey         ###   ########.fr       */
+/*   Created: 2024/02/08 15:13:39 by galambey          #+#    #+#             */
+/*   Updated: 2024/02/08 15:20:04 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WEAPON_HPP
-# define WEAPON_HPP
+#ifndef HARL_CPP
+# define HARL_CPP
 
 #include <iostream>
+#include <string>
 
-class   Weapon {
-    private:
-        std::string type;
-        
-    public:
-    	Weapon(void);
-        Weapon(std::string type);
-        ~Weapon(void);
-        const std::string    &getType() const; // le dernier const est necessaire car la fonction membre ne va pas modifier les attributs de la classe
-        void            setType(std::string new_type);
+class 	Harl {
+
+	private :
+		void	debug(void);
+		void	info(void);
+		void	warning(void);
+		void	error(void);
+		
+	public :
+		Harl();
+		~Harl();
+		void	complain(std::string level);
 } ;
 
 #endif

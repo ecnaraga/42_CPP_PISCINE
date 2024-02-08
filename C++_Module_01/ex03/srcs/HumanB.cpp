@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 13:05:03 by garance           #+#    #+#             */
-/*   Updated: 2024/02/05 15:43:53 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:06:47 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,12 @@ HumanB::HumanB(std::string name) {
     
     this->name = name;
 	this->weapon = NULL;
-    std::cout << "HumanB " << this->name << " constructed" <<std::endl;
+    // std::cout << "HumanB " << this->name << " constructed" <<std::endl;
 }
 
 HumanB::~HumanB(void) {
 
-    std::cout << "HumanB destroyed" << std::endl;
-    // this->weapon.~Weapon();
+    // std::cout << "HumanB destroyed" << std::endl;
 }
 
 void    HumanB::attack(void) {

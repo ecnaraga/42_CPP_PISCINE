@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: garance <garance@student.42.fr>            +#+  +:+       +#+         #
+#    By: galambey <galambey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/04 10:52:39 by garance           #+#    #+#              #
-#    Updated: 2024/02/04 11:43:00 by garance          ###   ########.fr        #
+#    Updated: 2024/02/08 15:43:44 by galambey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,9 @@ OBJ			=	$(addprefix $(OBJ_DIR), $(OBJ_NAME))
 
 DEPS		=	$(OBJS:.o=.d)
 
-CC			=	c++
+CXX			=	c++
 
-CPP_FLAGS	=	-Wall -Wextra -Werror -g3 -MMD -std=c++98
+CXXFLAGS	=	-Wall -Wextra -Werror -g3 -MMD -std=c++98
 
 #################################### RULE #####################################
 
@@ -34,10 +34,10 @@ all				:	$(NAME)
 
 $(OBJ_DIR)%.o	:	$(SRC_DIR)%.cpp
 					mkdir -p $(@D)
-					$(CC) $(CPP_FLAGS) -c $< -o $@
+					$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(NAME)			:	$(OBJ)
-					$(CC) $(CPP_FLAGS) $(OBJ) -o $@
+					$(CXX) $(CXXFLAGS) $(OBJ) -o $@
 
 -include $(DEPS)
 

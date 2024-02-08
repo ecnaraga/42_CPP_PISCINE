@@ -5,37 +5,35 @@
 #                                                     +:+ +:+         +:+      #
 #    By: galambey <galambey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/04 11:36:51 by garance           #+#    #+#              #
-#    Updated: 2024/02/08 15:44:43 by galambey         ###   ########.fr        #
+#    Created: 2024/02/08 15:05:49 by galambey          #+#    #+#              #
+#    Updated: 2024/02/08 15:13:24 by galambey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	war
+NAME			=	HarlFilter
 
-SRCS_DIR	= 	srcs/
+SRCS_DIR		=	srcs/
 
-SRCS 		=	main.cpp \
-				Weapon.cpp \
-				HumanA.cpp \
-				HumanB.cpp
+SRCS			=	main.cpp \
+					Harl.cpp
 
-OBJS_NAMES	=	$(SRCS:.cpp=.o)
+OBJS_DIR		=	.objs/
 
-OBJS_DIR	=	.objs/
+OBJS_NAME		=	$(SRCS:.cpp=.o)
 
-OBJS		=	$(addprefix $(OBJS_DIR), $(OBJS_NAMES))
+OBJS 			=	$(addprefix $(OBJS_DIR), $(OBJS_NAME))
 
-DEPS		=	$(OBJS:.o=.d)
+DEPS			=	$(OBJS:.o=.d)
 
-CXX			=	c++
+CXX				=	c++
 
-CXXFLAGS	=	-Wall -Wextra -Werror -g3 -MMD -std=c++98
+CXXFLAGS		=	-Wall -Wextra -Werror -MMD -std=c++98
 
 #################################### RULE #####################################
 
 all				:	$(NAME)
 
-$(OBJS_DIR)%.o	:	$(SRCS_DIR)%.cpp
+$(OBJS_DIR)%.o 	: 	$(SRCS_DIR)%.cpp
 					mkdir -p $(@D)
 					$(CXX) $(CXXFLAGS) -c $< -o $@
 
@@ -50,7 +48,7 @@ clean			:
 fclean			:	clean
 					rm -f $(NAME)
 
-re 				:	fclean
+re 				: 	fclean
 					make all
-
+					
 .PHONY			:	all clean fclean re

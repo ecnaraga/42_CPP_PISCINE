@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.hpp                                         :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/04 11:49:54 by garance           #+#    #+#             */
-/*   Updated: 2024/02/08 17:01:51 by galambey         ###   ########.fr       */
+/*   Created: 2024/02/08 09:57:52 by galambey          #+#    #+#             */
+/*   Updated: 2024/02/08 13:33:02 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WEAPON_HPP
-# define WEAPON_HPP
+#ifndef	HARL_HPP
+# define HARL_HPP
 
 #include <iostream>
+#include <string.h>
 
-class   Weapon {
-    private:
-        std::string type;
-        
-    public:
-    	Weapon(void);
-        Weapon(std::string type);
-        ~Weapon(void);
-        const std::string    &getType() const; // le dernier const est necessaire car la fonction membre ne va pas modifier les attributs de la classe
-        void            setType(std::string new_type);
+
+class Harl {
+	
+	private:
+		void	debug(void);
+		void	info(void);
+		void	warning(void);
+		void	error(void);
+		// void	exec_complain(void (Harl:: *f)(void));
+
+	public:
+		Harl(void);
+		~Harl(void);
+		void	complain(std::string level);
 } ;
 
+// typedef void (Harl::*pf)(void);
 #endif

@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/04 12:55:37 by garance           #+#    #+#             */
-/*   Updated: 2024/02/05 15:48:20 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:06:14 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ HumanA::HumanA(const std::string &n, Weapon &w) : name(n), weapon(w) {
     // this->weapon = w; // PAS POSSIBLE D initialiser weapon de cette facon
 						 // car c est une ref dans Human A, il faut donc l'initialiser
 						 // a cote du prototype
-    std::cout << "HumanA " << this->name << " constructed" <<std::endl;
+    // std::cout << "HumanA " << this->name << " constructed" <<std::endl;
 }
 
 HumanA::~HumanA(void) {
 
-    std::cout << "HumanA destroyed" << std::endl;
+    // std::cout << "HumanA destroyed" << std::endl;
 }
 
 void    HumanA::attack(void) {
