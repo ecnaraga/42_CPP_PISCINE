@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:51:00 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/02 14:35:20 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/05 10:47:29 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Contact::Contact(){
 }
 
 Contact::~Contact(){
-	// std::cout << "Contact destructed" << std::endl;
+	// std::cout << "Contact destroyed" << std::endl;
 }
 
 Contact Contact::add_contact(t_info info)
@@ -30,6 +30,26 @@ Contact Contact::add_contact(t_info info)
 	new_contact.phone_number = info.phone;
 	new_contact.darkest_secret = info.secret;
 	return (new_contact);
+}
+
+void Contact::print_ten_char(std::string s) {
+	
+	int test = 1;
+	
+	if (s.length() > 10)
+		test = 2;
+	switch (test) {
+		case 1 :
+			// std::cout.width(10); // other way
+			std::cout << std::setw(10);
+			std::cout << s;
+			break;
+		case 2 :
+			s.resize(10);
+			s[9] = '.';
+			std::cout << s;
+			break;
+	}
 }
 
 int		Contact::test_exist(void)
@@ -46,7 +66,8 @@ void	Contact::print_contact(int index)
 	if (this->first_name.length())
 	{
 		std::cout << "║";
-		std::cout.width(10);
+		// std::cout.width(10); // other way
+		std::cout << std::setw(10);
 		std::cout << index << "║";
 		print_ten_char(this->first_name);
 		std::cout << "║";

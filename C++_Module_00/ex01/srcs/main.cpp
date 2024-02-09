@@ -3,46 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 12:00:14 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/03 11:40:08 by garance          ###   ########.fr       */
+/*   Updated: 2024/02/05 10:43:57 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/phone.hpp"
 #include <fstream>
-
-int	ft_stoi(std::string s) {
-
-	int result;
-	
-	for(int i = 0; s[i]; i++) {
-		if (!isdigit(s[i]))
-			return (-1);
-	}
-	std::istringstream(s) >> result;
-	return(result);		
-}
-
-void print_ten_char(std::string s) {
-	
-	int test = 1;
-	
-	if (s.length() > 10)
-		test = 2;
-	switch (test) {
-		case 1 :
-			std::cout.width(10);
-			std::cout << s;
-			break;
-		case 2 :
-			s.resize(10);
-			s[9] = '.';
-			std::cout << s;
-			break;
-	}
-}
 
 int error_input(int message)
 {

@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 09:57:52 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/08 13:33:02 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:45:47 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ class Harl {
 		void	info(void);
 		void	warning(void);
 		void	error(void);
-		// void	exec_complain(void (Harl:: *f)(void));
 
 	public:
 		Harl(void);

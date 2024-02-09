@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 17:58:42 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/08 18:26:26 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/09 14:20:47 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ class FileReplace {
 	
 	private:
 		char* _f_dst;
-		std::fstream	_fs_old; // file stream > equivalent des fd en C
-		std::fstream	_fs_new;
-		void	_ft_modif_line(std::string &line, const std::string &s1, const std::string &s2);
+		std::ofstream	_fs_new;
+		void	_replace(std::string &line, const std::string &s1, const std::string &s2);
+		int		_open_filestream(void);
+		
 	public:
 		FileReplace();
 		~FileReplace();
 		int	create_name(const std::string &f_src);
-		int		open_filestream(const char *f_src);
-		void	write_to_f_dst(const std::string &s1, const std::string &s2);
+		void	write_to_f_dst(const std::string &s1, const std::string &s2, const char *f_src);
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 15:51:04 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/02 16:46:07 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/05 10:56:36 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ PhoneBook::PhoneBook(){
 
 PhoneBook::~PhoneBook(){
 
-	// std::cout << "Phonebook destructed" << std::endl;
+	// std::cout << "Phonebook destroyed" << std::endl;
 }
 
 void PhoneBook::print_title() {
@@ -148,12 +148,24 @@ int PhoneBook::print_one_contact(int i) {
 	Contact contact;
 	std::string input;
 	
-	if (i >= 0 && i < 7) {
+	if (i >= 0 && i <= 7) {
 		contact = this->my_contacts[i];
 		return (contact.print_contact_infos(i));
 	}
 	std::cout << "Index has to be a digit between 0 and 7. ";
 	return (error_input(1));
+}
+
+int	PhoneBook::ft_stoi(std::string s) {
+
+	int result;
+	
+	for(int i = 0; s[i]; i++) {
+		if (!isdigit(s[i]))
+			return (-1);
+	}
+	std::istringstream(s) >> result;
+	return(result);		
 }
 
 int PhoneBook::search_contact(void) {

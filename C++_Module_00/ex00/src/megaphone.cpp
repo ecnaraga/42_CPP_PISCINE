@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 11:44:09 by galambey          #+#    #+#             */
-/*   Updated: 2024/01/24 14:48:44 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/05 13:48:13 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,11 @@ int main(int ac, char **av)
 			len = strupp.length();
 			for(j = 0; j < len; j++)
 				strupp[j] = toupper(strupp[j]);
-			if (i < ac - 1)
+			if (i < ac - 1) {
 				std::cout << strupp;
+				if (len > 0 && av[i + 1][0])
+					std::cout << " ";
+			}
 			else
 				std::cout << strupp << std::endl;
 		}

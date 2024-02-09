@@ -6,7 +6,7 @@
 #    By: galambey <galambey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/24 11:44:02 by galambey          #+#    #+#              #
-#    Updated: 2024/02/02 14:22:37 by galambey         ###   ########.fr        #
+#    Updated: 2024/02/06 09:57:18 by galambey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,9 @@ OBJ_NAME	=	$(SRC:.cpp=.o)
 
 OBJ			=	$(addprefix $(OBJ_DIR), $(OBJ_NAME))
 
-CC			=	c++
+CXX			=	c++
 
-CPP_FLAGS	=	-Wall -Wextra -Werror -std=c++98
+CXX_FLAGS	=	-Wall -Wextra -Werror -std=c++98
 
 #################################### RULES ####################################
 
@@ -32,10 +32,10 @@ all : 				$(NAME)
 
 $(OBJ_DIR)%.o:		$(SRC_DIR)%.cpp
 					mkdir -p $(@D)
-					$(CC) $(CPP_FLAGS) -c $< -o $@
+					$(CXX) $(CXX_FLAGS) -c $< -o $@
 		
 $(NAME) :		 	$(OBJ)
-					$(CC) $(CPP_FLAGS) $(OBJ) -o $@
+					$(CXX) $(CXX_FLAGS) $(OBJ) -o $@
 
 clean :
 					rm -rf $(OBJ_DIR)

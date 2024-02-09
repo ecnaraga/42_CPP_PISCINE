@@ -23,21 +23,23 @@ public:
 
 	typedef Account		t;
 
-	static int	getNbAccounts( void ); //ok // Dans le .cpp quand on defini la fonction ne pas mettre le static!!! car a la compilation il va pas comprendre que c est la meme fonction...
-	static int	getTotalAmount( void ); //ok
-	static int	getNbDeposits( void ); //ok
-	static int	getNbWithdrawals( void ); //ok
-	static void	displayAccountsInfos( void ); //ok
+	static int	getNbAccounts( void ); // Dans le .cpp quand on defini la fonction ne pas mettre le static!!! car a la compilation il va pas comprendre que c est la meme fonction...
+	static int	getTotalAmount( void );
+	static int	getNbDeposits( void );
+	static int	getNbWithdrawals( void );
+	static void	displayAccountsInfos( void );
 
-	Account( int initial_deposit ); //ok
+	Account( int initial_deposit );
 	~Account( void );
 
 	void	makeDeposit( int deposit );
 	bool	makeWithdrawal( int withdrawal );
 	/*
 	On déclare une fonction membre constante en faisant suivre sa déclaration du mot-clé const.
-	La différence entre les deux fonctions f() est que la version non-constante ne peut être appelée
-	pour des objets constants de type S.
+	1.une fonction membre s'engage à ne pas modifier l'objet au départ duquel elle est appelée.
+	2.une  fonction membre déclarée constante ne pourra appeler que d'autres fonctions membres déclarées constante
+	3.une fonction membre constante peut etre appelee depuis des objets constants ET non constant mais
+		une fonction membre non constante ne peut etre appelee depuis des objets constant.
 	*/
 	int		checkAmount( void ) const;
 	void	displayStatus( void ) const;
