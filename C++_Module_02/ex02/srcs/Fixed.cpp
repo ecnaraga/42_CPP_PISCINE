@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:00:34 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/21 17:58:00 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/22 17:35:09 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ Fixed::Fixed(int const integer) {
 Fixed::Fixed(float const float_nb) {
 
 	this->setRawBits(toRawBits(float_nb));
+	// std::cout << float_nb << "donne en rawbits : " << this->getRawbits() << std::endl;
 }
 
 Fixed::~Fixed() {}
@@ -84,6 +85,8 @@ int		Fixed::toRawBits( float float_nb ) const {
 
 Fixed &			Fixed::operator=(Fixed const & rhs) {
 	
+	if (*this == rhs)
+		return (*this);
 	this->setRawBits(rhs.getRawbits());
 	return (*this);
 }
@@ -97,75 +100,82 @@ std::ostream & 	operator<<(std::ostream & lhs, Fixed const & rhs) {
 
 /* ************************** Arithmetic Operator  ************************* */
 
-float	Fixed::operator+(Fixed const & rhs) {
+Fixed	Fixed::operator+(Fixed const & rhs) {
 	
-	// (this->getRawbits() + rhs.getRawbits());
-	// float	tmp = this->toFloat() + rhs.toFloat();
-	// this->setRawBits(this->toRawBits(tmp));
-	return (this->toFloat() + rhs.toFloat());
+	int tmp = this->getRawbits() + rhs.getRawbits();
+	return (Fixed(tofloat(tmp)));
 }
 
-Fixed &	Fixed::operator-(Fixed const & rhs) {
+Fixed Fixed::operator-(Fixed const & rhs) {
 	
-	this->setRawBits(this->getRawbits() - rhs.getRawbits());
-	return (*this);
+	int tmp = this->getRawbits() - rhs.getRawbits();
+	return (Fixed(tofloat(tmp)));
 }
 
-Fixed &	Fixed::operator*(Fixed const & rhs) {
+Fixed Fixed::operator*(Fixed const & rhs) {
 	
-	this->setRawBits(this->getRawbits() * rhs.getRawbits());
-	return (*this);
+	int tmp = (this->getRawbits() * rhs.getRawbits()) >> this->_bits ; // Comme on multiplie deux rawbits, qui on chacun ete decale vers la gauche et que le rawbit ne doit etre decale qu une fois, il faut redecaler vers la droite pour equilibre et recuperer le res en rawbit
+	return (Fixed(tofloat(tmp)));
+	// return (Fixed(this->toFloat() * rhs.toFloat()));
 }
 
-Fixed &	Fixed::operator/(Fixed const & rhs) {
+Fixed Fixed::operator/(Fixed const & rhs) {
 	
-	this->setRawBits(this->getRawbits() / rhs.getRawbits());
-	return (*this);
+	
+	int tmp = (this->getRawbits() << this->_bits) / (rhs.getRawbits());  // Comme on divise deux rawbits, les decalages qu on avait fait s annule, il faut redecaler vers la gauche pour recuperer le res en rawbit
+	return (Fixed(tofloat(tmp)));
+	// return (Fixed(this->toFloat() / rhs.toFloat()));
 }
 
 /* ************************** Comparison Operator  ************************* */
 
-int		Fixed::operator>(Fixed const & rhs) const {
+bool		Fixed::operator>(Fixed const & rhs) const {
 	
 	if (this->getRawbits() > rhs.getRawbits())
 		return 1;
 	return 0 ;
 }
 
-int		Fixed::operator<(Fixed const & rhs) const {
+bool		Fixed::operator<(Fixed const & rhs) const {
 	
 	if (this->getRawbits() < rhs.getRawbits())
 		return 1;
 	return 0 ;
 }
 
-int		Fixed::operator>=(Fixed const & rhs) const {
+bool		Fixed::operator>=(Fixed const & rhs) const {
 	
 	if (this->getRawbits() >= rhs.getRawbits())
 		return 1;
 	return 0 ;
 }
 
-int		Fixed::operator<=(Fixed const & rhs) const {
+bool		Fixed::operator<=(Fixed const & rhs) const {
 	
 	if (this->getRawbits() <= rhs.getRawbits())
 		return 1;
 	return 0 ;
 }
 
-int		Fixed::operator==(Fixed const & rhs) const {
+bool		Fixed::operator==(Fixed const & rhs) const {
 	
 	if (this->getRawbits() == rhs.getRawbits())
 		return 1;
 	return 0 ;
 }
 
-int		Fixed::operator!=(Fixed const & rhs) const {
+bool		Fixed::operator!=(Fixed const & rhs) const {
 	
 	if (this->getRawbits() != rhs.getRawbits())
 		return 1;
 	return 0 ;
 }
 
+/*
+ϵ tel que 1 + ϵ > 1
+Le symbole "ε" représente le plus petit nombre positif qui peut être
+	représenté par le système à virgule flottante. Dans d'autres termes, c'est
+	la plus petite différence entre deux nombres représentables dans ce système.
+ */
 /* ************************* Increment & Decrement  ************************ */
 

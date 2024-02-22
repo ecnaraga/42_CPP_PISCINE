@@ -6,11 +6,17 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:25:01 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/21 17:49:23 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/22 17:24:44 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Fixed.hpp"
+
+float	tofloat( int raw ) {
+	
+	float tmp = static_cast<float>(raw);
+	return (tmp / (1 << 8));
+}
 
 int main( void ) {
 	
@@ -139,61 +145,68 @@ int main( void ) {
 	
 	/* ***************************** Operator + **************************** */
 	
+	std::cout << "Operator +" << std::endl;
+	
 	Fixed g(Fixed(4) + Fixed(16));
+	// Fixed g=Fixed(4) + Fixed(16);
 	Fixed h(Fixed(10.5f) + Fixed(16));
 	Fixed i(Fixed(10.5f) + Fixed (50.3568f));
 	Fixed j = g + h + i;
 
-	std::cout << "Fixed(4) = " << Fixed(4) << std::endl;
-	std::cout << "Fixed(16) = " << Fixed(16) << std::endl;
-	std::cout << "g = " << g << std::endl;
-	std::cout << "h = " << h << std::endl;
-	std::cout << "i = " << i << std::endl;
-	std::cout << "j = " << j << std::endl;
-	std::cout << "g + h + i = " << g + h + i << std::endl;
+	std::cout << "4 + 16 = " << g << std::endl;
+	std::cout << "10.5 + 16 = " << h << std::endl;
+	std::cout << "10.5 + 50.3568 = " << i << std::endl;
+	std::cout << "20 + 26.5 + 60.8568 = " << j << std::endl;
+	std::cout << "20 + 26.5 + 60.8568 = " << g + h + i << std::endl << std::endl;
 	
 	/* ***************************** Operator - **************************** */
 	
-	Fixed ga(Fixed(4) - Fixed(16));
-	Fixed ha(Fixed(10.5f) - Fixed(16));
-	Fixed ia(Fixed(50.3568f) - Fixed (11.254f));
-	Fixed ja = ga - ha - ia;
+	std::cout << "Operator -" << std::endl;
+	
+	Fixed k(Fixed(4) - Fixed(16));
+	Fixed l(Fixed(10.5f) - Fixed(16));
+	Fixed m(Fixed(50.3568f) - Fixed (11.254f));
+	Fixed n = k - l - m;
 
-	std::cout << "ga = " << ga << std::endl;
-	std::cout << "ha = " << ha << std::endl;
-	std::cout << "ia = " << ia << std::endl;
-	std::cout << "ja = " << ja << std::endl;
-	std::cout << "ga - ha - ia = " << ga - ha - ia << std::endl;
+	std::cout << "4 - 16 = " << k << std::endl;
+	std::cout << "10.5 - 16 = " << l << std::endl;
+	std::cout << "50.3568 - 10.5 = " << m << std::endl;
+	std::cout << "-12 - (-5.5) - 39.1016 = " << n << std::endl;
+	std::cout << "-12 - (-5.5) - 39.1016 = " << k - l - m << std::endl << std::endl;
 	
 	/* ***************************** Operator * **************************** */
 	
-	Fixed gb(Fixed(4) * Fixed(16));
-	Fixed hb(Fixed(10.5f) * Fixed(16));
-	Fixed ib(Fixed(50.3568f) * Fixed (11.254f));
-	Fixed jb = gb * hb * ib;
+	std::cout << "Operator *" << std::endl;
 
-	std::cout << "gb = " << gb << std::endl;
-	std::cout << "hb = " << hb << std::endl;
-	std::cout << "ib = " << ib << std::endl;
-	std::cout << "jb = " << jb << std::endl;
-	std::cout << "gb * hb * ib = " << gb * hb * ib << std::endl;
+	Fixed o(Fixed(4) * Fixed(16));
+	Fixed p(Fixed(10.5f) * Fixed(16));
+	Fixed q(Fixed(50.3568f) * Fixed (11.254f));
+	Fixed r(2);
+	Fixed s(15);
+	Fixed t(0.5f);
+	Fixed u = r * s * t;
+
+	std::cout << "4 * 16 = " << o << std::endl;
+	std::cout << "10.5 * 16 = " << p << std::endl;
+	std::cout << "50.3568 * 10.5 = " << q << std::endl;
+	std::cout << "2 * 15 * 0.5 = " << u << std::endl;
+	std::cout << "2 * 15 * 0.5 = " << r * s * t << std::endl << std::endl;
 	
 	/* ***************************** Operator / **************************** */
 	
-	Fixed gc(Fixed(4) / Fixed(16));
-	Fixed hc(Fixed(16) / Fixed(4));
-	Fixed ic(Fixed(10.5f) / Fixed(2));
-	Fixed jc(Fixed(2.25f) / Fixed(10));
-	Fixed kc(Fixed(36.47f) / Fixed (0.5f));
-	Fixed lc = gc / hc / ic;
+	std::cout << "Operator /" << std::endl;
 
-	std::cout << "gc = " << gc << std::endl;
-	std::cout << "hc = " << hc << std::endl;
-	std::cout << "ic = " << ic << std::endl;
-	std::cout << "jc = " << jc << std::endl;
-	std::cout << "kc = " << kc << std::endl;
-	std::cout << "lc = " << lc << std::endl;
-	std::cout << "gc / hc / ic = " << gc / hc / ic << std::endl;
+	Fixed v(Fixed(4) / Fixed(16));
+	Fixed w(Fixed(16) / Fixed(4));
+	Fixed x(Fixed(9.0f) / Fixed(2));
+	Fixed y(Fixed(9.25f) / Fixed (0.5f));
+	Fixed z = Fixed(100) / Fixed(0.5f) / Fixed(3);
+
+	std::cout << "4 / 16 = " << v << std::endl;
+	std::cout << "16 / 4 = " << w << std::endl;
+	std::cout << "9.0f / 2 = " << x << std::endl;
+	std::cout << "9.25f / 0.5f = " << y << std::endl;
+	std::cout << "100 / 0.5f / 3 = " << z << std::endl;
 	
 	return 0;
 
