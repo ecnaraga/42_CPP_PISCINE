@@ -5,17 +5,19 @@
 #                                                     +:+ +:+         +:+      #
 #    By: galambey <galambey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/21 15:41:57 by galambey          #+#    #+#              #
-#    Updated: 2024/02/23 10:37:21 by galambey         ###   ########.fr        #
+#    Created: 2024/02/23 11:37:36 by galambey          #+#    #+#              #
+#    Updated: 2024/02/23 16:49:42 by galambey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= 	fixed
+NAME			= 	bsp
 
 SRCS_DIR		=	srcs/
 
 SRCS			=	main.cpp \
-					Fixed.cpp
+					Fixed.cpp \
+					Point.cpp \
+					bsp.cpp
 
 OBJS_DIR		=	objs/
 

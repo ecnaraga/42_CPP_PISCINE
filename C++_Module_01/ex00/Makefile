@@ -6,7 +6,7 @@
 #    By: galambey <galambey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/31 13:25:58 by galambey          #+#    #+#              #
-#    Updated: 2024/02/08 15:41:43 by galambey         ###   ########.fr        #
+#    Updated: 2024/02/20 09:36:38 by galambey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ OBJS_NAME		= 	$(SRCS:.cpp=.o)
 
 OBJS			=	$(addprefix $(OBJS_DIR), $(OBJS_NAME))
 
-CXX 				= 	c++
+CXX 			= 	c++
 
 CXXFLAGS 		= 	-Wall -Wextra -Werror -std=c++98 -g3
 

@@ -6,17 +6,11 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 16:25:01 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/22 17:24:44 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/23 11:34:26 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/Fixed.hpp"
-
-float	tofloat( int raw ) {
-	
-	float tmp = static_cast<float>(raw);
-	return (tmp / (1 << 8));
-}
 
 int main( void ) {
 	
@@ -24,27 +18,37 @@ int main( void ) {
 	/* ************************** MAIN_TEST_SUJET ************************** */
 	/* ********************************************************************* */
 	
-	// Fixed a;
-	// Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+	Fixed a;
+	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
 	
-	// std::cout << a << std::endl;
-	// std::cout << ++a << std::endl;
-	// std::cout << a << std::endl;
-	// std::cout << a++ << std::endl;
-	// std::cout << a << std::endl;
-	// std::cout << b << std::endl;
-	// std::cout << Fixed::max( a, b ) << std::endl;
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << Fixed::max( a, b ) << std::endl;
+	
 
 	/* ********************************************************************* */
 	/* *************************** MAIN_TEST_MINE ************************** */
 	/* ********************************************************************* */
+	
+	Fixed aa(16);
+	std::cout << std::endl << --a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a-- << std::endl;
+	std::cout << a << std::endl;
+	std::cout << Fixed::max( aa, a ) << std::endl;
+	std::cout << Fixed::min( a, b ) << std::endl;
+	std::cout << Fixed::min( aa, a ) << std::endl;
 	
 	Fixed c;
 	Fixed d(0.5f);
 	Fixed e(c);
 	Fixed f(-1);
 
-	std::cout << "c = " << c << std::endl;
+	std::cout << std::endl << "c = " << c << std::endl;
 	std::cout << "d = " << d << std::endl;
 	std::cout << "e = " << e << std::endl;
 	std::cout << "f = " << f << std::endl << std::endl;
@@ -196,18 +200,23 @@ int main( void ) {
 	
 	std::cout << "Operator /" << std::endl;
 
-	Fixed v(Fixed(4) / Fixed(16));
-	Fixed w(Fixed(16) / Fixed(4));
-	Fixed x(Fixed(9.0f) / Fixed(2));
-	Fixed y(Fixed(9.25f) / Fixed (0.5f));
-	Fixed z = Fixed(100) / Fixed(0.5f) / Fixed(3);
+	try {
+		Fixed v(Fixed(4) / Fixed(16));
+		Fixed w(Fixed(16) / Fixed(4));
+		Fixed x(Fixed(9.0f) / Fixed(2));
+		Fixed y(Fixed(9.25f) / Fixed (0.5f));
+		Fixed z = Fixed(100) / Fixed(0.5f) / Fixed(3);
+		// Fixed zz = Fixed(100) / Fixed(0);
 
-	std::cout << "4 / 16 = " << v << std::endl;
-	std::cout << "16 / 4 = " << w << std::endl;
-	std::cout << "9.0f / 2 = " << x << std::endl;
-	std::cout << "9.25f / 0.5f = " << y << std::endl;
-	std::cout << "100 / 0.5f / 3 = " << z << std::endl;
-	
+		std::cout << "4 / 16 = " << v << std::endl;
+		std::cout << "16 / 4 = " << w << std::endl;
+		std::cout << "9.0f / 2 = " << x << std::endl;
+		std::cout << "9.25f / 0.5f = " << y << std::endl;
+		std::cout << "100 / 0.5f / 3 = " << z << std::endl;
+		// std::cout << "100 / 0 = " << zz << std::endl;
+	}
+	catch (const char* error) {
+		std::cout << error << std::endl;
+	}
 	return 0;
-
 }
