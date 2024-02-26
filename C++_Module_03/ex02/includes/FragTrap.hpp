@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 14:31:31 by garance           #+#    #+#             */
-/*   Updated: 2024/02/26 12:29:26 by galambey         ###   ########.fr       */
+/*   Created: 2024/02/26 11:47:47 by galambey          #+#    #+#             */
+/*   Updated: 2024/02/26 12:32:16 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
-#include "ClapTrap.hpp"
+# include "ScavTrap.hpp"
 
-class ScavTrap : public ClapTrap {
-  
-    public :
-        /* ******************** Constructor & Destructor ******************* */
-        
-        ScavTrap();
-        ScavTrap( std::string name );
-        ScavTrap( ScavTrap const & orig );    
-        ~ScavTrap();
-        
+class FragTrap : public ClapTrap {
+	
+	public :
+		/* ******************** Constructor & Destructor ******************* */
+		
+		FragTrap();
+		FragTrap( std::string const & name );
+		FragTrap( FragTrap const & orig );
+		virtual ~FragTrap();
+		
 		/* ********************** Assignment Operator  ********************* */
-        
-        ScavTrap & 	operator=( ScavTrap const & rhs );
-        
+		
+		FragTrap & 	operator=( FragTrap const & rhs );
+		
 		/* ************************ Action Function ************************ */
-        
-        void   		attack( std::string const & target );
-        void   		guardGate() const;
+		
+		void 		highFivesGuys( void ) const;
 } ;
 
 #endif

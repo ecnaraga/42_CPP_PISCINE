@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 11:15:05 by garance           #+#    #+#             */
-/*   Updated: 2024/02/26 17:46:42 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:48:35 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@ class   ClapTrap {
     private :
         std::string const 	_name;
         unsigned int        _hitPoints;
-		unsigned int        _energyPoints;
+        unsigned int        _energyPoints;
         unsigned int        _attackDamage;
     
     protected :
-    	/* **************************** Accessor *************************** */
+    /* **************************** Accessor *************************** */
         
         void    		setHitPoints( int hit );
         void    		setEnergyPoints( int energy );
         void    		setAttackDamage( int attack );
 		
-		/* ************************ Action Function ************************ */
-	
+	/* ************************ Action Function ************************ */
+		
 		void			attack_action( std::string const & message, std::string const & target );
             
     public :
@@ -41,7 +41,6 @@ class   ClapTrap {
         ClapTrap( ClapTrap const & orig );
         ClapTrap( std::string const & name );
         virtual ~ClapTrap();
-        
         
 		/* ********************** Assignment Operator  ********************* */
         
@@ -56,9 +55,9 @@ class   ClapTrap {
         
 		/* ************************ Action Function ************************ */
         
-        virtual void	attack( std::string const & target );
+        virtual void    attack( std::string const & target );
         void    		takeDamage( unsigned int amount );
-        void    		beRepaired( unsigned int amount );
+        void   			beRepaired( unsigned int amount );
 } ;
 
 #endif

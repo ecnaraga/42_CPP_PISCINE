@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 14:37:34 by garance           #+#    #+#             */
-/*   Updated: 2024/02/26 17:17:37 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:18:23 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,23 @@ ScavTrap::~ScavTrap() {
 
 /* ************************** Assignment Operator  ************************* */
 
-ScavTrap & 	ScavTrap::operator=( ScavTrap const & rhs ) {
+ScavTrap & ScavTrap::operator=( ScavTrap const & rhs ) {
     
-    this->setHitPoints(rhs.getHitPoints());
-    this->setAttackDamage(rhs.getAttackDamage());
-    this->setEnergyPoints(rhs.getEnergyPoints());
+    this->setHitPoints(rhs.ClapTrap::getHitPoints());
+    this->setAttackDamage(rhs.ClapTrap::getAttackDamage());
+    this->setEnergyPoints(rhs.ClapTrap::getEnergyPoints());
     return (*this);
 }
 
+
 /* **************************** Action Function **************************** */
 
-void   		ScavTrap::attack( std::string const & target ) {
+void   ScavTrap::attack( std::string const & target ) {
     
 	this->ClapTrap::attack_action("ScavTrap ", target);
 }
 
-void    	ScavTrap::guardGate( void ) const {
+void    ScavTrap::guardGate( void ) const {
     
-    std::cout << "ScavTrap named " << getName() << " is now in Gate keeper mode!" << std::endl;
+    std::cout << "ScavTrap named " << ClapTrap::getName() << " is now in Gate keeper mode!" << std::endl;
 }

@@ -6,11 +6,11 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 12:27:18 by garance           #+#    #+#             */
-/*   Updated: 2024/02/26 17:35:54 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:38:39 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ScavTrap.hpp"
+#include "../includes/FragTrap.hpp"
 
 int main(void) {
     
@@ -69,5 +69,33 @@ int main(void) {
     std::cout << ST2.getName() << " has " << green <<  ST2.getHitPoints() << reset << " points of hit and " << cyan << ST2.getEnergyPoints() << reset << " points of energy left" << std::endl;
     std::cout << ST3.getName() << " has " << green <<  ST3.getHitPoints() << reset << " points of hit and " << cyan << ST3.getEnergyPoints() << reset << " points of energy left" << std::endl << std::endl;
 
+	FragTrap FT1;
+	FragTrap FT2(FT1);
+	FragTrap FT3("Monter");
+	
+    std::cout << std::endl;
+	FT1.attack("Zelda");
+	Zelda.takeDamage(FT1.getAttackDamage());
+	ST2.attack("FT1");
+	FT1.takeDamage(ST1.getAttackDamage());
+	FT1.beRepaired(10);
+	FT3.attack("FT2");
+	FT2.takeDamage(FT3.getAttackDamage());
+	
+    
+    std::cout << std::endl << yellow <<  "╔════════════════════════════════════════════════════════╗" << std::endl;
+    std::cout << "║                         SCORES                         ║" << std::endl;
+    std::cout << "╚════════════════════════════════════════════════════════╝" << reset << std::endl << std::endl;
+    
+    std::cout << Bob.getName() << " has " << green << Bob.getHitPoints() << reset << " points of hit and " << cyan << Bob.getEnergyPoints() << reset << " points of energy left" << std::endl;
+    std::cout << Bob1.getName() << " has " << green << Bob1.getHitPoints() << reset << " points of hit and " << cyan << Bob1.getEnergyPoints() << reset << " points of energy left" << std::endl;
+    std::cout << Zelda.getName() << " has " << green << Zelda.getHitPoints() << reset << " points of hit and " << cyan << Zelda.getEnergyPoints() << reset << " points of energy left" << std::endl;
+    std::cout << ST1.getName() << " has " << green <<  ST1.getHitPoints() << reset << " points of hit and " << cyan << ST1.getEnergyPoints() << reset << " points of energy left" << std::endl;
+    std::cout << ST2.getName() << " has " << green <<  ST2.getHitPoints() << reset << " points of hit and " << cyan << ST2.getEnergyPoints() << reset << " points of energy left" << std::endl;
+    std::cout << ST3.getName() << " has " << green <<  ST3.getHitPoints() << reset << " points of hit and " << cyan << ST3.getEnergyPoints() << reset << " points of energy left" << std::endl;
+	std::cout << FT1.getName() << " has " << green << FT1.getHitPoints() << reset << " points of hit and " << cyan << FT1.getEnergyPoints() << reset << " points of energy left" << std::endl;
+    std::cout << FT2.getName() << " has " << green << FT2.getHitPoints() << reset << " points of hit and " << cyan << FT2.getEnergyPoints() << reset << " points of energy left" << std::endl;
+    std::cout << FT3.getName() << " has " << green << FT3.getHitPoints() << reset << " points of hit and " << cyan << FT3.getEnergyPoints() << reset << " points of energy left" << std::endl << std::endl;
+    
     return 0;
 }
