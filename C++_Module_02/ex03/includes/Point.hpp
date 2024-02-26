@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 11:42:44 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/23 17:48:18 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/26 09:52:57 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "Fixed.hpp"
 
-class Point : public Fixed {
+class Point {
 	
 	private :
 		Fixed const _x;
