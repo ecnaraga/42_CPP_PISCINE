@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 12:27:18 by garance           #+#    #+#             */
-/*   Updated: 2024/02/26 17:29:42 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:34:13 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int main(void) {
     ClapTrap Zelda("Zelda");
 
     std::cout << std::endl;
-    Bob.attack("Zelda");
+    Bob.attack(Zelda.getName());
     Zelda.takeDamage(Bob.getAttackDamage());
     Zelda.beRepaired(12);
-    Zelda.attack("Bob1");
+    Zelda.attack(Bob1.getName());
     Bob1.takeDamage(Zelda.getAttackDamage());
-    Zelda.attack("Bob1");
+    Zelda.attack(Bob1.getName());
     Bob1.takeDamage(Zelda.getAttackDamage());
 
     std::cout << std::endl << yellow <<  "╔════════════════════════════════════════════════════════╗" << std::endl;

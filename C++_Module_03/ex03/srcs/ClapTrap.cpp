@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 11:24:43 by garance           #+#    #+#             */
-/*   Updated: 2024/02/26 17:44:53 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/27 12:40:16 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,21 +67,6 @@ ClapTrap & ClapTrap::operator=( ClapTrap const & rhs ) {
 
 
 /* ******************************** Accessor ******************************* */
-
-void    ClapTrap::setHitPoints( int hit ) {
-
-    this->_hitPoints = hit;    
-}
-
-void    ClapTrap::setEnergyPoints( int energy ) {
-
-    this->_energyPoints = energy;    
-}
-
-void    ClapTrap::setAttackDamage( int attack ) {
-
-    this->_attackDamage = attack;
-}
 
 std::string ClapTrap::getName( void ) const {
     

@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 14:31:31 by garance           #+#    #+#             */
-/*   Updated: 2024/02/26 16:34:03 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/27 12:40:52 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,6 @@ class ScavTrap : public virtual ClapTrap {
 		/* ********************** Assignment Operator  ********************* */
         
         ScavTrap & 	operator=( ScavTrap const & rhs );
-		
-        /* **************************** Accessor *************************** */
-		
-		int    		getHitPoints( void ) const;
-		int    		getEnergyPoints( void ) const;
-		int    		getAttackDamage( void ) const;
 		
 		/* ************************ Action Function ************************ */
         

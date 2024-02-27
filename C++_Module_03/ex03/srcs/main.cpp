@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 12:27:18 by garance           #+#    #+#             */
-/*   Updated: 2024/02/26 17:55:03 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/27 12:45:00 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int main(void) {
     ClapTrap Zelda("Zelda");
 
     std::cout << std::endl;
-    Bob.attack("Zelda");
+    Bob.attack(Zelda.getName());
     Zelda.takeDamage(Bob.getAttackDamage());
     Zelda.beRepaired(12);
-    Zelda.attack("Bob1");
+    Zelda.attack(Bob1.getName());
     Bob1.takeDamage(Zelda.getAttackDamage());
-    Zelda.attack("Bob1");
+    Zelda.attack(Bob1.getName());
     Bob1.takeDamage(Zelda.getAttackDamage());
 
     std::cout << std::endl << yellow <<  "╔════════════════════════════════════════════════════════╗" << std::endl;
@@ -45,15 +45,15 @@ int main(void) {
     ScavTrap ST3("Ouille");
     std::cout << std::endl;
 	
-	ST1.attack("Zelda");
+	ST1.attack(Zelda.getName());
     Zelda.takeDamage(ST1.getAttackDamage());
     ST1.guardGate();
     ST1.beRepaired(10);
-	ST2.attack("ST3");
+	ST2.attack(ST3.getName());
 	ST3.takeDamage(ST2.getAttackDamage());
-	ST2.attack("ST3");
+	ST2.attack(ST3.getName());
 	ST3.takeDamage(ST2.getAttackDamage());
-	ST2.attack("ST3");
+	ST2.attack(ST3.getName());
 	ST3.takeDamage(ST2.getAttackDamage());
 	for (int i = 0; i < 51; i++)
 		ST3.beRepaired(1);
@@ -74,12 +74,12 @@ int main(void) {
 	FragTrap FT3("Monter");
 	
     std::cout << std::endl;
-	FT1.attack("Zelda");
+	FT1.attack(Zelda.getName());
 	Zelda.takeDamage(FT1.getAttackDamage());
-	ST2.attack("FT1");
+	ST2.attack(FT1.getName());
 	FT1.takeDamage(ST1.getAttackDamage());
 	FT1.beRepaired(10);
-	FT3.attack("FT2");
+	FT3.attack(FT2.getName());
 	FT2.takeDamage(FT3.getAttackDamage());
 	
     
@@ -104,9 +104,11 @@ int main(void) {
 
     std::cout << DT1.getName() << " has " << DT1.getHitPoints() << " points of hit and " << DT1.getEnergyPoints() << " points of energy left" << std::endl << std::endl;
 	DT2.whoAmI();
-	DT2.attack("DT1");
+	DT2.highFivesGuys();
+	DT2.guardGate();
+	DT2.attack(DT1.getName());
 	DT1.takeDamage(DT2.getAttackDamage());
-	FT3.attack("DT1");
+	FT3.attack(DT1.getName());
 	DT1.takeDamage(FT3.getAttackDamage());
 
     std::cout << std::endl;

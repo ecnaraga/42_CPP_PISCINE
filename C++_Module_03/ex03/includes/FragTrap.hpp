@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:47:47 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/26 17:51:37 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/27 12:40:43 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,6 @@ class FragTrap : public virtual ClapTrap {
 		/* ********************** Assignment Operator  ********************* */
 		
 		FragTrap & 	operator=( FragTrap const & rhs );
-		
-    	/* **************************** Accessor *************************** */
-		
-		int    		getHitPoints( void ) const;
-		int    		getEnergyPoints( void ) const;
-		int    		getAttackDamage( void ) const;
 		
 		/* ************************ Action Function ************************ */
 		

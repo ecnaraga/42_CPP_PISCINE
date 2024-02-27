@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:52:59 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/26 17:21:09 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/27 12:23:54 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ FragTrap::FragTrap() : ClapTrap() {
 	std::string reset = "\e[0m";
 	
     std::cout << blue << "Default Constructor create a FragTrap named " << this->getName() << reset << std::endl;
-	this->setHitPoints(100);
-	this->setEnergyPoints(100);
-	this->setAttackDamage(30);
+	this->_hitPoints = 100;
+	this->_energyPoints = 100;
+	this->_attackDamage = 30;
 }
 
 FragTrap::FragTrap( std::string const & name ) : ClapTrap(name) {
@@ -30,18 +30,18 @@ FragTrap::FragTrap( std::string const & name ) : ClapTrap(name) {
     std::string blue = "\e[34m";
 	std::string reset = "\e[0m";
 	
-    std::cout << blue << "Name Constructor create a FragTrap named " << this->getName() << reset << std::endl;
-	this->setHitPoints(100);
-	this->setEnergyPoints(100);
-	this->setAttackDamage(30);
+    std::cout << blue << "Name Constructor create a FragTrap named " << this->_name << reset << std::endl;
+	this->_hitPoints = 100;
+	this->_energyPoints = 100;
+	this->_attackDamage = 30;
 }
 
-FragTrap::FragTrap( FragTrap const & orig ) : ClapTrap(orig.getName()) {
+FragTrap::FragTrap( FragTrap const & orig ) : ClapTrap(orig._name) {
 	
     std::string blue = "\e[34m";
 	std::string reset = "\e[0m";
 	
-    std::cout << blue << "Copy Constructor create a FragTrap named " << this->getName() << reset << std::endl;
+    std::cout << blue << "Copy Constructor create a FragTrap named " << this->_name << reset << std::endl;
 	*this = orig;
 }
 
@@ -50,16 +50,16 @@ FragTrap::~FragTrap() {
     std::string blue = "\e[34m";
 	std::string reset = "\e[0m";
 	
-    std::cout << blue << "Default constructor destroyed FragTrap named " << this->getName() << reset << std::endl;
+    std::cout << blue << "Default constructor destroyed FragTrap named " << this->_name << reset << std::endl;
 }
 
 /* ************************** Assignment Operator  ************************* */
 
 FragTrap & 	FragTrap::operator=( FragTrap const & rhs ) {
 	
-	this->setHitPoints(rhs.getHitPoints());
-	this->setEnergyPoints(rhs.getEnergyPoints());
-	this->setAttackDamage(rhs.getAttackDamage());
+	this->_hitPoints = rhs._hitPoints;
+	this->_energyPoints = rhs._energyPoints;
+	this->_attackDamage = rhs._attackDamage;
 	return *this;
 }
 
@@ -68,7 +68,5 @@ FragTrap & 	FragTrap::operator=( FragTrap const & rhs ) {
 
 void 		FragTrap::highFivesGuys( void ) const {
 	
-	std::cout << "FragTrap " << this->getName() << " ask for HighFive!" << std::endl;
+	std::cout << "FragTrap " << this->_name << " ask for HighFive!" << std::endl;
 }
-
-
