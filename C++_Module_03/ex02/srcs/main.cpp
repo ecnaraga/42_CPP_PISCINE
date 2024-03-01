@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 12:27:18 by garance           #+#    #+#             */
-/*   Updated: 2024/02/27 12:49:24 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:27:47 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ int main(void) {
 	std::string reset = "\e[0m";
 	
     ClapTrap Bob("Bob");
-    ClapTrap Bob1(Bob);
-    ClapTrap Zelda("Zelda");
-
     std::cout << std::endl;
+    ClapTrap Bob1(Bob);
+    std::cout << std::endl;
+    ClapTrap Zelda("Zelda");
+    std::cout << std::endl;
+
     Bob.attack(Zelda.getName());
     Zelda.takeDamage(Bob.getAttackDamage());
     Zelda.beRepaired(12);
@@ -41,7 +43,9 @@ int main(void) {
     std::cout << Zelda.getName() << " has " << green << Zelda.getHitPoints() << reset << " points of hit and " << cyan << Zelda.getEnergyPoints() << reset << " points of energy left" << std::endl << std::endl;
     
 	ScavTrap ST1("HELLLO");
+    std::cout << std::endl;
     ScavTrap ST2(ST1);
+    std::cout << std::endl;
     ScavTrap ST3("Ouille");
     std::cout << std::endl;
 	
@@ -70,10 +74,12 @@ int main(void) {
     std::cout << ST3.getName() << " has " << green <<  ST3.getHitPoints() << reset << " points of hit and " << cyan << ST3.getEnergyPoints() << reset << " points of energy left" << std::endl << std::endl;
 
 	FragTrap FT1;
-	FragTrap FT2(FT1);
-	FragTrap FT3("Monter");
-	
     std::cout << std::endl;
+	FragTrap FT2(FT1);
+    std::cout << std::endl;
+	FragTrap FT3("Monter");
+    std::cout << std::endl;
+	
 	FT1.attack(Zelda.getName());
 	Zelda.takeDamage(FT1.getAttackDamage());
 	ST2.attack(FT1.getName());

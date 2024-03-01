@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 11:15:05 by garance           #+#    #+#             */
-/*   Updated: 2024/02/27 12:41:02 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:54:54 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class   ClapTrap {
         ClapTrap();
         ClapTrap( ClapTrap const & orig );
         ClapTrap( std::string const & name );
-        virtual ~ClapTrap();
+        ~ClapTrap();
         
 		/* ********************** Assignment Operator  ********************* */
         
@@ -42,16 +42,17 @@ class   ClapTrap {
 
 		/* **************************** Accessor *************************** */
         
-        virtual std::string	getName( void ) const;
+        std::string	getName( void ) const;
         int    		getHitPoints( void ) const;
         int    		getEnergyPoints( void ) const;
         int    		getAttackDamage( void ) const;
         
 		/* ************************ Action Function ************************ */
         
-        virtual void    	attack( std::string const & target );
-        void    			takeDamage( unsigned int amount );
-        void   				beRepaired( unsigned int amount );
+        void    	attack( std::string const & target );
+        void    	takeDamage( unsigned int amount );
+        void   		beRepaired( unsigned int amount );
+
 } ;
 
 #endif

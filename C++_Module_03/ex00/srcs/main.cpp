@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 12:27:18 by garance           #+#    #+#             */
-/*   Updated: 2024/02/27 13:34:13 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:28:20 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ int main(void) {
 	std::string reset = "\e[0m";
 	
     ClapTrap Bob("Bob");
-    ClapTrap Bob1(Bob);
-    ClapTrap Zelda("Zelda");
-
     std::cout << std::endl;
+    ClapTrap Bob1(Bob);
+    std::cout << std::endl;
+    ClapTrap Zelda("Zelda");
+    std::cout << std::endl;
+
     Bob.attack(Zelda.getName());
     Zelda.takeDamage(Bob.getAttackDamage());
     Zelda.beRepaired(12);

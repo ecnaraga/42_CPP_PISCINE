@@ -1,0 +1,76 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Brain.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/27 18:00:00 by galambey          #+#    #+#             */
+/*   Updated: 2024/02/28 11:47:50 by galambey         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/Brain.hpp"
+
+/* ************************************************************************* */
+/* ************************ Constructor & Destructor *********************** */
+/* ************************************************************************* */
+
+Brain::Brain() {
+	
+	std::string green = "\e[32m";
+	std::string reset = "\e[0m";
+	
+	std::cout << green << "Default constructor create a Brain" << reset << std::endl;
+}
+
+Brain::Brain(Brain const & orig) {
+	
+	std::string green = "\e[32m";
+	std::string reset = "\e[0m";
+	
+	std::cout << green << "Copy constructor create a Brain" << reset << std::endl;
+	*this = orig;
+}
+
+Brain::~Brain() {
+	
+	std::string green = "\e[32m";
+	std::string reset = "\e[0m";
+	
+	std::cout << green << "Default destructor destroy a Brain" << reset << std::endl;
+}
+
+/* ************************************************************************* */
+/* ************************** OPERATOR OVERLOADING ************************* */
+/* ************************************************************************* */
+
+/* ************************** Assignment Operator  ************************* */
+
+Brain &	Brain::operator=(Brain const & rhs) {
+
+	for (int i = 0; i < 100; i++)
+		this->_ideas[i] = rhs._ideas[i];
+	return (*this);
+}
+
+/* ************************************************************************* */
+/* ******************************** Accessor ******************************* */
+/* ************************************************************************* */
+
+void	Brain::setIdeas(std::string idea, int i) {
+	
+	if (i < 100)
+		this->_ideas[i] = idea;
+	else
+		std::cout << "My Brain's already full of ideas" << std::endl;
+}
+
+void	Brain::printIdeas( void ) const {
+	
+	for (int i = 0; i < 100 ; i++) {
+		if (_ideas[i].empty())
+			break ;
+		std::cout << _ideas[i] << std::endl;
+	}
+}

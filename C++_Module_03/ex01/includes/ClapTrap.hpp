@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 11:15:05 by garance           #+#    #+#             */
-/*   Updated: 2024/02/27 12:00:37 by galambey         ###   ########.fr       */
+/*   Updated: 2024/02/27 15:55:45 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ class   ClapTrap {
         ClapTrap();
         ClapTrap( ClapTrap const & orig );
         ClapTrap( std::string const & name );
-        virtual ~ClapTrap();
+        ~ClapTrap();
         
         
 		/* ********************** Assignment Operator  ********************* */
@@ -49,7 +49,7 @@ class   ClapTrap {
         
 		/* ************************ Action Function ************************ */
         
-        virtual void	attack( std::string const & target );
+        void			attack( std::string const & target );
         void    		takeDamage( unsigned int amount );
         void    		beRepaired( unsigned int amount );
 } ;
