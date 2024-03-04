@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:52:00 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/28 11:47:17 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/02 12:59:03 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ class 	Brain {
 		/* **************************** Accessor *************************** */
 		/* ***************************************************************** */
 
-		void	setIdeas(std::string idea, int i); // To test deep copy of Doc and Cat copy constructor
+		void	setIdeas(std::string idea); // To test deep copy of Doc and Cat copy constructor
 
 		void	printIdeas( void ) const; // To test deep copy of Doc and Cat copy constructor
 };

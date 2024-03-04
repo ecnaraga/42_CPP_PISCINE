@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 11:01:19 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/29 17:52:28 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/02 12:18:41 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ Cure::Cure() : AMateria("cure") {
 	std::string reset = "\e[0m";
 
 	std::cout << green << "Cure constructor" << reset << std::endl << std::endl;
-	this->m_type = "cure";
+	this->type = "cure";
 }
 
-Cure::Cure(Cure const & orig) : AMateria(orig.m_type) {
+Cure::Cure(Cure const & orig) : AMateria(orig.type) {
 
 	std::string green = "\e[32m";
 	std::string reset = "\e[0m";
@@ -50,7 +50,7 @@ Cure::~Cure() {
 
 Cure & Cure::operator=(Cure const & rhs) {
 	
-	this->m_type = rhs.m_type;
+	this->type = rhs.type;
 	return *this;
 }
 

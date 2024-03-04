@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 10:25:59 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/27 13:39:10 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/02 12:18:41 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,16 @@ Cat::Cat() : Animal("Cat") {
 	std::string purple = "\e[35m";
 	std::string reset = "\e[0m";
 	
-	std::cout << purple << "Default constructor create " << this->m_type << reset << std::endl;
+	std::cout << purple << "Default constructor create " << this->type << reset << std::endl << std::endl;
 }
 
-Cat::Cat(Cat const & orig) : Animal(orig.m_type) {
+Cat::Cat(Cat const & orig) : Animal(orig) {
 
 	std::string purple = "\e[35m";
 	std::string reset = "\e[0m";
 
-	std::cout << purple << "Copy constructor create " << this->m_type << reset << std::endl;
+	std::cout << purple << "Copy constructor create " << this->type << reset << std::endl << std::endl;
+	*this = orig;
 }
 
 Cat::~Cat() {
@@ -37,7 +38,7 @@ Cat::~Cat() {
 	std::string purple = "\e[35m";
 	std::string reset = "\e[0m";
 
-	std::cout << purple << "Default destructor destroy a " << this->m_type << reset << std::endl;
+	std::cout << purple << "Default destructor destroy a " << this->type << reset << std::endl;
 }
 
 /* ************************************************************************* */
@@ -48,7 +49,7 @@ Cat::~Cat() {
 
 Cat &	Cat::operator=(Cat const & rhs) {
 	
-	this->m_type = rhs.m_type;
+	(void) rhs;
 	return *this;
 }
 

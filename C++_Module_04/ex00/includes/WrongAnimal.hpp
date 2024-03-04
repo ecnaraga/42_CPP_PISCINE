@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 13:52:07 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/27 17:42:56 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/02 12:18:41 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class WrongAnimal {
 	
 	protected :
 		
-		std::string	m_type;
+		std::string	type;
 		
 	public :
 		/* ***************************************************************** */

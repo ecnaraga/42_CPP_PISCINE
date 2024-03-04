@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:22:22 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/29 16:41:19 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/02 12:18:41 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Similarly, consider clip board application. A clip board can hold different type
 class AMateria
 {
 	protected:
-		std::string	m_type;
+		std::string	type;
 
 	public:
 		// Forme canonienne pour class virtuelle?

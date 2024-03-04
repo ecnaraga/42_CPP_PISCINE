@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:49:27 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/27 17:43:22 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/02 12:18:41 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,26 @@ WrongAnimal::WrongAnimal() {
 	std::string cyan = "\e[36m";
 	std::string reset = "\e[0m";
 	
-	if (this->m_type.empty())
+	if (this->type.empty())
 		std::cout << cyan << "Default constructor create an WrongAnimal whose type's unknown" << reset << std::endl;
 	else
-		std::cout << cyan << "Default constructor create an WrongAnimal who's a " << this->m_type << reset << std::endl;
+		std::cout << cyan << "Default constructor create an WrongAnimal who's a " << this->type << reset << std::endl;
 }
 
-WrongAnimal::WrongAnimal(std::string const & type) : m_type(type) {
+WrongAnimal::WrongAnimal(std::string const & type) : type(type) {
 	
 	std::string cyan = "\e[36m";
 	std::string reset = "\e[0m";
 
-	std::cout << cyan << "Type constructor create an WrongAnimal who's a " << this->m_type << reset << std::endl;
+	std::cout << cyan << "Type constructor create an WrongAnimal who's a " << this->type << reset << std::endl;
 }
 
-WrongAnimal::WrongAnimal(WrongAnimal const & orig) : m_type(orig.m_type) {
+WrongAnimal::WrongAnimal(WrongAnimal const & orig) : type(orig.type) {
 
 	std::string cyan = "\e[36m";
 	std::string reset = "\e[0m";
 
-	std::cout << cyan << "Copy constructor create an WrongAnimal who's a " << this->m_type << reset << std::endl;
+	std::cout << cyan << "Copy constructor create an WrongAnimal who's a " << this->type << reset << std::endl;
 }
 
 WrongAnimal::~WrongAnimal() {
@@ -48,10 +48,10 @@ WrongAnimal::~WrongAnimal() {
 	std::string cyan = "\e[36m";
 	std::string reset = "\e[0m";
 
-	if (this->m_type.empty())
+	if (this->type.empty())
 		std::cout << cyan << "Default destructor destroy an WrongAnimal who type's unknown" << reset << std::endl;
 	else
-		std::cout << cyan << "Default destructor destroy an WrongAnimal who used to be a " << this->m_type << reset << std::endl;
+		std::cout << cyan << "Default destructor destroy an WrongAnimal who used to be a " << this->type << reset << std::endl << std::endl;
 }
 
 /* ************************************************************************* */
@@ -62,7 +62,7 @@ WrongAnimal::~WrongAnimal() {
 
 WrongAnimal &				WrongAnimal::operator=(WrongAnimal const & rhs) {
 	
-	this->m_type = rhs.m_type;
+	this->type = rhs.type;
 	return *this;
 }
 
@@ -73,7 +73,7 @@ WrongAnimal &				WrongAnimal::operator=(WrongAnimal const & rhs) {
 
 std::string const & 	WrongAnimal::getType( void ) const {
 	
-	return (this->m_type);
+	return (this->type);
 }
 
 

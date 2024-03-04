@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:49:27 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/27 17:35:40 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/02 12:18:41 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,26 @@ Animal::Animal() {
 	std::string cyan = "\e[36m";
 	std::string reset = "\e[0m";
 	
-	if (this->m_type.empty())
+	if (this->type.empty())
 		std::cout << cyan << "Default constructor create an Animal whose type's unknown" << reset << std::endl;
 	else
-		std::cout << cyan << "Default constructor create an Animal who's a " << this->m_type << reset << std::endl;
+		std::cout << cyan << "Default constructor create an Animal who's a " << this->type << reset << std::endl;
 }
 
-Animal::Animal(std::string const & type) : m_type(type) {
+Animal::Animal(std::string const & type) : type(type) {
 	
 	std::string cyan = "\e[36m";
 	std::string reset = "\e[0m";
 
-	std::cout << cyan << "Type constructor create an Animal who's a " << this->m_type << reset << std::endl;
+	std::cout << cyan << "Type constructor create an Animal who's a " << this->type << reset << std::endl;
 }
 
-Animal::Animal(Animal const & orig) : m_type(orig.m_type) {
+Animal::Animal(Animal const & orig) : type(orig.type) {
 
 	std::string cyan = "\e[36m";
 	std::string reset = "\e[0m";
 
-	std::cout << cyan << "Copy constructor create an Animal who's a " << this->m_type << reset << std::endl;
+	std::cout << cyan << "Copy constructor create an Animal who's a " << this->type << reset << std::endl;
 }
 
 Animal::~Animal() {
@@ -48,10 +48,10 @@ Animal::~Animal() {
 	std::string cyan = "\e[36m";
 	std::string reset = "\e[0m";
 
-	if (this->m_type.empty())
+	if (this->type.empty())
 		std::cout << cyan << "Default destructor destroy an Animal who type's unknown" << reset << std::endl;
 	else
-		std::cout << cyan << "Default destructor destroy an Animal who used to be a " << this->m_type << reset << std::endl;
+		std::cout << cyan << "Default destructor destroy an Animal who used to be a " << this->type << reset << std::endl << std::endl;
 }
 
 /* ************************************************************************* */
@@ -62,7 +62,7 @@ Animal::~Animal() {
 
 Animal &				Animal::operator=(Animal const & rhs) {
 	
-	this->m_type = rhs.m_type;
+	this->type = rhs.type;
 	return *this;
 }
 
@@ -73,7 +73,7 @@ Animal &				Animal::operator=(Animal const & rhs) {
 
 std::string const & 	Animal::getType( void ) const {
 	
-	return (this->m_type);
+	return (this->type);
 }
 
 void	Animal::makeSound( void ) const {

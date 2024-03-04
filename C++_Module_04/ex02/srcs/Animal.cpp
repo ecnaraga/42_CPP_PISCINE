@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 09:49:27 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/28 12:38:47 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/02 12:18:41 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ A_Animal::~A_Animal() {
 	std::string cyan = "\e[36m";
 	std::string reset = "\e[0m";
 
-	std::cout << cyan << "Virtual destructor destroy an Animal who used to be a " << this->m_type << reset << std::endl;
+	std::cout << cyan << "Virtual destructor destroy an Animal who used to be a " << this->type << reset << std::endl;
 }
 
 
@@ -31,5 +31,5 @@ A_Animal::~A_Animal() {
 
 std::string const & 	A_Animal::getType( void ) const {
 	
-	return (this->m_type);
+	return (this->type);
 }

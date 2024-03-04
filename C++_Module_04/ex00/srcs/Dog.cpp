@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 10:25:52 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/27 10:59:14 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/02 12:18:41 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,16 @@ Dog::Dog() : Animal("Dog") {
 	std::string blue = "\e[34m";
 	std::string reset = "\e[0m";
 	
-	std::cout << blue << "Default constructor create " << this->m_type << reset << std::endl;
+	std::cout << blue << "Default constructor create " << this->type << reset << std::endl << std::endl;
 }
 
-Dog::Dog(Dog const & orig) : Animal(orig.m_type) {
+Dog::Dog(Dog const & orig) : Animal(orig) {
 
 	std::string blue = "\e[34m";
 	std::string reset = "\e[0m";
 
-	std::cout << blue << "Copy constructor create " << this->m_type << reset << std::endl;
+	std::cout << blue << "Copy constructor create " << this->type << reset << std::endl << std::endl;
+	*this = orig; 
 }
 
 Dog::~Dog() {
@@ -37,7 +38,7 @@ Dog::~Dog() {
 	std::string blue = "\e[34m";
 	std::string reset = "\e[0m";
 
-	std::cout << blue << "Default destructor destroy a " << this->m_type << reset << std::endl;
+	std::cout << blue << "Default destructor destroy a " << this->type << reset << std::endl;
 }
 
 /* ************************************************************************* */
@@ -48,7 +49,7 @@ Dog::~Dog() {
 
 Dog &	Dog::operator=(Dog const & rhs) {
 	
-	this->m_type = rhs.m_type;
+	(void) rhs;
 	return *this;
 }
 

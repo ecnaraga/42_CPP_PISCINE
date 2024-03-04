@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 14:45:46 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/29 17:51:51 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/02 12:18:41 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ Ice::Ice() : AMateria("ice") {
 	std::string reset = "\e[0m";
 
 	std::cout << yellow << "Ice constructor" << reset << std::endl << std::endl;
-	this->m_type = "ice";
+	this->type = "ice";
 }
 
-Ice::Ice(Ice const & orig) : AMateria(orig.m_type) {
+Ice::Ice(Ice const & orig) : AMateria(orig.type) {
 
 	std::string yellow = "\e[33m";
 	std::string reset = "\e[0m";
@@ -50,7 +50,7 @@ Ice::~Ice() {
 
 Ice & Ice::operator=(Ice const & rhs) {
 	
-	this->m_type = rhs.m_type;
+	this->type = rhs.type;
 	return *this;
 }
 
