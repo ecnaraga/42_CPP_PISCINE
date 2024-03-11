@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 13:52:07 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/02 12:18:41 by garance          ###   ########.fr       */
+/*   Updated: 2024/03/04 12:36:49 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ class WrongAnimal {
 		WrongAnimal();
 		WrongAnimal(std::string const & type);
 		WrongAnimal(WrongAnimal const & orig);
-		virtual ~WrongAnimal();
+		~WrongAnimal();
 		
 		/* ***************************************************************** */
 		/* ********************** OPERATOR OVERLOADING ********************* */

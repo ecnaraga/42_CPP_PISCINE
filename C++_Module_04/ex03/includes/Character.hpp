@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 11:03:51 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/01 11:15:10 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/04 18:07:03 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define CHARACTER_HPP
 
 # include <iostream>
-// # include "ICharacter.hpp"
 # include "AMateria.hpp"
 
 class Character : public ICharacter {

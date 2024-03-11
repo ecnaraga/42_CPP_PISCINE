@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 10:25:59 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/02 12:18:41 by garance          ###   ########.fr       */
+/*   Updated: 2024/03/04 13:48:19 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,26 @@
 /* ************************ Constructor & Destructor *********************** */
 /* ************************************************************************* */
 
-Cat::Cat() {
+Cat::Cat() : AAnimal("Cat") {
 
 	std::string purple = "\e[35m";
 	std::string reset = "\e[0m";
 	
-	this->type = "Cat";
 	std::cout << purple << "Default constructor create " << this->type << reset << std::endl;
 	this->_brain = new Brain();
+	if (!this->_brain)
+		throw 1;
 }
 
-Cat::Cat(Cat const & orig) {
+Cat::Cat(Cat const & orig) : AAnimal(orig) {
 
 	std::string purple = "\e[35m";
 	std::string reset = "\e[0m";
 
-	this->type = orig.type;
 	std::cout << purple << "Copy constructor create " << this->type << reset << std::endl;
 	this->_brain = new Brain(*(orig._brain));
+	if (!this->_brain)
+		throw 1;
 }
 
 Cat::~Cat() {
@@ -64,13 +66,7 @@ Cat &	Cat::operator=(Cat const & rhs) {
 
 void	Cat::setBrain(std::string idea) {
 	
-	static int i = 0;
-	
-	if (i < 100) {
-		
-		this->_brain->setIdeas(idea, i);
-		i++;
-	}
+	this->_brain->setIdeas(idea);
 }
 
 void	Cat::printBrain( void ) const {

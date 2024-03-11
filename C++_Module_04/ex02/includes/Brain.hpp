@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 17:52:00 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/28 11:47:17 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/04 12:15:10 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ class 	Brain {
 		/* **************************** Accessor *************************** */
 		/* ***************************************************************** */
 
-		void	setIdeas(std::string idea, int i); // To test deep copy of Doc and Cat copy constructor
+		void	setIdeas(std::string idea); // To test deep copy of Doc and Cat copy constructor
 
 		void	printIdeas( void ) const; // To test deep copy of Doc and Cat copy constructor
 };

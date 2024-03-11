@@ -6,7 +6,7 @@
 #    By: galambey <galambey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 09:38:17 by galambey          #+#    #+#              #
-#    Updated: 2024/02/28 11:49:11 by galambey         ###   ########.fr        #
+#    Updated: 2024/03/05 13:49:24 by galambey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS_DIR		=	srcs/
 
 SRCS			=	main.cpp \
 					Brain.cpp \
-					Animal.cpp \
+					AAnimal.cpp \
 					Dog.cpp \
 					Cat.cpp
 
@@ -30,7 +30,7 @@ DEPS			=	$(OBJS:.o=.d)
 
 CXX				=	c++
 
-CXXFLAGS		=	-Wall -Wextra -Werror -std=c++98 -g3
+CXXFLAGS		=	-Wall -Wextra -Werror -MMD -std=c++98 -g3
 
 ##################################### RULE #####################################
 

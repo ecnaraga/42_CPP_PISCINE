@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 10:25:52 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/02 12:18:41 by garance          ###   ########.fr       */
+/*   Updated: 2024/03/04 13:48:10 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,26 @@
 /* ************************ Constructor & Destructor *********************** */
 /* ************************************************************************* */
 
-Dog::Dog() {
+Dog::Dog() : AAnimal("Dog") {
 
 	std::string blue = "\e[34m";
 	std::string reset = "\e[0m";
 	
-	this->type = "Dog";
 	std::cout << blue << "Default constructor create " << this->type << reset << std::endl;
 	this->_brain = new Brain();
+	if (!this->_brain)
+		throw 1;
 }
 
-Dog::Dog(Dog const & orig) {
+Dog::Dog(Dog const & orig) : AAnimal(orig) {
 
 	std::string blue = "\e[34m";
 	std::string reset = "\e[0m";
 
-	this->type = orig.type;
 	std::cout << blue << "Copy constructor create " << this->type << reset << std::endl;
 	this->_brain = new Brain(*(orig._brain));
+	if (!this->_brain)
+		throw 1;
 }
 
 Dog::~Dog() {
@@ -64,13 +66,7 @@ Dog &	Dog::operator=(Dog const & rhs) {
 
 void	Dog::setBrain(std::string idea) {
 	
-	static int i = 0;
-	
-	if (i < 100) {
-		
-		this->_brain->setIdeas(idea, i);
-		i++;
-	}
+	this->_brain->setIdeas(idea);
 }
 
 void	Dog::printBrain( void ) const {

@@ -6,17 +6,17 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 10:25:17 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/28 13:37:56 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/04 12:18:13 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CAT_HPP
 # define CAT_HPP
 
-# include "A_Animal.hpp"
+# include "AAnimal.hpp"
 # include "Brain.hpp"
 
-class 	Cat : public A_Animal {
+class 	Cat : public AAnimal {
 
 	private :
 		Brain* _brain;

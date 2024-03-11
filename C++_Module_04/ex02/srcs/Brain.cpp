@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 18:00:00 by galambey          #+#    #+#             */
-/*   Updated: 2024/02/28 11:47:50 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/04 12:15:50 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Brain::Brain() {
 	std::string green = "\e[32m";
 	std::string reset = "\e[0m";
 	
-	std::cout << green << "Default constructor create a Brain" << reset << std::endl;
+	std::cout << green << "Default constructor create a Brain" << reset << std::endl << std::endl;
 }
 
 Brain::Brain(Brain const & orig) {
@@ -29,7 +29,7 @@ Brain::Brain(Brain const & orig) {
 	std::string green = "\e[32m";
 	std::string reset = "\e[0m";
 	
-	std::cout << green << "Copy constructor create a Brain" << reset << std::endl;
+	std::cout << green << "Copy constructor create a Brain" << reset << std::endl << std::endl;
 	*this = orig;
 }
 
@@ -58,19 +58,22 @@ Brain &	Brain::operator=(Brain const & rhs) {
 /* ******************************** Accessor ******************************* */
 /* ************************************************************************* */
 
-void	Brain::setIdeas(std::string idea, int i) {
+void	Brain::setIdeas(std::string idea) {
 	
-	if (i < 100)
-		this->_ideas[i] = idea;
-	else
-		std::cout << "My Brain's already full of ideas" << std::endl;
+	for (int i = 0; i < 100; i++) {
+		if (this->_ideas[i].empty()) {
+			this->_ideas[i] = idea;
+			return ;
+		}	
+	}
+	std::cout << "My Brain's already full of ideas" << std::endl;
 }
 
 void	Brain::printIdeas( void ) const {
 	
 	for (int i = 0; i < 100 ; i++) {
 		if (_ideas[i].empty())
-			break ;
+			continue ;
 		std::cout << _ideas[i] << std::endl;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 10:25:52 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/02 13:04:56 by garance          ###   ########.fr       */
+/*   Updated: 2024/03/04 11:16:21 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ Dog::Dog() : Animal("Dog") {
 	
 	std::cout << blue << "Default constructor create " << this->type << reset << std::endl;
 	this->_brain = new Brain();
+	if (!this->_brain)
+		throw 1;
 }
 
 Dog::Dog(Dog const & orig) : Animal(orig) {
@@ -32,6 +34,8 @@ Dog::Dog(Dog const & orig) : Animal(orig) {
 
 	std::cout << blue << "Copy constructor create " << this->type << reset << std::endl;
 	this->_brain = new Brain(*(orig._brain));
+	if (!this->_brain)
+		throw 1;
 }
 
 Dog::~Dog() {

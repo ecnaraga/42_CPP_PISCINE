@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 11:08:01 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/01 14:09:19 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:51:49 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ Character::Character() : _name("Robot") {
 
 	std::cout << purple << "Character constructor" << reset << std::endl << std::endl;
 	this->_item = new AMateria*[4];
+	if (!this->_item)
+		throw 1;
 	for (int i = 0; i < 4; i++)
 		this->_item[i] = NULL;
 }
@@ -34,6 +36,8 @@ Character::Character(Character const & orig) : _name(orig._name) {
 
 	std::cout << purple << "Character constructor" << reset << std::endl << std::endl;
 	this->_item = new AMateria*[4];
+	if (!this->_item)
+		throw 1;
 	*this = orig;
 }
 
@@ -44,6 +48,8 @@ Character::Character(std::string const & name) : _name(name) {
 
 	std::cout << purple << "Character constructor" << reset << std::endl << std::endl;
 	this->_item = new AMateria*[4];
+	if (!this->_item)
+		throw 1;
 	for (int i = 0; i < 4; i++)
 		this->_item[i] = NULL;
 }
@@ -55,8 +61,7 @@ Character::~Character() {
 
 	std::cout << purple << "Character destructor" << reset << std::endl << std::endl;
 	for (int i = 0; i < 4; i++)
-		// if (this->_item[i])
-			delete this->_item[i];
+		delete this->_item[i];
 	delete[] this->_item;	
 }
 		
@@ -68,11 +73,11 @@ Character::~Character() {
 
 Character & Character::operator=(Character const & rhs) {
 	
-	// this->_item = new AMateria[4];
-	
-	for (int i = 0; i < 4; i++)
-		// this->_item[i] = rhs._item[i];
+	for (int i = 0; i < 4; i++) {
 		this->_item[i] = rhs._item[i]->clone();
+		if (!this->_item[i])
+			throw 1;
+	}
 	return *this;
 }
 
