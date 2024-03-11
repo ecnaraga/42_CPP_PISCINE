@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   A_Animal.hpp                                       :+:      :+:    :+:   */
+/*   AAnimal.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 11:52:18 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/02 12:18:41 by garance          ###   ########.fr       */
+/*   Updated: 2024/03/05 12:01:29 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef A_ANIMAL_HPP
-# define A_ANIMAL_HPP
+#ifndef AANIMAL_HPP
+# define AANIMAL_HPP
 
 # include "Brain.hpp"
 
@@ -27,10 +27,15 @@ Abstract class :
 		is that in a interface (see next ex) all of the functions are purely virtual and
 		there's no attributes.   
 */
-class A_Animal {
+class AAnimal {
 	
-	protected :
+	private :
+		AAnimal();
+		AAnimal & operator=(AAnimal const &);
 		
+	protected :
+		AAnimal(std::string const & type);
+		AAnimal(AAnimal const & orig);
 		std::string	type;
 		
 	public :
@@ -38,7 +43,7 @@ class A_Animal {
 		/* *************************** Destructor ************************** */
 		/* ***************************************************************** */
 
-		virtual ~A_Animal();
+		virtual ~AAnimal();
 
 		/* ***************************************************************** */
 		/* **************************** Accessor *************************** */
