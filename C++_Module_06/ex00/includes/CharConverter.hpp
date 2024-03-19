@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   CharConverter.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:18:24 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/18 14:12:49 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/19 19:46:17 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ class CharConverter : public AConverter {
 		/* **************************** Actions **************************** */
 		/* ***************************************************************** */
 
+		bool	isRoundFloat() const;
 		void	toChar();
 		void	toInt();
 		void	toFloat();

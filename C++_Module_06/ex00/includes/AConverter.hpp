@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AConverter.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:46:10 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/18 14:11:50 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/19 19:46:17 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ class AConverter {
 	
 	protected :
 	
+		bool c_ok;
 		char c;
+		bool nb_ok;
 		int nb;
 		float f;
 		double d;
@@ -52,6 +54,8 @@ class AConverter {
 		/* **************************** Accessor *************************** */
 		/* ***************************************************************** */
 
+		bool getCharOk() const;
+		bool getIntOk() const;
 		char getChar() const;
 		int getInt() const;
 		float getFloat() const;
@@ -61,19 +65,22 @@ class AConverter {
 		/* **************************** Actions **************************** */
 		/* ***************************************************************** */
 
-		static int isChar( std::string const & s, int *err);
-		static int isInt( std::string const & s, int *err );
-		static int isFloat( std::string const & s);
-		static int isDouble( std::string const & s);
+		static char 	isChar( std::string const & s, int *err);
+		static int 		isInt( std::string const & s, int *err );
+		static float 	isFloat( std::string const & s);
+		static double 	isDouble( std::string const & s);
 		
 		/* ***************************************************************** */
 		/* ************************ Pure Functions ************************* */
 		/* ***************************************************************** */
 
+		virtual bool isRoundFloat() const = 0;
 		virtual void toChar() = 0;
 		virtual void toInt() = 0;
 		virtual void toFloat() = 0;
 		virtual void toDouble() = 0;
 };
+
+std::ostream & operator<<(std::ostream & oo, AConverter *rhs);
 
 #endif

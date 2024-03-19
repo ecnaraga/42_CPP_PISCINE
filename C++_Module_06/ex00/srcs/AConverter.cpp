@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AConverter.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:36:29 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/18 14:06:52 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/19 19:56:22 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,16 @@ AConverter & AConverter::operator=(AConverter const & rhs) {
 /* ******************************** Accessor ******************************* */
 /* ************************************************************************* */
 
+bool AConverter::getCharOk() const {
+		return (this->c_ok);
+}
+
+bool AConverter::getIntOk() const {
+		return (this->nb_ok);
+}
+
 char AConverter::getChar() const {
-	return (this->c);
+		return (this->c);
 }
 
 int AConverter::getInt() const {
@@ -57,7 +65,7 @@ double AConverter::getDouble() const {
 /* ******************************** Actions ******************************** */
 /* ************************************************************************* */
 
-int AConverter::isChar( std::string const & s, int *err) {
+char AConverter::isChar( std::string const & s, int *err) {
 	if (s.length() > 1)
 		return (*err = 1);
 	return (s[0]);
@@ -83,7 +91,7 @@ int AConverter::isInt( std::string const & s, int *err ) {
 	return (static_cast<int>(n));
 }
 
-int AConverter::isFloat( std::string const & s) { // REVOIR LES LIMITES
+float AConverter::isFloat( std::string const & s) { // REVOIR LES LIMITES
 	int i;
 	std::istringstream fstream(s);
 	
@@ -109,12 +117,14 @@ int AConverter::isFloat( std::string const & s) { // REVOIR LES LIMITES
 	// float f = strtof(s.c_str(), NULL);
 	float f;
 	fstream >> f;
+	std::cout << f << std::endl;
 	if (fstream.fail() /* || f > std::numeric_limits<float>::max() */)
 		return (std::numeric_limits<float>::infinity());
+	std::cout << f << std::endl;
 	return f;
 }
 
-int AConverter::isDouble( std::string const & s) { // REVOIR LES LIMITES
+double AConverter::isDouble( std::string const & s) { // REVOIR LES LIMITES
 	
 	int i;
 	std::istringstream fstream(s);
@@ -142,4 +152,32 @@ int AConverter::isDouble( std::string const & s) { // REVOIR LES LIMITES
 	if (fstream.fail())
 		return (std::numeric_limits<double>::infinity());
 	return d;
+}
+
+std::ostream & operator<<(std::ostream & oo, AConverter *rhs) {
+
+	
+	if (rhs->getCharOk())
+	{
+		char c = rhs->getChar();
+		if (isprint(c))
+			oo << "char : " << c << std::endl;
+		else
+			oo << "char : Non displayable"<< std::endl;
+	}
+	else
+		oo << "char : impossible"<< std::endl;
+	if (rhs->getIntOk())
+		oo << "int : " << rhs->getInt() << std::endl;
+	else
+		oo << "int : impossible"<< std::endl;
+	if (rhs->isRoundFloat())
+		oo << "double : " << rhs->getDouble() << ".0" << std::endl;
+	// else
+	// 	oo << "double : " << rhs->getDouble() << std::endl; // CONDITIONAL JUMP
+	if (rhs->isRoundFloat())
+		oo << "float : " << rhs->getFloat() << ".0f" << std::endl;
+	else
+		oo << "float : " << rhs->getFloat() << "f" << std::endl;
+	return(oo);
 }

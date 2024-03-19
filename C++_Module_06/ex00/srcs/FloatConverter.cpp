@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FloatConverter.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:38:32 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/18 14:41:07 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/19 19:51:40 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,22 @@
 /* ************************ Constructor & Destructor *********************** */
 /* ************************************************************************* */
 
-IntConverter::IntConverter() {}
+FloatConverter::FloatConverter() : AConverter::AConverter() {}
 
-IntConverter::IntConverter(int n) {
+FloatConverter::FloatConverter(float f) : AConverter::AConverter() {
 	
-	this->nb = n;
+	this->f = f;
+	std::cout << f << std::endl;
+	this->c_ok = 0;
+	this->nb_ok = 0;
 	toChar();
-	toFloat();
+	toInt();
 	toDouble();
 }
 
-IntConverter::IntConverter(IntConverter const & orig) { (void) orig; }
+FloatConverter::FloatConverter(FloatConverter const & orig) : AConverter::AConverter() { (void) orig; }
 
-IntConverter::~IntConverter() {}
+FloatConverter::~FloatConverter() {}
 
 /* ************************************************************************* */
 /* ************************** OPERATOR OVERLOADING ************************* */
@@ -36,7 +39,7 @@ IntConverter::~IntConverter() {}
 
 /* ************************** Assignment Operator  ************************* */
 
-IntConverter & IntConverter::operator=(IntConverter const & rhs) {
+FloatConverter & FloatConverter::operator=(FloatConverter const & rhs) {
 	
 	(void) rhs;
 	return (*this);
@@ -46,17 +49,27 @@ IntConverter & IntConverter::operator=(IntConverter const & rhs) {
 /* ******************************** Actions ******************************** */
 /* ************************************************************************* */
 
-void	IntConverter::toChar() {
-	if (nb >= 0 && nb <= 255)
-		this->c = static_cast<char>(this->nb);
+bool	FloatConverter::isRoundFloat() const {
+	return (this->f - static_cast<int>(this->f) == 0);
 }
 
-void	IntConverter::toInt() {}
-
-void	IntConverter::toFloat() {
-	this->f = static_cast<float>(this->nb);
+void	FloatConverter::toChar() {
+	if (this->isRoundFloat() && static_cast<int>(this->f) >= 0 && static_cast<int>(this->f) <= 255) {
+		this->c = static_cast<char>(this->f);
+		this->c_ok = 1;
+	}
 }
 
-void	IntConverter::toDouble() {
-	this->d = static_cast<double>(this->nb);
+void	FloatConverter::toInt() {
+	if (this->isRoundFloat()) {
+		this->nb = static_cast<int>(this->f);
+		this->nb_ok = 1;
+	}
+}
+
+void	FloatConverter::toFloat() {}
+
+void	FloatConverter::toDouble() {
+	if (this->f >= (std::numeric_limits<double>::max()) * -1 && this->f <= std::numeric_limits<double>::max())
+		this->d = static_cast<double>(this->f);
 }

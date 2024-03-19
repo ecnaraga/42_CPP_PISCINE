@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: galambey <galambey@student.42.fr>          +#+  +:+       +#+         #
+#    By: garance <garance@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 09:38:17 by galambey          #+#    #+#              #
-#    Updated: 2024/03/14 11:28:43 by galambey         ###   ########.fr        #
+#    Updated: 2024/03/19 17:39:13 by garance          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,14 @@ NAME			=	convert
 SRCS_DIR			=	srcs/
 
 SRCS				=	main.cpp \
-						ScalarConverter.cpp
+						ScalarConverter.cpp \
+						AConverter.cpp \
+						CharConverter.cpp \
+						IntConverter.cpp \
+						DoubleConverter.cpp \
+						FloatConverter.cpp
 
-OBJS_DIR			=	.objS/
+OBJS_DIR			=	.objs/
 
 OBJS_NAME		=	$(SRCS:.cpp=.o)
 
