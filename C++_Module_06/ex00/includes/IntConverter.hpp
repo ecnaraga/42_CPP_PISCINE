@@ -1,54 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   IntConverter.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 10:36:11 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/18 10:50:57 by galambey         ###   ########.fr       */
+/*   Created: 2024/03/18 12:18:24 by galambey          #+#    #+#             */
+/*   Updated: 2024/03/18 14:12:20 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCALARCONVERTER_HPP
-# define SCALARCONVERTER_HPP
+#ifndef INTCONVERTER_HPP
+# define INTCONVERTER_HPP
 
-# include <iostream>
-# include <sstream>
-# include <limits>
-# include <cctype>
-# include <cstdlib>
-# include <iomanip>
+#include "AConverter.hpp"
 
-class ScalarConverter {
-	private :
-		/* ***************************************************************** */
-		/* ******************** Constructor & Destructor ******************* */
-		/* ***************************************************************** */
-
-		ScalarConverter();
-		ScalarConverter(ScalarConverter const & orig);
-		~ScalarConverter();
-		
+class IntConverter : public AConverter {
+	private:
+		IntConverter();
+		IntConverter(IntConverter const & orig);
 		/* ***************************************************************** */
 		/* ********************** OPERATOR OVERLOADING ********************* */
 		/* ***************************************************************** */
 
 		/* ********************** Assignment Operator ********************** */
 		
-		ScalarConverter & operator=(ScalarConverter const & rhs);
+		IntConverter & operator=(IntConverter const & rhs);
 		
-	public :
+	public:
+		/* ***************************************************************** */
+		/* ******************** Constructor & Destructor ******************* */
+		/* ***************************************************************** */
+
+		IntConverter(int n);
+		~IntConverter();
+		
 		/* ***************************************************************** */
 		/* **************************** Actions **************************** */
 		/* ***************************************************************** */
 
-		static void convert(std::string s); // mettre en const?
+		void	toChar();
+		void	toInt();
+		void	toFloat();
+		void	toDouble();
 };
 
 #endif
-
-/*
-promotion en C = upcast en CPP : reinterpretation ascendante : conversion avec gain en precision ex : double = int
-demotion en C = downcast en CPP : reinterpretation desscendante : conversion avec perte en precision ex : int = double
-*/

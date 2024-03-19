@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:36:24 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/14 17:05:51 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/18 13:16:27 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,88 +66,117 @@ char isChar(std::string & s, int *err)
 	return (s[0]);
 }
 
-double isDouble(std::string & s, int *err)
-{
-	double d;
-	// int 		digit = 0;
-	// int 		i;
+// double isDouble(std::string & s, int *err) {
+
+// 	int i;
 	
-	// if (s == "-")
-	// 	return (*err = 1);
-	// for (i = 1 * (s[0] == '-'); s[i] == '0'; i++) {}
-	// while (s[i]) {
-	// 	if (!isdigit(s[i]))
-	// 		return (*err = 1);
-	// 	i++;
-	// }
-	// while (s[i]) {
-	// 	if (!isdigit(s[i]))
-	// 		return (*err = 1);
-	// 	i++;
-	// }
-	try {
-	std::istringstream(s) >> d;
-	// if (d < std::numeric_limits<double>::lowest() || d > std::numeric_limits<double>::max())
-	// 	return (*err = 1);
-	return (static_cast<double>(d));
+// 	if (s == "-")
+// 		return (*err = 1);
+// 	for (i = 1 * (s[0] == '-'); s[i] == '0'; i++) {}
+// 	while (s[i]) {
+// 		if (s[i] == '.')
+// 			break;
+// 		if (!isdigit(s[i]))
+// 			return (*err = 1);
+// 		i++;
+// 	}
+// 	if (s[i] == '.')
+// 		i++;
+// 	while (s[i]) {
+// 		if (!isdigit(s[i]))
+// 			return (*err = 1);
+// 		i++;
+// 	}
+// 	double d = atof(s.c_str());
+// 	return d;
+// }
+
+double isDouble(std::string & s) {
+
+	int i;
+	std::istringstream fstream(s);
+	
+	if (s == "-")
+		return (std::numeric_limits<double>::quiet_NaN());
+	for (i = 1 * (s[0] == '-'); s[i] == '0'; i++) {}
+	while (s[i]) {
+		if (s[i] == '.')
+			break;
+		if (!isdigit(s[i]))
+			return (std::numeric_limits<double>::quiet_NaN());
+		i++;
 	}
-	catch (std::exception &e) 
-	{
-		std::cout << "bad double" << std::endl;
-		return (*err = 1);
+	if (s[i] == '.')
+		i++;
+	while (s[i]) {
+		if (!isdigit(s[i]))
+			return (std::numeric_limits<double>::quiet_NaN());
+		i++;
 	}
+	// double d = atof(s.c_str()); // pas utilise car de char * a double et non de string a double
+	double d;
+	fstream >> d;
+	if (fstream.fail())
+		return (std::numeric_limits<double>::infinity());
+	return d;
 }
 
-float isFloat(std::string & s, int *err)
+float isFloat(std::string & s)
 {
-	float d;
-	// int 		digit = 0;
-	// int 		i;
+	int i;
+	std::istringstream fstream(s);
 	
-	// if (s == "-")
-	// 	return (*err = 1);
-	// for (i = 1 * (s[0] == '-'); s[i] == '0'; i++) {}
-	// while (s[i]) {
-	// 	if (!isdigit(s[i]))
-	// 		return (*err = 1);
-	// 	i++;
-	// }
-	// while (s[i]) {
-	// 	if (!isdigit(s[i]))
-	// 		return (*err = 1);
-	// 	i++;
-	// }
-	try {
-	std::istringstream(s) >> d;
-	// if (d < std::numeric_limits<float>::lowest() || d > std::numeric_limits<float>::max())
-	// 	return (*err = 1);
-	d = 4.3;
-	return (static_cast<float>(d));
+	if (s == "-")
+		return (std::numeric_limits<float>::quiet_NaN());
+	for (i = 1 * (s[0] == '-'); s[i] == '0'; i++) {}
+	while (s[i]) {
+		if (s[i] == '.')
+			break;
+		if (!isdigit(s[i]))
+			return (std::numeric_limits<float>::quiet_NaN());
+		i++;
 	}
-	catch (std::exception &e) 
-	{
-		std::cout << "bad float" << std::endl;
-		return (*err = 1);
+	if (s[i] == '.')
+		i++;
+	while (s[i]) {
+		if (s[i] == 'f')
+			break;
+		if (!isdigit(s[i]))
+			return (std::numeric_limits<float>::quiet_NaN());
+		i++;
 	}
+	// float f = strtof(s.c_str(), NULL);
+	float f;
+	fstream >> f;
+	if (fstream.fail() /* || f > std::numeric_limits<float>::max() */)
+		return (std::numeric_limits<float>::infinity());
+	return f;
 }
 
 void ScalarConverter::convert(std::string s) {
 	
-	int err = 0;
-	int n = isInt(s, &err);
-	err = 0;
-	err = 0;
-	double d = isDouble(s, &err);
-	err = 0;
-	float f = isFloat(s, &err);
+	// int err = 0;
+	// int n = isInt(s, &err);
+	// std::cout << "n = " << n << std::endl;
 	
-	std::cout << "n = " << n << " et err = " << err << std::endl;
-	std::cout << "d = " << d << " et err = " << err << std::endl;
-	std::cout << "f = " << f << " et err = " << err << std::endl;
-	std::cout << std::numeric_limits<float>::max() << " et err = " << err << std::endl;
-	// 1. isInt?
+	// double d = isDouble(s);
+	// std::cout << "d = " << d << std::endl;
 	
-	// 2. isChar?
-	err = 0;
+	float f = isFloat(s);
+	
+	// std::cout << "f = " << f << std::endl;
+	std::cout << std::numeric_limits<double>::max() << " " << std::numeric_limits<double>::min() << " " << std::numeric_limits<double>::lowest() << std::endl;
+	// std::cout << std::numeric_limits<double>::max() << std::endl;
+	// std::cout << std::numeric_limits<float>::infinity() << std::endl;
+	// std::cout << std::numeric_limits<float>::has_infinity << std::endl;
+	// // 1. isInt?
+	
+	// // 2. isChar?
+
+	// int err = 0
+	// int n = isInt
+	// if (err = 0)
+	// AConverter* = new AConverter(n)
+	
 }
 
