@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FloatConverter.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:38:32 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/19 19:51:40 by garance          ###   ########.fr       */
+/*   Updated: 2024/03/20 13:50:48 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ FloatConverter::FloatConverter() : AConverter::AConverter() {}
 FloatConverter::FloatConverter(float f) : AConverter::AConverter() {
 	
 	this->f = f;
-	std::cout << f << std::endl;
 	this->c_ok = 0;
 	this->nb_ok = 0;
 	toChar();
@@ -54,7 +53,7 @@ bool	FloatConverter::isRoundFloat() const {
 }
 
 void	FloatConverter::toChar() {
-	if (this->isRoundFloat() && static_cast<int>(this->f) >= 0 && static_cast<int>(this->f) <= 255) {
+	if (this->isRoundFloat() && static_cast<int>(this->f) >= std::numeric_limits<char>::min() && static_cast<int>(this->f) <= std::numeric_limits<char>::max()) {
 		this->c = static_cast<char>(this->f);
 		this->c_ok = 1;
 	}
@@ -70,6 +69,11 @@ void	FloatConverter::toInt() {
 void	FloatConverter::toFloat() {}
 
 void	FloatConverter::toDouble() {
-	if (this->f >= (std::numeric_limits<double>::max()) * -1 && this->f <= std::numeric_limits<double>::max())
+	// if (this->f >= (std::numeric_limits<double>::max()) * -1 && this->f <= std::numeric_limits<double>::max())
+	// std::cout << "TEST << std::endl";
 		this->d = static_cast<double>(this->f);
+	// else if (this->f == std::numeric_limits<float>::infinity() || this->f == std::numeric_limits<float>::infinity() * -1)
+	// 	this->d = static_cast<double>(this->f);
+	// else
+	// 	this->d = static_cast<double>::no;
 }

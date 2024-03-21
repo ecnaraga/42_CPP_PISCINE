@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AConverter.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:36:29 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/19 19:56:22 by garance          ###   ########.fr       */
+/*   Updated: 2024/03/20 17:16:42 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@ AConverter::~AConverter() {}
 AConverter & AConverter::operator=(AConverter const & rhs) {
 	(void) rhs;
 	return (*this);
+}
+
+/* ************************************************************************* */
+/* ******************************* EXCEPTIONS ****************************** */
+/* ************************************************************************* */
+
+char const * AConverter::NotThatTypeException::what() const throw() {
+	return ("Wrong Type");
 }
 
 /* ************************************************************************* */
@@ -65,41 +73,49 @@ double AConverter::getDouble() const {
 /* ******************************** Actions ******************************** */
 /* ************************************************************************* */
 
-char AConverter::isChar( std::string const & s, int *err) {
+char AConverter::isChar( std::string const & s) {
 	if (s.length() > 1)
-		return (*err = 1);
+		throw (NotThatTypeException());
 	return (s[0]);
 }
 
-int AConverter::isInt( std::string const & s, int *err ) {
+int AConverter::isInt( std::string const & s ) {
 	long int 	n;
 	int 		digit = 0;
 	int 		i;
 	
-	if (s == "-")
-		return (*err = 1);
 	for (i = 1 * (s[0] == '-'); s[i] == '0'; i++) {}
 	while (s[i]) {
 		if (!isdigit(s[i]))
-			return (*err = 1);
+			throw (NotThatTypeException());
 		digit++;
 		i++;
 	}
 	std::istringstream(s) >> n;
 	if (n < std::numeric_limits<int>::min() || n > std::numeric_limits<int>::max() || digit > 10)
-		return (*err = 1);
+		throw (NotThatTypeException());
 	return (static_cast<int>(n));
 }
 
-float AConverter::isFloat( std::string const & s) { // REVOIR LES LIMITES
+/*
+un float sous sa forme literale doit se terminer par un f et si il y a un point doit avoir des chiffres soit avant soit apres le point soit les deux
+*/
+float AConverter::isFloat( std::string const & s) {
 	int i;
+	int sg = 1;
 	std::istringstream fstream(s);
 	
-	if (s == "-")
-		return (std::numeric_limits<float>::quiet_NaN());
+	if (s == "-inff")
+		return (std::numeric_limits<float>::infinity() * -1);
+	if (s == "+inff")
+		return (std::numeric_limits<float>::infinity());
+	if (s == "nan" || s == "+inf" || s == "-inf")
+		throw (NotThatTypeException());
+	if (s[0] == '-')
+		sg = -1;
 	for (i = 1 * (s[0] == '-'); s[i] == '0'; i++) {}
 	while (s[i]) {
-		if (s[i] == '.')
+		if (s[i] == '.' && (isdigit(s[i - 1]) || isdigit(s[i + 1])))
 			break;
 		if (!isdigit(s[i]))
 			return (std::numeric_limits<float>::quiet_NaN());
@@ -114,54 +130,62 @@ float AConverter::isFloat( std::string const & s) { // REVOIR LES LIMITES
 			return (std::numeric_limits<float>::quiet_NaN());
 		i++;
 	}
-	// float f = strtof(s.c_str(), NULL);
+	if (!s[i])
+		throw (NotThatTypeException());
+	if (s[i + 1])
+		return (std::numeric_limits<float>::quiet_NaN());
 	float f;
 	fstream >> f;
-	std::cout << f << std::endl;
-	if (fstream.fail() /* || f > std::numeric_limits<float>::max() */)
-		return (std::numeric_limits<float>::infinity());
-	std::cout << f << std::endl;
+	if (fstream.fail())
+		return (std::numeric_limits<float>::infinity() * sg);
 	return f;
 }
 
-double AConverter::isDouble( std::string const & s) { // REVOIR LES LIMITES
+/*
+un double sous sa forme literale doit avoir un point et des chiffres soit avant soit apres le point soit les deux
+*/
+double AConverter::isDouble( std::string const & s ) {
 	
 	int i;
+	int sg = 1;
 	std::istringstream fstream(s);
 	
-	if (s == "-")
-		return (std::numeric_limits<double>::quiet_NaN());
+	if (s == "-inf")
+		return (std::numeric_limits<double>::infinity() * -1);
+	if (s == "+inf")
+		return (std::numeric_limits<double>::infinity());
+	if (s[0] == '-')
+		sg = -1;
 	for (i = 1 * (s[0] == '-'); s[i] == '0'; i++) {}
 	while (s[i]) {
-		if (s[i] == '.')
+		if (s[i] == '.' && (isdigit(s[i - 1]) || isdigit(s[i + 1])))
 			break;
 		if (!isdigit(s[i]))
 			return (std::numeric_limits<double>::quiet_NaN());
 		i++;
 	}
-	if (s[i] == '.')
-		i++;
+	if (s[i] != '.')
+		return (std::numeric_limits<double>::quiet_NaN());
+	i++;
 	while (s[i]) {
 		if (!isdigit(s[i]))
 			return (std::numeric_limits<double>::quiet_NaN());
 		i++;
 	}
-	// double d = atof(s.c_str()); // pas utilise car de char * a double et non de string a double
 	double d;
 	fstream >> d;
 	if (fstream.fail())
-		return (std::numeric_limits<double>::infinity());
+		return (std::numeric_limits<float>::infinity() * sg);
 	return d;
 }
 
 std::ostream & operator<<(std::ostream & oo, AConverter *rhs) {
 
-	
 	if (rhs->getCharOk())
 	{
 		char c = rhs->getChar();
 		if (isprint(c))
-			oo << "char : " << c << std::endl;
+			oo << "char : '" << c << "'" << std::endl;
 		else
 			oo << "char : Non displayable"<< std::endl;
 	}
@@ -172,12 +196,12 @@ std::ostream & operator<<(std::ostream & oo, AConverter *rhs) {
 	else
 		oo << "int : impossible"<< std::endl;
 	if (rhs->isRoundFloat())
-		oo << "double : " << rhs->getDouble() << ".0" << std::endl;
-	// else
-	// 	oo << "double : " << rhs->getDouble() << std::endl; // CONDITIONAL JUMP
-	if (rhs->isRoundFloat())
 		oo << "float : " << rhs->getFloat() << ".0f" << std::endl;
 	else
 		oo << "float : " << rhs->getFloat() << "f" << std::endl;
+	if (rhs->isRoundFloat())
+		oo << "double : " << rhs->getDouble() << ".0" << std::endl;
+	else
+		oo << "double : " << rhs->getDouble() << std::endl; // CONDITIONAL JUMP si string
 	return(oo);
 }

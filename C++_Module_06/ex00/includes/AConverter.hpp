@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AConverter.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:46:10 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/19 19:46:17 by garance          ###   ########.fr       */
+/*   Updated: 2024/03/20 17:20:01 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@
 # include <limits>
 # include <sstream>
 
+/*
+	Classe abstraite heritee par IntConverter, CharConverter, FloatConverter et DoubleConverter
+*/
 class AConverter {
 	
 	protected :
 	
-		bool c_ok;
+		bool c_ok; // check si c a ete initialise
 		char c;
-		bool nb_ok;
+		bool nb_ok; // check si nb a ete initialise
 		int nb;
 		float f;
 		double d;
@@ -42,7 +45,15 @@ class AConverter {
 		/* ********************** Assignment Operator ********************** */
 		
 		AConverter & operator=(AConverter const & rhs);
-	
+		
+		/* ***************************************************************** */
+		/* *************************** EXCEPTIONS ************************** */
+		/* ***************************************************************** */
+
+		class NotThatTypeException : public std::exception {
+			char const * what() const throw();
+		};
+		
 	public :
 		/* ***************************************************************** */
 		/* ******************** Constructor & Destructor ******************* */
@@ -65,8 +76,12 @@ class AConverter {
 		/* **************************** Actions **************************** */
 		/* ***************************************************************** */
 
-		static char 	isChar( std::string const & s, int *err);
-		static int 		isInt( std::string const & s, int *err );
+		/*
+		Fonctions non membres, si le type n est pas celui qu elle doivent renvoyer,
+		lancent une exception sinon retourne la valeur converti a partir de la string
+		*/
+		static char 	isChar( std::string const & s);
+		static int 		isInt( std::string const & s );
 		static float 	isFloat( std::string const & s);
 		static double 	isDouble( std::string const & s);
 		

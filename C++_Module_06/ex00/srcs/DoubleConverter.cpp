@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DoubleConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:38:32 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/19 19:46:17 by garance          ###   ########.fr       */
+/*   Updated: 2024/03/20 13:50:13 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,17 @@ bool	DoubleConverter::isRoundFloat() const {
 }
 
 void	DoubleConverter::toChar() {
-	if (this->isRoundFloat() && static_cast<int>(this->d) >= 0 && static_cast<int>(this->d) <= 255)
+	if (this->isRoundFloat() && static_cast<int>(this->d) >= std::numeric_limits<char>::min() && static_cast<int>(this->d) <= std::numeric_limits<char>::max()) {
 		this->c = static_cast<char>(this->d);
+		this->c_ok = 1;
+	}
 }
 
 void	DoubleConverter::toInt() {
-	if (this->isRoundFloat())
+	if (this->isRoundFloat()) {
 		this->nb = static_cast<int>(this->d);
+		this->nb_ok = 1;
+	}
 }
 
 void	DoubleConverter::toFloat() {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IntConverter.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:38:32 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/19 19:46:17 by garance          ###   ########.fr       */
+/*   Updated: 2024/03/20 13:51:03 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ bool	IntConverter::isRoundFloat() const {
 }
 
 void	IntConverter::toChar() {
-	if (nb >= 0 && nb <= 255) {
+	if (nb >= std::numeric_limits<char>::min() && nb <= std::numeric_limits<char>::max()) {
 		this->c = static_cast<char>(this->nb);
 		this->c_ok = 1;
 	}
