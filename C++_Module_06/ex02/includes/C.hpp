@@ -1,17 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Data.cpp                                           :+:      :+:    :+:   */
+/*   C.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 12:04:41 by garance           #+#    #+#             */
-/*   Updated: 2024/03/21 15:53:06 by galambey         ###   ########.fr       */
+/*   Created: 2024/03/21 13:25:00 by galambey          #+#    #+#             */
+/*   Updated: 2024/03/21 13:26:24 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/Data.hpp"
+#ifndef C_HPP
+# define C_HPP
 
-Data::Data() {
-	this->age = 15;
-}
+# include "Base.hpp"
+
+class C : public Base {} ;
+
+#endif

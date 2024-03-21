@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 11:59:11 by garance           #+#    #+#             */
-/*   Updated: 2024/03/21 12:18:35 by garance          ###   ########.fr       */
+/*   Updated: 2024/03/21 15:54:35 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ int main(void) {
 
     std::cout << std::endl << title << "Avec un pointeur non NULL" << reset << std::endl;
     std::cout << "Adresse de p : " << &p << std::endl;
+    std::cout << "p.age = " << p.age << std::endl;
     std::cout << "Adresse de p convertie en uintprt_t : " << ptr_dec << std::endl;
     std::cout << "uintptr convertie en Data * : " << ptr << std::endl;
+    std::cout << "ptr.age = " << ptr->age << std::endl;
 
     //Avec NULL
     std::cout << std::endl << title << "Avec un pointeur NULL" << reset << std::endl;

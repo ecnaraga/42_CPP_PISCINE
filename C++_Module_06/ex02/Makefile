@@ -3,20 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: garance <garance@student.42.fr>            +#+  +:+       +#+         #
+#    By: galambey <galambey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 09:38:17 by galambey          #+#    #+#              #
-#    Updated: 2024/03/21 12:19:16 by garance          ###   ########.fr        #
+#    Updated: 2024/03/21 13:26:03 by galambey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			=	serializer
+NAME			=	identifier
 
 SRCS_DIR			=	srcs/
 
 SRCS				=	main.cpp \
-						Serializer.cpp \
-						Data.cpp
+						Base.cpp 
 
 OBJS_DIR			=	.objs/
 

@@ -1,17 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Data.cpp                                           :+:      :+:    :+:   */
+/*   Base.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 12:04:41 by garance           #+#    #+#             */
-/*   Updated: 2024/03/21 15:53:06 by galambey         ###   ########.fr       */
+/*   Created: 2024/03/21 12:29:49 by galambey          #+#    #+#             */
+/*   Updated: 2024/03/21 13:23:08 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/Data.hpp"
+#ifndef BASE_HPP
+# define BASE_HPP
 
-Data::Data() {
-	this->age = 15;
-}
+class Base {
+	public :
+		virtual ~Base();	
+};
+
+#endif
