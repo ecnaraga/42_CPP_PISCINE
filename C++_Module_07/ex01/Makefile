@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: galambey <galambey@student.42.fr>          +#+  +:+       +#+         #
+#    By: garance <garance@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 09:38:17 by galambey          #+#    #+#              #
-#    Updated: 2024/03/21 17:14:38 by galambey         ###   ########.fr        #
+#    Updated: 2024/03/22 10:31:17 by garance          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			=	whatever
+NAME			=	iter
 
 SRCS_DIR			=	srcs/
 
