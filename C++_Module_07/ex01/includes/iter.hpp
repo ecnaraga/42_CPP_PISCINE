@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 10:31:43 by garance           #+#    #+#             */
-/*   Updated: 2024/03/22 13:34:31 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:19:31 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,21 @@
 #include <iostream>
 #include <cstring>
 
-template <class To, class From> // Pour pouvoir instancier la fonction dans le code, il faut definir un template pour le type retour egalement
-To print(From f) {
+template <typename From> // Pour pouvoir instancier la fonction dans le code, il faut definir un template pour le type retour egalement
+void test(From & f) {
 	std::cout << f << " ";
 }
 
-template <class T, class To, class From>
-void iter(T & array, int len, To (*f)(From)) {
+// template <class T>
+// void iter(T & array, int len, void (*f)(T)) {
+// 	for (int i = 0; i < len; i++)
+// 		f(array[i]);
+// }
+
+
+// template <class T, class From>
+template <typename T, typename From>
+void iter(T & array, int len, void (*f)(From)) {
 	for (int i = 0; i < len; i++)
 		f(array[i]);
 }
