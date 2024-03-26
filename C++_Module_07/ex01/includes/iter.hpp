@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 10:31:43 by garance           #+#    #+#             */
-/*   Updated: 2024/03/25 18:19:31 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:16:39 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,44 @@
 #include <iostream>
 #include <cstring>
 
-template <typename From> // Pour pouvoir instancier la fonction dans le code, il faut definir un template pour le type retour egalement
-void test(From & f) {
+template <typename U>
+void test(U & f) {
 	std::cout << f << " ";
 }
 
-// template <class T>
-// void iter(T & array, int len, void (*f)(T)) {
+template <typename T , typename U>
+void iter(T & array, int len, void (*f)(U &)) {
+	for (int i = 0; i < len; i++)
+		f(array[i]);
+}
+
+/*
+Autre methode : le type U represente la fonction directement
+*/
+// template <typename T , typename U>
+// void iter(T & array, int len, U * f) {
 // 	for (int i = 0; i < len; i++)
 // 		f(array[i]);
 // }
 
+/*
+=> marche pour quasiment tous les tableaux, mais pas de string a char car pas le meme type
+	d 'ou l interet d utiliser deux typenames differents
+// template <class T >
+// void iter(T *array, int len, void(*f)(T const &elem)) {
+// 	for (int i = 0; i < len; i++) {
+// 		// T &elem = array[i];
+// 		// f(elem);
+// 		f(array[i]);
+// 	}
+// }
 
-// template <class T, class From>
-template <typename T, typename From>
-void iter(T & array, int len, void (*f)(From)) {
-	for (int i = 0; i < len; i++)
-		f(array[i]);
-}
+// template <class T>
+// void iter(T * array, int len, void (*f)(T &)) {
+// 	for (int i = 0; i < len; i++)
+// 		f(array[i]);
+// }
+*/
+
 
 #endif

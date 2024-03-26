@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:31:17 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/25 17:03:03 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/26 12:30:02 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include <iostream>
 
-template <class T> class Array {
+template < typename T >
+class Array {
 
 	private :
 		T* _array;
@@ -27,22 +28,22 @@ template <class T> class Array {
 		/* ******************** Constructor & Destructor ******************* */
 		/* ***************************************************************** */
 
-		Array() {
+		Array<T>() {
 			this->_array = new T[0]();
 			this->_size = 0;
 		}
 
-		Array(Array const & orig) {
+		Array<T>(Array<T> const & orig) {
 			this->_array = new T[orig.size()]();
 			*this = orig;
 		}
 		
-		Array(unsigned int n) {
+		Array<T>(unsigned int n) {
 			this->_array = new T[n](); // les parentheses permettent d initialiser par default toutes les valeurs du tableau
 			this->_size = n;
 		}
 		
-		~Array() {
+		~Array<T>() {
 			delete[] _array;
 		}
 
@@ -62,7 +63,7 @@ template <class T> class Array {
 
 		/* ********************** Assignment Operator ********************** */
 		
-		Array & operator=(Array const & rhs) {
+		Array<T> & operator=(Array<T> const & rhs) {
 			this->_size = rhs.size();
 			for(unsigned int i = 0; i < this->_size ; i++) {
 				this->_array[i] = rhs._array[i];
@@ -81,5 +82,4 @@ template <class T> class Array {
 		}
 
 };
-
 #endif

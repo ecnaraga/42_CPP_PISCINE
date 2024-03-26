@@ -6,26 +6,28 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:37:10 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/22 11:15:41 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:27:36 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WHATEVER_HPP
 # define WHATEVER_HPP
 
-template <class myType>
-myType max(myType a, myType b) {
+#include <iostream>
+
+template <class T>
+T const & max(T const & a, T const & b) {
     return (a >= b ? a : b);
 }
 
-template <class myType>
-myType min(myType a, myType b) {
+template <typename T>
+T const & min(T const & a, T const & b) {
     return (a <= b ? a : b);
 }
 
-template <class myType>
-void swap(myType & a, myType  & b) {
-    myType tmp;
+template <typename T>
+void swap(T & a, T & b) {
+    T tmp;
 
     tmp = a;
     a = b;

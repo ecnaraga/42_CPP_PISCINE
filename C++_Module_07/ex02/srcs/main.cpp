@@ -6,12 +6,21 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 11:14:31 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/25 17:03:13 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/26 16:44:07 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/Array.hpp"
 
+/*
+Type par default :
+	Possibilite de definir par default le type du template:
+	template < typename = int > => Signifie que si l'instanciation du template n'est pas
+	explicite, il considerera que le type fourni est un int, dans le cas contraire il utilisera
+	le type "precise"
+	MyClass<float> : le type sera converti en float
+	MyClass<> : le type sera converti en int soit le type par default 
+*/
 int main() {
 	
 	std::string title = "\e[34m";
