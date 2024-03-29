@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:39:26 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/28 18:36:40 by galambey         ###   ########.fr       */
+/*   Updated: 2024/03/29 15:37:10 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ const char * Span::SpanAlreadyFullException::what() const throw() {
 	return ("Span is already full");
 }
 
-const char * Span::NotFoundValueException::what() const throw() {
-	return ("Value is not stocked in Span");
+const char * Span::NoSpanPossibleException::what() const throw() {
+	return ("There is less than 2 values stocked");
 }
 /* ************************************************************************* */
 /* ******************************** Actions ******************************** */
@@ -58,19 +58,40 @@ void	Span::addNumber(int nb) {
 	
 	if (this->_nb_elem >= this->_size_max)
 		throw (SpanAlreadyFullException());
-	std::vector<int>::iterator it;
-	// if (this->_nb_elem == 0)
-	// 	it = this->_span.begin();
-	// else
-		it = this->_span.end();
+	std::vector<int>::iterator it = this->_span.end();
 	this->_span.insert(it, nb);
+	this->_nb_elem += 1;
 }
 
-/* ATTENTION LE PLUS PETIT OU MAX SPAN EST LA DISTANCE ENTRE DEUX NB ET NON LE MIN OU MAX ELEM*/
-/* int	Span::shortestSpan() const {
-	return (*std::min_element(this->_span.begin(), this->_span.end()));
+void	Span::addNumber(int nb[], unsigned int size) {
+	
+	if (size > this->_size_max - this->_nb_elem)
+		throw(SpanAlreadyFullException());
+	this->_span.insert(_span.begin() + this->_nb_elem, nb, nb + size);
+	this->_nb_elem += size;
+}
+
+int	Span::shortestSpan() const {
+	try {
+		int span = longestSpan();
+		std::vector<int> myvector = this->_span;
+		
+		std::sort (myvector.begin(), myvector.end());
+		std::vector<int>::iterator it_prec = myvector.begin();
+		for (std::vector<int>::iterator it = myvector.begin() + 1; it < myvector.end(); it++) {
+			if (*it - *it_prec < span)
+				span = *it - *it_prec;
+			it_prec = it;
+		}
+		return (span);
+	}
+	catch (std::exception & e) { 
+		throw ; 
+	};
 }
 
 int Span::longestSpan() const {
-	return (*std::max_element(this->_span.begin(), this->_span.end()));
-} */
+	if (this->_nb_elem < 2)
+		throw(NoSpanPossibleException());
+	return (*std::max_element(this->_span.begin(), this->_span.end()) - *std::min_element(this->_span.begin(), this->_span.end()));
+}
