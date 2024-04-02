@@ -6,11 +6,11 @@
 #    By: galambey <galambey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 09:38:17 by galambey          #+#    #+#              #
-#    Updated: 2024/03/29 15:39:05 by galambey         ###   ########.fr        #
+#    Updated: 2024/04/01 10:20:15 by galambey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			=	span
+NAME			=	mutant
 
 SRCS_DIR			=	srcs/
 
