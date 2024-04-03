@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 15:39:33 by galambey          #+#    #+#             */
-/*   Updated: 2024/04/02 10:34:23 by galambey         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:33:33 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class MutantStack : public std::stack<T, U> {
 		
 		MutantStack<T, U>(MutantStack<T, U> const & orig) : std::stack<T, U>(orig) {
 			(void) orig;
-		} // A IMPLEMENTER
+		}
 
 		~MutantStack<T, U>() {}
 		
@@ -46,11 +46,9 @@ class MutantStack : public std::stack<T, U> {
 		/* ********************** Assignment Operator ********************** */
 		
 		MutantStack<T, U> & operator=(MutantStack<T , U> rhs) {
-			(void) rhs;
+			this->c = rhs.c;
 			return (*this);
-		} // A IMPLEMENTER
-		
-
+		}
 
 		/* ***************************************************************** */
 		/* **************************** Iterator *************************** */
@@ -65,7 +63,16 @@ class MutantStack : public std::stack<T, U> {
 		iterator end() {
 			return (this->c.end());
 		};
-	
+
+		typedef typename MutantStack::stack::container_type::reverse_iterator reverse_iterator;
+		
+		reverse_iterator rbegin() {
+			return (this->c.rbegin());
+		};
+
+		reverse_iterator rend() {
+			return (this->c.rend());
+		};
 };
 
 #endif
