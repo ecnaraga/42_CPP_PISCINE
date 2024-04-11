@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 15:39:48 by galambey          #+#    #+#             */
-/*   Updated: 2024/04/03 11:34:29 by galambey         ###   ########.fr       */
+/*   Updated: 2024/04/11 15:29:24 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,12 +162,46 @@ int main (void) {
 			++rit;
 		}
 	}
+	// std::cout << std::endl << title << "More tests with MutantStack" << reset << std::endl;
+	// {
+	// 	std::string strs[] = {"Hello,", "how", "are", "you?"};
+	// 	std::deque<std::string> v(strs, strs + sizeof(strs) / sizeof(std::string));
+	// 	MutantStack<std::string/* , std::vector<std::string >*/ > mstack(v);
+	// 	MutantStack<std::string/* , std::vector<std::string >*/ > mstack_cpy;
+
+	// 	mstack_cpy = mstack;
+
+	// 	mstack_cpy.push("Good,");
+	// 	mstack_cpy.push("thanks");
+
+	// 	std::cout << "Size of mstack = " << mstack.size() << std::endl;
+	// 	std::cout << "Size of mstack_cpy = " << mstack_cpy.size() << std::endl;
+		
+	// 	MutantStack<std::string/* , std::vector<std::string> */ >::iterator it;
+	// 	MutantStack<std::string/* , std::vector<std::string> */ >::iterator ite = mstack_cpy.end();
+
+	// 	for (it = mstack_cpy.begin(); it != ite; it++) {
+	// 		std::cout << *it << std::endl;
+	// 	}
+	// 	std::cout << std::endl;
+
+	// 	mstack_cpy.pop();
+	// 	mstack_cpy.push("thank you :D");
+		
+	// 	MutantStack<std::string/* , std::vector<std::string>  */>::reverse_iterator rit;
+	// 	MutantStack<std::string/* , std::vector<std::string> */ >::reverse_iterator rite = mstack_cpy.rend();
+
+	// 	for (rit = mstack_cpy.rbegin(); rit != rite; rit++) {
+	// 		std::cout << *rit << std::endl;
+	// 	}
+
+	// }
 	std::cout << std::endl << title << "More tests with MutantStack" << reset << std::endl;
 	{
 		std::string strs[] = {"Hello,", "how", "are", "you?"};
 		std::vector<std::string> v(strs, strs + sizeof(strs) / sizeof(std::string));
-		MutantStack<std::string, std::vector<std::string> > mstack(v);
-		MutantStack<std::string, std::vector<std::string> > mstack_cpy;
+		MutantStack<std::string, std::vector<std::string > > mstack(v);
+		MutantStack<std::string, std::vector<std::string > > mstack_cpy;
 
 		mstack_cpy = mstack;
 
@@ -180,9 +214,9 @@ int main (void) {
 		MutantStack<std::string, std::vector<std::string> >::iterator it;
 		MutantStack<std::string, std::vector<std::string> >::iterator ite = mstack_cpy.end();
 
-		for (it = mstack_cpy.begin(); it != ite; it++) {
+		for (it = mstack_cpy.begin(); it != ite; it++)
 			std::cout << *it << std::endl;
-		}
+
 		std::cout << std::endl;
 
 		mstack_cpy.pop();
@@ -191,9 +225,8 @@ int main (void) {
 		MutantStack<std::string, std::vector<std::string> >::reverse_iterator rit;
 		MutantStack<std::string, std::vector<std::string> >::reverse_iterator rite = mstack_cpy.rend();
 
-		for (rit = mstack_cpy.rbegin(); rit != rite; rit++) {
+		for (rit = mstack_cpy.rbegin(); rit != rite; rit++)
 			std::cout << *rit << std::endl;
-		}
 
 	}
 	
