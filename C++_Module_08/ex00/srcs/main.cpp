@@ -10,8 +10,6 @@ const char * AbsentValueException::what() const throw() {
 	return ("Value is absent in that container");
 }
 
-t * f;
-
 int main () {
 	
 	std::string title = "\e[34m";
