@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:43:22 by galambey          #+#    #+#             */
-/*   Updated: 2024/05/15 16:26:53 by galambey         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:46:40 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,20 @@
 # define PMERGEME_HPP
 
 # include <iostream>
+# include <sstream>
 # include <vector>
 # include <list>
+# include <utility>
 
 class PmergeMe {
+		
 	private :
 
-		class	Pair {
-			private :
-				int _large;
-				int _small;
-				
-				Pair();
-				Pair(Pair & orig);
-				Pair & operator=(Pair & rhs);
-				
-			public :
-				Pair(int n1, int n2);
-				~Pair();
-				
-		} ;
-		
 		std::string _suit;
-		std::vector<Pair>	_my_vect;
-		std::list<Pair>		_my_list;
+		bool		_parity;
+		int			_left;
+		std::vector< std::pair<int, int> >	_my_vect;
+		std::list< std::pair<int, int> >	_my_list;
 		
 		/* ***************************************************************** */
 		/* ******************** Constructor & Destructor ******************* */
@@ -45,7 +35,6 @@ class PmergeMe {
 
 		PmergeMe();
 		PmergeMe(PmergeMe & orig);
-		~PmergeMe();
 		
 		/* ***************************************************************** */
 		/* ********************** OPERATOR OVERLOADING ********************* */
@@ -56,12 +45,13 @@ class PmergeMe {
 		PmergeMe & operator=(PmergeMe & rhs);
 		
 	public :
-
+		
 		/* ***************************************************************** */
 		/* ******************** Constructor & Destructor ******************* */
 		/* ***************************************************************** */
 
 		PmergeMe(std::string & s);
+		~PmergeMe();
 		
 		/* ***************************************************************** */
 		/* *************************** EXCEPTIONS ************************** */
@@ -76,7 +66,7 @@ class PmergeMe {
 		/* ***************************************************************** */
 
 		static unsigned long long int jacobsthal_suit()/*  const */;
-		void	to_vector()
+		void	to_vector();
 } ;
 
 #endif

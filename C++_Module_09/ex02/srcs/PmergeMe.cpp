@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:43:53 by galambey          #+#    #+#             */
-/*   Updated: 2024/05/15 16:26:08 by galambey         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:51:26 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,33 +18,16 @@
 
 PmergeMe::PmergeMe() {}
 
-PmergeMe::PmergeMe(std::string & s) : _suit(s) {
+PmergeMe::PmergeMe(std::string & s) : _suit(s) , _parity(0) {
 }
 
 PmergeMe::PmergeMe(PmergeMe & orig) {
-	(void) orig;
+	*this = orig;
 }
 
 PmergeMe::~PmergeMe() {}
 
-PmergeMe::Pair::Pair() {}
 
-PmergeMe::Pair::Pair(PmergeMe::Pair & orig) {
-	(void) orig;
-}
-
-PmergeMe::Pair::Pair(int n1, int n2) {
-	if (n1 > n2) {
-		this->_large = n1;
-		this->_small = n2;
-	}
-	else {
-		this->_large = n2;
-		this->_small = n1;
-	}
-}
-
-PmergeMe::Pair::~Pair() {}
 
 /* ************************************************************************* */
 /* ************************** OPERATOR OVERLOADING ************************* */
@@ -53,11 +36,6 @@ PmergeMe::Pair::~Pair() {}
 /* ************************** Assignment Operator  ************************* */
 
 PmergeMe & PmergeMe::operator=(PmergeMe & rhs) {
-	(void) rhs;
-	return (*this);
-}
-
-PmergeMe::Pair & PmergeMe::Pair::operator=(PmergeMe::Pair & rhs) {
 	(void) rhs;
 	return (*this);
 }
@@ -98,4 +76,42 @@ unsigned long long int	PmergeMe::jacobsthal_suit() /* const  */{
 	}
 	i++;
 	return (n_curr);
+}
+
+void	PmergeMe::to_vector() {
+	
+	std::istringstream iss(this->_suit); // voir si besoin protection si string null
+	std::pair<int, int> p;
+	int nb1, nb2;
+	
+	iss.exceptions(std::istream::failbit);
+	while (1)
+	{
+		try {
+			iss >> nb1;
+		}
+		catch(std::istream::failure & e) { break; }
+		try {
+			iss >> nb2;
+		}
+		catch(std::istream::failure & e) {
+			this->_parity = 1;
+			this->_left = nb1;
+			break; }
+		if (nb1 >= nb2)
+		{
+			p.first = nb1;
+			p.second = nb2;
+		}
+		else
+		{
+			p.first = nb2;
+			p.second = nb1;
+		}
+		this->_my_vect.push_back(p);
+	}
+	for (std::vector< std::pair<int, int> >::iterator it = _my_vect.begin(); it < _my_vect.end(); it++) {
+		std::cout << static_cast< std::pair < int, int > > (*it).first << std::endl;
+		std::cout << static_cast< std::pair < int, int > > (*it).second << std::endl << std::endl;
+	}
 }
