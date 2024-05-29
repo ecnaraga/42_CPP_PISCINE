@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:43:53 by galambey          #+#    #+#             */
-/*   Updated: 2024/05/26 09:12:59 by garance          ###   ########.fr       */
+/*   Updated: 2024/05/29 19:21:55 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,27 @@ const char *	PmergeMe::OverflowException::what() const throw() {
 /* ******************************** Actions ******************************** */
 /* ************************************************************************* */
 
-unsigned long long int	PmergeMe::jacobsthal_suit() const {
+// unsigned long long int	PmergeMe::jacobsthal_suit() const {
+// 	static unsigned long long int n_m1 = 1;
+// 	static unsigned long long int n_curr = 1;
+// 	static short int i = 0;
+// 	int tmp;
+	
+// 	if (i > 31)
+// 		throw (OverflowException());
+// 	if (n_curr > 1)
+// 	{
+// 		tmp = n_curr;
+// 		n_curr = n_m1 * 2 + n_curr;
+// 		n_m1 = tmp;
+// 	}
+// 	else // if (n_curr == 1)
+// 		n_curr = 3;
+// 	i++;
+// 	return (n_curr);
+// }
+
+size_t	PmergeMe::jacobsthal_suit() const {
 	static unsigned long long int n_m1 = 1;
 	static unsigned long long int n_curr = 1;
 	static short int i = 0;
@@ -160,6 +180,31 @@ void	PmergeMe::rec_sort_hight_elem(std::vector< std::pair<int, int> > & v_p, std
 	}
 }
 
+void	PmergeMe::dichotomic_insertion(std::vector< std::pair<int,int> > & v_p) {
+	
+	size_t i = 1; // a incrementer quand on insere un nb
+	size_t j = jacobsthal_suit(); //=> on recherche entre index 0 et index j + i
+	size_t j_next;
+	std::vector<int>::iterator it;
+	while (1)
+	{
+		it = std::upper_bound(this->_my_vect.begin(), this->_my_vect.begin() + j + i, v_p[j - 1].second);
+		this->_my_vect.insert(it, v_p[j - 1].second);
+		i++;
+		j++;
+		j_next = jacobsthal_suit();
+		if (j_next >= v_p.size())
+			j_next = v_p.size();
+		while (j <= j_next) {
+			it = std::upper_bound(this->_my_vect.begin(), this->_my_vect.begin() + j + i, v_p[j - 1].second);
+			this->_my_vect.insert(it, v_p[j - 1].second);
+			i++;
+			j++;
+		}
+		if (j_next == v_p.size())
+			break;
+	}
+}
 
 void	PmergeMe::to_vector() {
 	
@@ -195,32 +240,24 @@ void	PmergeMe::to_vector() {
 		}
 		v_p.push_back(p);
 	}
-	/* Check */
-	for (std::vector< std::pair<int, int> >::iterator it = v_p.begin(); it < v_p.end(); it++) {
-		std::cout << static_cast< std::pair < int, int > > (*it).first << std::endl;
-		std::cout << static_cast< std::pair < int, int > > (*it).second << std::endl << std::endl;
-	}
 
 	/* Insert in vector the highest elements of pair sorted in recursive */
 	std::vector< std::pair<int, int> >::iterator it = v_p.begin();
 	rec_sort_hight_elem(v_p, it);
-	std::cout << "*********************" << std::endl;
-	for (std::vector< std::pair<int, int> >::iterator it = v_p.begin(); it < v_p.end(); it++) {
-		std::cout << static_cast< std::pair < int, int > > (*it).first << std::endl;
-		std::cout << static_cast< std::pair < int, int > > (*it).second << std::endl << std::endl;
+	for (std::vector< std::pair<int, int> >::iterator it = v_p.begin(); it < v_p.end(); it++)
 		this->_my_vect.push_back((*it).first);
-	}
-	std::cout << "*********************" << std::endl;
 	
 	/* Insert the smallest element of thefirst pair */
 	this->_my_vect.insert(this->_my_vect.begin(), v_p[0].second);
-	for (std::vector<int>::iterator it = _my_vect.begin(); it != _my_vect.end(); it++)
-		std::cout << *it << std::endl;
 	
 	/* Insert the smallest elems of pair */
-	// int i = 0;
-	// while (1)
-	// {
-	// 	int j = jacobsthal_suit();
-	// }
+	this->dichotomic_insertion(v_p);
+	
+	if (this->_parity == 1)
+	{
+		std::vector< int >::iterator itt = std::upper_bound(this->_my_vect.begin(), this->_my_vect.end(), this->_left);
+		this->_my_vect.insert(itt, this->_left);
+	}
+	for (std::vector<int>::iterator it = _my_vect.begin(); it != _my_vect.end(); it++)
+		std::cout << *it << std::endl;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
+/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:43:22 by galambey          #+#    #+#             */
-/*   Updated: 2024/05/26 09:09:15 by garance          ###   ########.fr       */
+/*   Updated: 2024/05/29 19:17:29 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <vector>
 # include <list>
 # include <utility>
+# include <algorithm>
 
 class PmergeMe {
 		
@@ -68,7 +69,8 @@ class PmergeMe {
 
 		void	swap_elem(std::vector< std::pair<int, int> >::iterator & elem1, std::vector< std::pair<int, int> >::iterator & elem2);
 		void	sort_pair(std::pair<int, int> * p);
-		unsigned long long int jacobsthal_suit() const;
+		size_t jacobsthal_suit() const;
+		void	dichotomic_insertion(std::vector< std::pair<int,int> > & v_p);
 		void	rec_sort_hight_elem(std::vector< std::pair<int, int> > & v_p, std::vector< std::pair<int, int> >::iterator & it);
 		void	to_vector();
 } ;
