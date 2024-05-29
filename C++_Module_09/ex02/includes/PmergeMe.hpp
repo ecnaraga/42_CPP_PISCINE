@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:43:22 by galambey          #+#    #+#             */
-/*   Updated: 2024/05/22 16:46:40 by galambey         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:09:15 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ class PmergeMe {
 		std::string _suit;
 		bool		_parity;
 		int			_left;
-		std::vector< std::pair<int, int> >	_my_vect;
-		std::list< std::pair<int, int> >	_my_list;
+		// std::vector< int >	_my_vect;
+		std::vector< int >	_my_vect;
+		std::list< int >	_my_list;
 		
 		/* ***************************************************************** */
 		/* ******************** Constructor & Destructor ******************* */
@@ -65,7 +66,10 @@ class PmergeMe {
 		/* **************************** Actions **************************** */
 		/* ***************************************************************** */
 
-		static unsigned long long int jacobsthal_suit()/*  const */;
+		void	swap_elem(std::vector< std::pair<int, int> >::iterator & elem1, std::vector< std::pair<int, int> >::iterator & elem2);
+		void	sort_pair(std::pair<int, int> * p);
+		unsigned long long int jacobsthal_suit() const;
+		void	rec_sort_hight_elem(std::vector< std::pair<int, int> > & v_p, std::vector< std::pair<int, int> >::iterator & it);
 		void	to_vector();
 } ;
 

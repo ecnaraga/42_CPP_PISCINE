@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: garance <garance@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:44:28 by galambey          #+#    #+#             */
-/*   Updated: 2024/05/22 16:33:02 by galambey         ###   ########.fr       */
+/*   Updated: 2024/05/26 09:17:12 by garance          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/PmergeMe.hpp"
 
 int	main() {
-	std::string s = "42 02 05 89 10";
+	std::string s = "42 02 05 89 10 30 1 45 5 6 8 64 98 58 12 10 4 65 98 32 67 45 25 7 95";
+	// for (int i = 0; i < 10; i++)
+	// 	std::cout << PmergeMe::jacobsthal_suit() << std::endl;
 	PmergeMe a(s);
 	a.to_vector();
 	
