@@ -6,55 +6,57 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:44:28 by galambey          #+#    #+#             */
-/*   Updated: 2024/06/05 16:40:01 by galambey         ###   ########.fr       */
+/*   Updated: 2024/06/06 18:37:10 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/PmergeMe.hpp"
 
-// ATTENTION PAS DE NB NEGATIF => A INCLURE
-// ATTENTION A PARSER ARG ET VERIF SI NB ET PAS D OVERFLOW D ATOI
 int	main(int ac, char** av) {
-	if (ac < 2)
+	if (ac < 3)
 	{
-		std::cout << "Error : Arguments missing" << std::endl;
+		std::cerr << "Error : At least two arguments required" << std::endl;
 		return (1);
 	}
-	try {
-		PmergeMe a(ac, av);  // check si atoi overflow  dans constructeur ?
-		a.to_vector();
+	clock_t	begin;
+	clock_t	end;
+	float time_v;
+	{
+		try {
+			begin = clock();
+			PmergeMe a(ac, av);
+			a.to_vector();
+			end = clock();
+			time_v = (static_cast<float>(end - begin) / CLOCKS_PER_SEC) * 100000;
+		}
+		catch (std::bad_alloc & e) {
+			std::cerr << "Error : Dynamic allocation failed : " << e.what() << std::endl; }
+		catch (std::out_of_range const & e) {
+			std::cerr << "Error : Out of range : " << e.what() << std::endl; }
+		catch (std::length_error const & e) {
+			std::cerr << "Error : Lenght error : " << e.what() << std::endl; }
+		catch (std::exception const & e) {
+			std::cerr << e.what() << std::endl; 
+			return (1);}
 	}
-	catch (std::bad_alloc & e) {
-		std::cout << e.what() << std::endl;
-	}
 	try {
-		PmergeMe a(ac, av);  // check si atoi overflow  dans constructeur ?
+		begin = clock();
+		PmergeMe a(ac, av);
 		a.to_deque();
+		end = clock();
+		std::cout << "Time to process a range of " << ac - 1 << " elements with std::vector : ";
+		std::cout << time_v << " us." << std::endl;
+		std::cout << "Time to process a range of " << ac - 1 << " elements with std::deque : ";
+		std::cout << (static_cast<float>(end - begin) / CLOCKS_PER_SEC) * 100000 << " us." << std::endl;
+		
 	}
 	catch (std::bad_alloc & e) {
-		std::cout << e.what() << std::endl;
-	}
+		std::cerr << "Error : Dynamic allocation failed : " << e.what() << std::endl; }
+	catch (std::out_of_range const & e) {
+		std::cerr << "Error : Out of range : " << e.what() << std::endl; }
+	catch (std::length_error const & e) {
+		std::cerr << "Error : Lenght error : " << e.what() << std::endl; }
+	catch (std::exception const & e) {
+		std::cerr << e.what() << std::endl; }
 	return (0);
 }
-
-// #include <iostream>     // std::cout
-// #include <algorithm>    // std::merge, std::sort
-// #include <vector>       // std::vector
-
-// int main () {
-//   int first[] = {5,10,15,20,25};
-//   int second[] = {50,40,30,20,10};
-//   int three[10];
-// //   std::vector<int> v(10);
-
-//   std::sort (first,first+5);
-//   std::sort (second,second+5);
-//   std::merge (first,first+5,second,second+5,three);
-
-//   std::cout << "The resulting vector contains:";
-//   for (int i = 0; i < 10; i++)
-//     std::cout << ' ' << three[i];
-//   std::cout << '\n';
-
-//   return 0;
-// }

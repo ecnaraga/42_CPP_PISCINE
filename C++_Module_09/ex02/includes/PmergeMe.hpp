@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:43:22 by galambey          #+#    #+#             */
-/*   Updated: 2024/06/05 16:38:57 by galambey         ###   ########.fr       */
+/*   Updated: 2024/06/06 17:23:06 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <deque>
 # include <utility>
 # include <algorithm>
+# include <ctime>
+# include <unistd.h>
 
 class PmergeMe {
 		
@@ -26,7 +28,8 @@ class PmergeMe {
 
 		bool		_parity;
 		int			_left;
-		std::vector< int >	_my_vect;
+		int			_ac;
+		char 		**_av;
 		
 		/* ***************************************************************** */
 		/* ******************** Constructor & Destructor ******************* */
@@ -49,34 +52,61 @@ class PmergeMe {
 		/* ******************** Constructor & Destructor ******************* */
 		/* ***************************************************************** */
 
-		PmergeMe(int ac, char **av);
+		PmergeMe(int ac, char **av); // a mettre en prive
 		~PmergeMe();
 		
 		/* ***************************************************************** */
 		/* *************************** EXCEPTIONS ************************** */
 		/* ***************************************************************** */
 
-		class OverflowException : public std::exception {
-			const char * what() const throw();	
+		class PmergeMeException : public std::exception {
+			private :
+				const char *_err;
+			public :
+				PmergeMeException(const char *err);
+				const char * what() const throw();	
 		} ;
 		
 		/* ***************************************************************** */
 		/* **************************** Actions **************************** */
 		/* ***************************************************************** */
 
-		// void	swap_elem(std::vector< std::pair<int, int> >::iterator & elem1, std::vector< std::pair<int, int> >::iterator & elem2);
-		// void	sort_pair(std::pair<int, int> * p);
-		size_t	make_pair(std::pair<int, int> * pair);
 		size_t jacobsthal_suit(int order) const;
-		void	dichotomic_insertion(std::vector<int> & sorted, std::pair<int,int> * pair, size_t size);
-		std::pair<int, int> *rec_sort_hight_elem(std::pair<int, int> * pair, int begin, int end);
-		int *	rec_sort_hight_elem(int  pair[], int begin, int end);
-		void	rec_sort_hight_elem(int  pair[], int sorted_pair[], int begin, int end);
-		// void	rec_sort_hight_elem(std::pair<int, int> * pair, std::pair<int, int> * sorted_pair, int begin, int end);
-		// std::pair<int, int> *	PmergeMe::rec_sort_hight_elem(std::pair<int, int> * pair, int begin, int end);
+		
+		template<typename T>
+		void	print_container(T & cont, std::string const & message) {
+			
+			typename T::iterator it;
+			
+			std::cout.fill(' ');
+			std::cout.flags(std::ios::left);
+			std::cout.width(10);
+			std::cout << message;
+			std::cout.width();
+			for (it = cont.begin(); it != cont.end(); it++)
+				std::cout << *it << " ";
+			std::cout << std::endl;
+		}
+		
+		/* ***************************************************************** */
+		/* ***************************** Vector **************************** */
+		/* ***************************************************************** */
+		
+		void	parse_nb(std::vector<int> & to_sort) const;
+		void	make_pair(std::vector<std::pair<int, int> > & pair, std::vector<int> & to_sort);
+		void	dichotomic_insertion(std::vector<int> & sorted, std::vector< std::pair<int, int> > * pair, size_t size);
+		std::vector<std::pair<int, int> > *rec_sort_hight_elem(std::vector<std::pair<int, int> > & pair, int begin, int end);
 		void	to_vector();
+
+		/* ***************************************************************** */
+		/* ***************************** Deque ***************************** */
+		/* ***************************************************************** */
+
+		void	parse_nb(std::deque<int> & to_sort) const;
+		void	make_pair(std::deque<std::pair<int, int> > & pair, std::deque<int> & to_sort);
+		void	dichotomic_insertion(std::deque<int> & sorted, std::deque< std::pair<int, int> > * pair, size_t size);
+		std::deque<std::pair<int, int> > *rec_sort_hight_elem(std::deque<std::pair<int, int> > & pair, int begin, int end);
 		void	to_deque();
-		void	dichotomic_insertion(std::deque<int> & sorted, std::pair<int,int> * pair, size_t size);
 } ;
 
 #endif
