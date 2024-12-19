@@ -84,4 +84,10 @@ Module 07 => Functions templates and class templates
     - ex00 : Implement the following functions templates : swap, min and max
     - ex01 : Implement a function template iter that takes the adress of an array, the length of an array and a function that will be called on all elements of the array
     - ex02 : Implement a class template Array that contain elements of type T, and overload among other things the operator [] 
+
+Module 08 => Templated containers (stack, list, vector, deque), iterators, algorithms library
+    
+    - ex00 : Implement a template function  taking two parameter, a type T and an integer. Assuming T is a container of integers, find the first occurence of the second parameter
+    - ex01 : Implement a Span class that store n integers max. Implements two members functions that will find the shortest/greatest span between all numbers stored. Implement a function that fill the span using a range of iterators at once.
+    - ex02 : Create a MutantStack class that inherit of std::stack and implements iterators for the MutantStack
     
