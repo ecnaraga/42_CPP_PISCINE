@@ -61,3 +61,14 @@ Module 04 => Polymorphisme, Abstract class, Interface (or pure abstract class), 
         => unequip() function can't delete a Materia
         => No memmory leaks
     
+Module 05 => Exception
+    
+    - ex00 : Implement a Bureaucrat class, with a constant name and a grade from 1(highest) to 150 (lowest). Implements two exception in case grade is too low or too high. Implement a main to test it
+    - ex01 : Add a Form class , with a constant name, a bool indicate if the form is sign, a grade require to be signed, a grade require to be executed. Implements two exception in case one of form grade is too high or to low, and one in case Bureaucrat's grade is too low to sign the form. Add more tests to the main
+    - ex02 : Transform the Form class into an abstract class and add 3 concrete form classes :
+        - ShrubberyCreationForm: Required grades: sign 145, exec 137 that create a file and draw an ascii tree inside
+        - RobotomyRequestForm: Required grades: sign 72, exec 45 that make a noise 550% of the time
+        - PresidentialPardonForm: Required grades: sign 25, exec 5 that grant pardon to the target
+        Implement a main to test it
+    - ex03 : Implement an Intern class with no attribute that have one fonction to create the good form depending the parameter given and return its pointer
+    
