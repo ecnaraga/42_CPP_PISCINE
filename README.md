@@ -79,4 +79,9 @@ Module 06 => Static cast, Reinterpret cast, Dynamic cast
     - ex01 : Implement a Serialize class with two statics methods serialize that take a pointer and return the conversion in a uintptr_ and deserialize that do the opposite thing.
     - ex02 : Create three empty classes that inherit of a Base class who has only a virtual destructor. Implement a generate function that randomly return a pointer to A, B or C instance, and two indentify function one takin a pointer to the Base class and the other one the reference and print the type of Base pointer/reference passing in parameter 
 
-
+Module 07 => Functions templates and class templates
+    
+    - ex00 : Implement the following functions templates : swap, min and max
+    - ex01 : Implement a function template iter that takes the adress of an array, the length of an array and a function that will be called on all elements of the array
+    - ex02 : Implement a class template Array that contain elements of type T, and overload among other things the operator [] 
+    
