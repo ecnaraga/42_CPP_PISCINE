@@ -56,7 +56,7 @@ int main( void ) {
 	std::cout << "min( c, d ) = " << ::min<std::string>( c, d ) << std::endl;
 	std::cout << "min( c, d ) = " << ::min<std::string const>( c, d ) << std::endl;
 	std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
-	// std::cout << "max( c, d ) = " << max<std::string>( c, d ) << std::endl;
+	// std::cout << "max( c, d ) = " << max<std::string>( c, d ) << std::endl; => ne marchera pas
 	std::cout << "max( c, d ) = " << ::max<std::string>( c, d ) << std::endl;
 	return 0;
 }

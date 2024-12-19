@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 # include "../includes/Array.hpp"
+#include <time.h>
+#include <stdlib.h>
 
 /*
 Type par default :

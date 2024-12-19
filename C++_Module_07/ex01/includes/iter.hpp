@@ -18,7 +18,7 @@
 
 template <typename U>
 void test(U & f) {
-	std::cout << f << " ";
+	std::cout << f << std::endl;
 }
 
 template <typename T , typename U>
