@@ -91,3 +91,11 @@ Module 08 => Templated containers (stack, list, vector, deque), iterators, algor
     - ex01 : Implement a Span class that store n integers max. Implements two members functions that will find the shortest/greatest span between all numbers stored. Implement a function that fill the span using a range of iterators at once.
     - ex02 : Create a MutantStack class that inherit of std::stack and implements iterators for the MutantStack
     
+Module 09 => Templated containers (maps, stack, vector, deque), STL library
+    
+    - ex00 : Write a program that take an input file in arguments and will outputs the value of a certain amount of bitcoin according a dadatabase provided with the subject
+    =>  ./btc input.txt
+    - ex01 : Implement a Reverse Polish Notation
+    =>  ./RPN "8 9 * 9 - 9 - 9 - 4 - 1 +"
+    - ex02 : Implement with two differents containers the ford-johnson algorythm
+    
