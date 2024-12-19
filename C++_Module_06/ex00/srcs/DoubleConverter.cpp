@@ -53,7 +53,9 @@ bool	DoubleConverter::isRoundFloat() const {
 }
 
 void	DoubleConverter::toChar() {
-	if (this->isRoundFloat() && static_cast<int>(this->d) >= std::numeric_limits<char>::min() && static_cast<int>(this->d) <= std::numeric_limits<char>::max()) {
+	if (this->isRoundFloat() && static_cast<int>(this->d) >= std::numeric_limits<char>::min()
+		&& static_cast<int>(this->d) <= std::numeric_limits<char>::max())
+	{
 		this->c = static_cast<char>(this->d);
 		this->c_ok = 1;
 	}

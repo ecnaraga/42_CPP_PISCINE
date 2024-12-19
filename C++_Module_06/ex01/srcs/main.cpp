@@ -27,6 +27,8 @@ int main(void) {
     std::cout << std::endl << title << "Avec un pointeur non NULL" << reset << std::endl;
     std::cout << "Adresse de p : " << &p << std::endl;
     std::cout << "p.age = " << p.age << std::endl;
+	p.age = 35;
+    std::cout << "p.age = " << p.age << std::endl;
     std::cout << "Adresse de p convertie en uintprt_t : " << ptr_dec << std::endl;
     std::cout << "uintptr convertie en Data * : " << ptr << std::endl;
     std::cout << "ptr.age = " << ptr->age << std::endl;

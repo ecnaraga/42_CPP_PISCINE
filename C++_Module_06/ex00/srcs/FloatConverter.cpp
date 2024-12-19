@@ -53,7 +53,8 @@ bool	FloatConverter::isRoundFloat() const {
 }
 
 void	FloatConverter::toChar() {
-	if (this->isRoundFloat() && static_cast<int>(this->f) >= std::numeric_limits<char>::min() && static_cast<int>(this->f) <= std::numeric_limits<char>::max()) {
+	if (this->isRoundFloat() && static_cast<int>(this->f) >= std::numeric_limits<char>::min()
+		&& static_cast<int>(this->f) <= std::numeric_limits<char>::max()) {
 		this->c = static_cast<char>(this->f);
 		this->c_ok = 1;
 	}
@@ -69,11 +70,5 @@ void	FloatConverter::toInt() {
 void	FloatConverter::toFloat() {}
 
 void	FloatConverter::toDouble() {
-	// if (this->f >= (std::numeric_limits<double>::max()) * -1 && this->f <= std::numeric_limits<double>::max())
-	// std::cout << "TEST << std::endl";
 		this->d = static_cast<double>(this->f);
-	// else if (this->f == std::numeric_limits<float>::infinity() || this->f == std::numeric_limits<float>::infinity() * -1)
-	// 	this->d = static_cast<double>(this->f);
-	// else
-	// 	this->d = static_cast<double>::no;
 }

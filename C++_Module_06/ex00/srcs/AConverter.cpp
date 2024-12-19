@@ -76,6 +76,8 @@ double AConverter::getDouble() const {
 char AConverter::isChar( std::string const & s) {
 	if (s.length() > 1)
 		throw (NotThatTypeException());
+	if (s[0] >= '0' && s[0] <= '9')
+		return (s[0] - 48);
 	return (s[0]);
 }
 
@@ -202,6 +204,6 @@ std::ostream & operator<<(std::ostream & oo, AConverter *rhs) {
 	if (rhs->isRoundFloat())
 		oo << "double : " << rhs->getDouble() << ".0" << std::endl;
 	else
-		oo << "double : " << rhs->getDouble() << std::endl; // CONDITIONAL JUMP si string
+		oo << "double : " << rhs->getDouble() << std::endl;
 	return(oo);
 }
