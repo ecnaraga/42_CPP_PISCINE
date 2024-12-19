@@ -72,3 +72,11 @@ Module 05 => Exception
         Implement a main to test it
     - ex03 : Implement an Intern class with no attribute that have one fonction to create the good form depending the parameter given and return its pointer
     
+Module 06 => Static cast, Reinterpret cast, Dynamic cast
+    
+    - ex00 : Implement a ScalarConverter class that contain only one static method convert who take as parameter a string representation of a char, int, float or double and display the string representation in the 4 forms. Write a program to test it
+        => You can do "make test" to run some tests in the shell
+    - ex01 : Implement a Serialize class with two statics methods serialize that take a pointer and return the conversion in a uintptr_ and deserialize that do the opposite thing.
+    - ex02 : Create three empty classes that inherit of a Base class who has only a virtual destructor. Implement a generate function that randomly return a pointer to A, B or C instance, and two indentify function one takin a pointer to the Base class and the other one the reference and print the type of Base pointer/reference passing in parameter 
+
+
