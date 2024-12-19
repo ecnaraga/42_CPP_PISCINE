@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:44:28 by galambey          #+#    #+#             */
-/*   Updated: 2024/06/06 18:37:10 by galambey         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:33:38 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int ac, char** av) {
 			PmergeMe a(ac, av);
 			a.to_vector();
 			end = clock();
-			time_v = (static_cast<float>(end - begin) / CLOCKS_PER_SEC) * 100000;
+			time_v = (static_cast<float>(end - begin) / CLOCKS_PER_SEC) * 1000000;
 		}
 		catch (std::bad_alloc & e) {
 			std::cerr << "Error : Dynamic allocation failed : " << e.what() << std::endl; }
@@ -47,7 +47,7 @@ int	main(int ac, char** av) {
 		std::cout << "Time to process a range of " << ac - 1 << " elements with std::vector : ";
 		std::cout << time_v << " us." << std::endl;
 		std::cout << "Time to process a range of " << ac - 1 << " elements with std::deque : ";
-		std::cout << (static_cast<float>(end - begin) / CLOCKS_PER_SEC) * 100000 << " us." << std::endl;
+		std::cout << (static_cast<float>(end - begin) / CLOCKS_PER_SEC) * 1000000 << " us." << std::endl;
 		
 	}
 	catch (std::bad_alloc & e) {

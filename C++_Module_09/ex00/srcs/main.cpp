@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 17:55:06 by galambey          #+#    #+#             */
-/*   Updated: 2024/05/14 14:29:15 by galambey         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:13:57 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,43 @@ int main (int ac , char **av) {
 			}
 			btc.get_input(input);
 		}
+		catch (std::bad_alloc const & e)
+		{
+			std::cerr << "Error: dynamic allocation failed" << e.what() << std::endl;
+		}
 		catch (std::exception const & e)
 		{
-			std::cerr << "Error: invalid database file." << std::endl;
+			std::cerr << e.what() << std::endl;
 		}
+		/* Test cpy_constructor */
+		// BitCoinExchange btc_1;
+		// {
+		// 	BitCoinExchange btc_cpy(btc_1);
+		// }
+		// try
+		// {
+		// 	std::ifstream 	input;
+			
+		// 	input.exceptions(std::ifstream::failbit);
+		// 	try
+		// 	{
+		// 		input.open(av[1], std::ifstream::in);
+		// 	}
+		// 	catch (std::ios_base::failure const & e)
+		// 	{
+		// 		std::cerr << "Error: could not open file." << std::endl;
+		// 		return (1);
+		// 	}
+		// 	btc_1.get_input(input);
+		// }
+		// catch (std::exception const & e)
+		// {
+		// 	std::cerr << "Error: invalid database file." << std::endl;
+		// }
 	}
 	else
 	{
-		std::cerr << "Error: could not open file." << std::endl;
+		std::cerr << "Error: one argument required" << std::endl;
 		return (1);
 	}
 	return (0);

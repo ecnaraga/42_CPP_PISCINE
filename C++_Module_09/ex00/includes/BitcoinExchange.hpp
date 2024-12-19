@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 17:50:00 by galambey          #+#    #+#             */
-/*   Updated: 2024/05/14 16:03:30 by galambey         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:08:36 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ class BitCoinExchange {
 		/* ***************************************************************** */
 		/* *************************** EXCEPTIONS ************************** */
 		/* ***************************************************************** */
+		
+		class InvalidDatabase : public std::exception {
+			const char * what() const throw();
+		} ;
 		
 		class NotAValidFile : public std::exception {
 			const char * what() const throw();

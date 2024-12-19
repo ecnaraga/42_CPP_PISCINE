@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:43:22 by galambey          #+#    #+#             */
-/*   Updated: 2024/06/06 17:23:06 by galambey         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:41:37 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,7 @@ class PmergeMe {
 		/* ********************** Assignment Operator ********************** */
 		
 		PmergeMe & operator=(PmergeMe & rhs);
-		
-	public :
-		
-		/* ***************************************************************** */
-		/* ******************** Constructor & Destructor ******************* */
-		/* ***************************************************************** */
 
-		PmergeMe(int ac, char **av); // a mettre en prive
-		~PmergeMe();
-		
 		/* ***************************************************************** */
 		/* *************************** EXCEPTIONS ************************** */
 		/* ***************************************************************** */
@@ -96,7 +87,6 @@ class PmergeMe {
 		void	make_pair(std::vector<std::pair<int, int> > & pair, std::vector<int> & to_sort);
 		void	dichotomic_insertion(std::vector<int> & sorted, std::vector< std::pair<int, int> > * pair, size_t size);
 		std::vector<std::pair<int, int> > *rec_sort_hight_elem(std::vector<std::pair<int, int> > & pair, int begin, int end);
-		void	to_vector();
 
 		/* ***************************************************************** */
 		/* ***************************** Deque ***************************** */
@@ -106,6 +96,26 @@ class PmergeMe {
 		void	make_pair(std::deque<std::pair<int, int> > & pair, std::deque<int> & to_sort);
 		void	dichotomic_insertion(std::deque<int> & sorted, std::deque< std::pair<int, int> > * pair, size_t size);
 		std::deque<std::pair<int, int> > *rec_sort_hight_elem(std::deque<std::pair<int, int> > & pair, int begin, int end);
+		
+	public :
+		
+		/* ***************************************************************** */
+		/* ******************** Constructor & Destructor ******************* */
+		/* ***************************************************************** */
+
+		PmergeMe(int ac, char **av); // a mettre en prive
+		~PmergeMe();
+		
+		/* ***************************************************************** */
+		/* ***************************** Vector **************************** */
+		/* ***************************************************************** */
+		
+		void	to_vector();
+
+		/* ***************************************************************** */
+		/* ***************************** Deque ***************************** */
+		/* ***************************************************************** */
+
 		void	to_deque();
 } ;
 

@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:25:47 by galambey          #+#    #+#             */
-/*   Updated: 2024/05/15 11:41:11 by galambey         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:18:44 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,8 @@ int	RPN::calcul_expression(std::string & arg) {
 				try {
 					RPN::push_nb(rpn, nb, rule);
 				}
-				catch (std::exception const & e) {
-					throw ;
-				}
+				catch(std::bad_alloc) { throw; }
+				catch (std::exception const & e) { throw ; }
 			}
 		}
 	}
@@ -96,35 +95,38 @@ int	RPN::calcul_expression(std::string & arg) {
 
 void RPN::push_nb(std::stack<int> & rpn, int & nb, int & rule) {
 	
-	if (rpn.empty())
-		throw (RPN::Error());
-	nb = rpn.top();
-	rpn.pop();
-	if (rpn.empty())
-		throw (RPN::Error());
-	switch (rule)
-	{
-		case RPN::ADD : {
-			nb = rpn.top() + nb;
-			break;
+	try {
+		if (rpn.empty())
+			throw (RPN::Error());
+		nb = rpn.top();
+		rpn.pop();
+		if (rpn.empty())
+			throw (RPN::Error());
+		switch (rule)
+		{
+			case RPN::ADD : {
+				nb = rpn.top() + nb;
+				break;
+			}
+			case RPN::SUB : {
+				nb = rpn.top() - nb;
+				break;
+			}
+			case RPN::MULT : {
+				nb = rpn.top() * nb;
+				break;
+			}
+			case RPN::DIV : {
+				if (nb == 0)
+					throw (RPN::Error());
+				nb = rpn.top() / nb;
+				break;
+			}
 		}
-		case RPN::SUB : {
-			nb = rpn.top() - nb;
-			break;
-		}
-		case RPN::MULT : {
-			nb = rpn.top() * nb;
-			break;
-		}
-		case RPN::DIV : {
-			if (nb == 0)
-				throw (RPN::Error());
-			nb = rpn.top() / nb;
-			break;
-		}
+		rpn.pop();
+		rpn.push(nb);
 	}
-	rpn.pop();
-	rpn.push(nb);
+	catch(std::bad_alloc) { throw; }
 }
 
 short int RPN::check_elem(std::string & elem) {

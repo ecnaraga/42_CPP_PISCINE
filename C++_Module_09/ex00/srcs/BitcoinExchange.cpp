@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:57:35 by galambey          #+#    #+#             */
-/*   Updated: 2024/05/14 16:03:39 by galambey         ###   ########.fr       */
+/*   Updated: 2024/06/07 11:47:21 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,16 @@ BitCoinExchange::BitCoinExchange() {
 	{
 		this->get_database();
 	}
-	catch (std::exception const & e)
-	{
-		throw ;
-	}
+	catch(std::bad_alloc const & e) { throw; }
+	catch (std::exception const & e) { throw ; }
 }
 
 BitCoinExchange::BitCoinExchange(BitCoinExchange & orig) {
-	*this = orig;
+	try
+	{
+		*this = orig;
+	}
+	catch(std::bad_alloc const & e) { throw; }
 }
 
 BitCoinExchange::~BitCoinExchange() {}
@@ -40,7 +42,11 @@ BitCoinExchange::~BitCoinExchange() {}
 /* ************************** Assignment Operator  ************************* */
 
 BitCoinExchange & BitCoinExchange::operator=(BitCoinExchange & rhs) {
-	this->_database = rhs._database;
+	try
+	{
+		this->_database = rhs._database;
+	}
+	catch(std::bad_alloc const & e) { throw; }
 	return (*this);
 }
 
@@ -48,6 +54,9 @@ BitCoinExchange & BitCoinExchange::operator=(BitCoinExchange & rhs) {
 /* ************************************************************************* */
 /* ******************************* EXCEPTIONS ****************************** */
 /* ************************************************************************* */
+const char * BitCoinExchange::InvalidDatabase::what() const throw() {
+	return ("Error: invalid database file");
+}
 
 const char * BitCoinExchange::NotAValidFile::what() const throw() {
 	return ("Error: invalid file");
@@ -80,12 +89,15 @@ void	BitCoinExchange::get_database(void) {
 	std::string 	date;
 	
 	database.exceptions(std::ifstream::failbit);
-	database.open("data.csv", std::ifstream::in);
+	try {
+		database.open("data.csv", std::ifstream::in);
+	}
+	catch(std::ifstream::failure) { throw (InvalidDatabase()); }
 	if (!database.good())
-		throw (NotAValidFile());
+		throw (InvalidDatabase());
 	getline(database, line, '\n');
 	if (line.empty())
-		throw (NotAValidFile());
+		throw (InvalidDatabase());
 	while (1)
 	{
 		try
@@ -102,6 +114,7 @@ void	BitCoinExchange::get_database(void) {
 			std::istringstream iss(line);
 			iss >> this->_database[date];
 		}
+		catch(std::bad_alloc const & e) { throw; }
 		catch(std::ifstream::failure const & e) { break; }
 	}
 }
@@ -195,6 +208,8 @@ void	BitCoinExchange::get_input(std::ifstream & input) {
 	try
 	{
 		getline(input, line, '\n'); // ATTENTION PAS PROTEGE
+		if (line != "date | value")
+			throw(NotAValidFile());
 	}
 	catch (std::ifstream::failure const & e)
 	{
