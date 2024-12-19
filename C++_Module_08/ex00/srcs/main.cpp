@@ -2,7 +2,7 @@
 #include <vector>       // std::vector
 #include <deque>        // std::deque
 #include <list>         // std::list
-#include <stack>        // std::list
+#include <stack>        // std::stack
 #include <cstdlib>
 #include "../includes/easyfind.hpp"
 
@@ -23,12 +23,18 @@ int main () {
 		for (int i = 0; i < 1000; i++)
 			tab[i] = rand() % 1000;
 
-		std::vector<int> myvector(tab, tab + 1000);
 		try {
+			std::vector<int> myvector(tab, tab + 1000);
 			std::cout << (easyfind< std::vector<int> >(myvector, 30)) << std::endl;
 		}
-		catch (std::exception &e) {
-			std::cout << "\e[31m" << e.what() << "\e[0m" << std::endl;
+		catch (std::bad_alloc const & e) {
+			std::cerr << "\e[31m" << e.what() << "\e[0m" << std::endl;
+		}
+		catch (std::length_error const & e) {
+			std::cerr << "\e[31m" << e.what() << "\e[0m" << std::endl;
+		}
+		catch (std::exception const & e) {
+			std::cerr << "\e[31m" << e.what() << "\e[0m" << std::endl;
 		}
 	}
 	{
@@ -39,12 +45,18 @@ int main () {
 		for (int i = 0; i < 100; i++)
 			tab[i] = rand() % 200;
 
-		std::deque<int> mydeque(tab, tab + sizeof(tab) / sizeof(int));
 		try {
+			std::deque<int> mydeque(tab, tab + sizeof(tab) / sizeof(int));
 			std::cout << easyfind< std::deque<int> >(mydeque, 55) << std::endl;
 		}
-		catch (std::exception &e) {
-			std::cout << "\e[31m" << e.what() << "\e[0m" << std::endl;
+		catch (std::bad_alloc const & e) {
+			std::cerr << "\e[31m" << e.what() << "\e[0m" << std::endl;
+		}
+		catch (std::length_error const & e) {
+			std::cerr << "\e[31m" << e.what() << "\e[0m" << std::endl;
+		}
+		catch (std::exception const & e) {
+			std::cerr << "\e[31m" << e.what() << "\e[0m" << std::endl;
 		}
 	}
 	{
@@ -55,12 +67,18 @@ int main () {
 		for (int i = 0; i < 100; i++)
 			tab[i] = rand() % 200;
 
-		std::list<int> mylist(tab, tab + 100);
 		try {
+			std::list<int> mylist(tab, tab + 100);
 			std::cout <<easyfind< std::list<int> >(mylist , 10) << std::endl;
 		}
-		catch (std::exception & e) {
-			std::cout << "\e[31m" << e.what() << "\e[0m" << std::endl;
+		catch (std::bad_alloc const & e) {
+			std::cerr << "\e[31m" << e.what() << "\e[0m" << std::endl;
+		}
+		catch (std::length_error const & e) {
+			std::cerr << "\e[31m" << e.what() << "\e[0m" << std::endl;
+		}
+		catch (std::exception const & e) {
+			std::cerr << "\e[31m" << e.what() << "\e[0m" << std::endl;
 		}
 	}
 	return 0;

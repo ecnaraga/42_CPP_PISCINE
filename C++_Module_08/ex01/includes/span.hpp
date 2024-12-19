@@ -36,6 +36,10 @@ class Span {
 		/* *************************** EXCEPTIONS ************************** */
 		/* ***************************************************************** */
 
+		class MaxSizeExceededException : public std::exception {
+			const char * what() const throw();
+		};
+		
 		class NoSpanPossibleException : public std::exception {
 			const char * what() const throw();
 		};
@@ -73,8 +77,13 @@ class Span {
 		void	addNumber(T nb) {
 			if (nb.size() > this->_size_max - this->_nb_elem)
 				throw(SpanAlreadyFullException());
-			this->_span.insert(_span.begin() + this->_nb_elem, nb.begin(), nb.end());
-			this->_nb_elem += nb.size();
+			try {
+				this->_span.insert(_span.begin() + this->_nb_elem, nb.begin(), nb.end());
+				this->_nb_elem += nb.size();
+			}
+			catch (std::bad_alloc const & e) {
+				throw ;
+			}
 		}
 		
 		int		shortestSpan() const;

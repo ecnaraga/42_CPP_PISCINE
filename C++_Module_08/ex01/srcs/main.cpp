@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:49:54 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/29 15:36:31 by galambey         ###   ########.fr       */
+/*   Updated: 2024/05/30 13:36:12 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ int main()
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
 	}
+	catch (std::bad_alloc const & e) {
+		std::cerr << err << e.what() << reset << std:: endl;
+	}
 	catch (std::exception & e) {
 		std::cerr << err << e.what() << reset << std:: endl;
 	}
@@ -43,6 +46,9 @@ int main()
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
 	}
+	catch (std::bad_alloc const & e) {
+		std::cerr << err << e.what() << reset << std:: endl;
+	}
 	catch (std::exception & e) {
 		std::cerr << err << e.what() << reset << std:: endl;
 	}
@@ -51,6 +57,9 @@ int main()
 	try {
 		Span sp(10);
 		std::cout << sp.longestSpan() << std::endl;
+	}
+	catch (std::bad_alloc const & e) {
+		std::cerr << err << e.what() << reset << std:: endl;
 	}
 	catch (std::exception & e) {
 		std::cerr << err << e.what() << reset << std:: endl;
@@ -61,6 +70,9 @@ int main()
 		Span sp(0);
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
+	}
+	catch (std::bad_alloc const & e) {
+		std::cerr << err << e.what() << reset << std:: endl;
 	}
 	catch (std::exception & e) {
 		std::cerr << err << e.what() << reset << std:: endl;
@@ -76,6 +88,9 @@ int main()
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
 	}
+	catch (std::bad_alloc const & e) {
+		std::cerr << err << e.what() << reset << std:: endl;
+	}
 	catch (std::exception & e) {
 		std::cerr << err << e.what() << reset << std:: endl;
 	}
@@ -90,6 +105,9 @@ int main()
 		sp.addNumber(myvector);
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
+	}
+	catch (std::bad_alloc const & e) {
+		std::cerr << err << e.what() << reset << std:: endl;
 	}
 	catch (std::exception & e) {
 		std::cerr << err << e.what() << reset << std:: endl;
@@ -107,6 +125,9 @@ int main()
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
 	}
+	catch (std::bad_alloc const & e) {
+		std::cerr << err << e.what() << reset << std:: endl;
+	}
 	catch (std::exception & e) {
 		std::cerr << err << e.what() << reset << std:: endl;
 	}
@@ -122,6 +143,9 @@ int main()
 		sp.addNumber(v);
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
+	}
+	catch (std::bad_alloc const & e) {
+		std::cerr << err << e.what() << reset << std:: endl;
 	}
 	catch (std::exception & e) {
 		std::cerr << err << e.what() << reset << std:: endl;

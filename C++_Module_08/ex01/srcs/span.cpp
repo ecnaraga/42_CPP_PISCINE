@@ -6,7 +6,7 @@
 /*   By: galambey <galambey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 15:39:26 by galambey          #+#    #+#             */
-/*   Updated: 2024/03/29 15:37:10 by galambey         ###   ########.fr       */
+/*   Updated: 2024/05/30 13:34:57 by galambey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 	};
 	
 	Span::Span(unsigned int N) : _size_max(N) {
+		// if (this->_size_max > this->_span.max_size()) // pas necessaire car la taille max d un vecteur ne depasse pas la taille max d un unsigned int
+		// 	throw(MaxSizeExceededException());
 		this->_nb_elem = 0;
 	}
 	
@@ -43,6 +45,10 @@ Span &	Span::operator=(Span const & rhs) {
 /* ******************************* EXCEPTIONS ****************************** */
 /* ************************************************************************* */
 
+const char * Span::MaxSizeExceededException::what() const throw() {
+	return ("Span can't be constructed due to a too high size");
+}
+
 const char * Span::SpanAlreadyFullException::what() const throw() {
 	return ("Span is already full");
 }
@@ -59,16 +65,26 @@ void	Span::addNumber(int nb) {
 	if (this->_nb_elem >= this->_size_max)
 		throw (SpanAlreadyFullException());
 	std::vector<int>::iterator it = this->_span.end();
-	this->_span.insert(it, nb);
-	this->_nb_elem += 1;
+	try {
+		this->_span.insert(it, nb);
+		this->_nb_elem += 1;
+	}
+	catch (std::bad_alloc const & e) {
+		throw ;
+	}
 }
 
 void	Span::addNumber(int nb[], unsigned int size) {
 	
 	if (size > this->_size_max - this->_nb_elem)
 		throw(SpanAlreadyFullException());
-	this->_span.insert(_span.begin() + this->_nb_elem, nb, nb + size);
-	this->_nb_elem += size;
+	try {
+		this->_span.insert(_span.begin() + this->_nb_elem, nb, nb + size);
+		this->_nb_elem += size;
+	}
+	catch (std::bad_alloc const & e) {
+		throw ;
+	}
 }
 
 int	Span::shortestSpan() const {
